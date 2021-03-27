@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native'
-import { Container, Header, Content, Footer, } from 'native-base';
+import { View, Text, StyleSheet, Alert } from 'react-native'
+import { Container, Header, Content, Footer, Button} from 'native-base';
 
 import Carousel from '../Componentes/Carousel.js';
-import CatAcordeon from '../Componentes/CatAcordeon.js'
+import CardNotica from '../Componentes/CardNotica.js';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -11,27 +11,29 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 export default class Principal extends React.Component {
     render(){
         return(
+            
 
            <Container style = {styles.content} >
 
                 <Header style = {styles.header} >
+                    <Button style={{ backgroundColor: '#29B6F6' }} onPress = { ()=>this.props.navigation.openDrawer() }>
+                        <Icon name="home" size={35} color='white' padding='5' margin= '5' />
+                    </Button>
                     <Text style = {styles.textHeader} >
-                    <Icon name="info" size={35} color='white' />   ¡Promociones y más! </Text>
+                    {/* <Icon name="info" size={35} color='white' />  */}  ¡Promociones y más! </Text>
                 </Header>
                 
                 <View style = {styles.contentCarousel}>
-                    <View style = {styles.carrousel} >
-                        <Carousel/>
-                    </View> 
+                    <Carousel/>
                 </View>
                
                 <Header style = {styles.header} >
                         <Text style = {styles.textHeader} >
-                        <Icon name="list-ul" size={35} color='white' />   ¡Noticias Katisa! </Text>
+                        <Icon name="list-ul" size={35} color='white' />   Noticias Katisa </Text>
                 </Header>
                 
                 <View style = {styles.contentBody}>
-                    <CatAcordeon/>
+                    <CardNotica/>
                 </View>
 
                 <Footer style = {styles.header} >
@@ -45,25 +47,23 @@ export default class Principal extends React.Component {
 }
 
 const styles = StyleSheet.create ({
+    content: {
+        flexDirection: 'column',
+        flex: 1 ,
+    },
     header: { 
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#29B6F6',
     },
     textHeader: {
         color: 'white',
         fontSize: 25,
         fontWeight: 'bold',
     },
-    content: {
-        flexDirection: 'column',
-        flex: 9,
-    },
     contentCarousel: {
         flexDirection: 'column',
-        flex: 1,
-    },
-    carousel: {
-        flex: 1,
+        height: 'auto',
     },
     contentBody: {
         flexDirection: 'column',

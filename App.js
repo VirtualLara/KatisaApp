@@ -1,20 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { AppLoading } from 'expo-app-loading';
-import * as Font from 'expo-font';
-import { Root } from 'native-base';
-import { Ionicons} from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, Text, View, Image,  } from "react-native";
+import Asset from "expo-asset";
+import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
+import  Root  from "native-base";
+import { Ionicons } from "@expo/vector-icons";
 
-import Login from './Vistas/Login.js';
-import Principal from './Vistas/Principal.js';
-import RecuperarPassword from './Vistas/RecuperarPassword.js';
-import Registrarse from './Vistas/Registrarse.js';
-import Sucursales from './Vistas/Sucursales.js';
+import Drawer from './Navigator/Drawer.js';
 
-
-
-
-/* export default class App extends React.Component {
+export default class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -24,7 +18,7 @@ import Sucursales from './Vistas/Sucursales.js';
     };
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
@@ -33,25 +27,16 @@ import Sucursales from './Vistas/Sucursales.js';
     this.setState({ load: true });
   }
 
-  render() {
-    if (!this.state.load) {
+
+  render(){
+    if(!this.state.load){
+      return(
+        <AppLoading/>
+      )
+    } else {
       return (
-          <AppLoading/>
+        <Drawer/>
       );
     }
-
-    return (
-      <Sucursales/>
-    );
-  }
-} */
-
-
-export default class App extends React.Component {
-
-  render() {
-      return (
-        <Principal/>
-    );
   }
 }
