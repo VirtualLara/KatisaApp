@@ -28,7 +28,7 @@ export default class CarruselImagenes extends Component {
       };
     }
    
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       this.setState({
         interval: setInterval(() => {
           this.setState({
