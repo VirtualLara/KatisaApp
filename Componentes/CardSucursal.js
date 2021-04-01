@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Alert, View, StyleSheet } from 'react-native';
+import { Image, Alert, View, StyleSheet, Linking } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, 
          Text, Button, Icon, Left, Body, Right } from 'native-base';
+import email from 'react-native-email';
 
 export default class CardSucursal extends Component {
 
@@ -45,14 +46,14 @@ export default class CardSucursal extends Component {
                         </CardItem>
 
                         <CardItem cardBody>
-                            <Image source= { require( '../Recursos/Imagenes/logo.png' ) }
-                                            style={{height: 200, width: null, flex: 1, resizeMode: 'contain'}}/>
+                            <Image source= { this.props.foto }
+                                            style={{height: 200, width: null, flex: 1, resizeMode: 'cover'}}/>
                         </CardItem>
 
                         <CardItem style={{ display: 'flex', flexDirection: 'row' }} >
 
                             <View style={{ width: '35%', }} >
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy whatsapp')} } 
+                                <Button transparent onPress = { () => { Linking.openURL('whatsapp://send?text=' + 'Hola, me pongo en contacto desde su AppMovil para lo siguiente: ' + '&phone=52' + this.props.celular ) } }                                   
                                         style={{ display:'flex' , flexDirection: 'column' }} >
                                     <Icon active name="logo-whatsapp" />
                                     <Text >WhatsApp</Text>                         
@@ -68,7 +69,18 @@ export default class CardSucursal extends Component {
                             </View>
 
                             <View style={{ width: '32%', }} >
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy correo')} } 
+                                <Button transparent onPress = { 
+                                    () => {
+                                            const to = [ this.props.correo ] // string or array of email addresses
+                                            email(to, {
+                                                    // Optional additional arguments
+                                                    cc: ['katisa760917@gmail.com'], // string or array of email addresses
+                                                    bcc: 'virtual_lara@hotmail.com', // string or array of email addresses
+                                                    subject: 'Consulta desde AppMovil',
+                                                    body: 'Hola, me pongo en contacto con ustedes desde su AppMovil, para lo siguiente: '
+                                                }).catch(console.error) 
+                                            }
+                                }
                                         style={{ display:'flex' , flexDirection: 'column' }} >
                                     <Icon active name="mail" />
                                     <Text>Correo</Text>
