@@ -16,26 +16,6 @@ export default class TabsExample extends Component {
                 {ciudad:'Veracruz'},
                 {ciudad:'Cordoba'},
             ],
-            datos:[
-                    {sucursal:'',
-                    calle:'',
-                    colonia:'',
-                    cp:'',
-                    horario:'',
-                    celular:'',
-                    correo:'',
-                    telefono:'',
-                    },
-                    {sucursal:'',
-                    calle:'',
-                    colonia:'',
-                    cp:'',
-                    horario:'',
-                    celular:'',
-                    correo:'',
-                    telefono:'',
-                    },
-            ],
         }
     }
 
@@ -52,21 +32,19 @@ export default class TabsExample extends Component {
   render() {
     return (
       <Container >
+
         <Header hasTabs style={styles.headerPos}> 
             <View styles={styles.header} >
-                <Text style={styles.text} > <Icon name="map-marker-alt" size={30} color='white' /> Ubica nuestras sucursales </Text>
+                <Text style={styles.text} > 
+                    <Icon name="map-marker-alt" size={30} color='white' /> 
+                    Ubica nuestras sucursales </Text>
             </View>
         </Header>
-        <Tabs locked='true' /* onChangeTab={ ( {i}  ) => { 
-                                                let valIntIndex = parseInt(i);
-                                                let valCityArray = Object.values( this.state.ciudades[valIntIndex] );
-                                                this.setState({ valorCiudad: valCityArray  });
-                                            }                                       
-                                        } */ >
 
+        <Tabs locked='true'>
             { this.renderizarCiudades ( this.state.valorCiudad ) }
-
         </Tabs>
+
       </Container>
     );
   }

@@ -20,8 +20,67 @@ export default class Sucursal extends Component {
           celular:'',
           correo:'',
           telefono:'',
+          foto: '',
       },
+      ciudad:{
+        xalapa:[
+          {
+            sucursal:'Caram',
+            calle:'Av. antonio Chedraui Caram #6',
+            colonia:'Sebastian Lerdo de Tejada',
+            cp:'91180',
+            horario_LV:'9:00 hrs - 19:00 hrs',
+            horarioSab: '9:00 hrs - 18:00 hrs',
+            celular: '2282661873',
+            correo:'sucursalcristal@katisailuminacionled.com',
+            telefono:'2281518476',
+            foto: '../Recursos/Imagenes/descarga.png',
+          },
+          {
+            sucursal:'dos',
+            calle:'dos',
+            colonia:'dos',
+            cp:'dos',
+            horario_LV:'',
+            horarioSab:'',
+            celular: 'dos',
+            correo:'dos',
+            telefono:'dos',
+            foto: '',
+          },
+        ],
+        veracruz:[
+          {
+            sucursal:'Ver1',
+            calle:'Ver1',
+            colonia:'Ver1',
+            cp:'Ver1',
+            horario_LV:'',
+            horarioSab:'',
+            celular: 'Ver1',
+            correo:'Ver1',
+            telefono:'Ver1',
+            foto: '',
+          },
+        ],
+        cordoba:[
+          {
+            sucursal:'Cordoba',
+            calle:'Cordoba',
+            colonia:'Cordoba',
+            cp:'Cordoba',
+            horario_LV:'',
+            horarioSab:'',
+            celular: 'Cordoba',
+            correo:'Cordoba',
+            telefono:'Cordoba',
+            foto: '',
+          },
+        ],
+      },
+
       opc:''
+
       }
   }
 
@@ -30,30 +89,28 @@ export default class Sucursal extends Component {
       case 'Xalapa':{
         return(
           <Container>
-            <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
-              <Tab heading="Americas">
-                <CardSucursal sucursal={'Americas'} />
-              </Tab>
-              <Tab heading="Atenas">
-                <CardSucursal sucursal={'Atenas'}/>
-              </Tab>
-              <Tab heading="Caram">
-                <CardSucursal sucursal={'Caram'}/>
-              </Tab>
-              <Tab heading="Cumbres">
-                <CardSucursal sucursal={'Cumbres'}/>
-              </Tab>
-              <Tab heading="Presidentes">
-                <CardSucursal sucursal={'Presidentes'}/>
-              </Tab>
-              <Tab heading="Remates">
-                <CardSucursal sucursal={'Remates'}/>
-              </Tab>
-              <Tab heading="Ruiz">
-                <CardSucursal sucursal={'Ruiz'}/>
-              </Tab>
-            </Tabs>
-          </Container>
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+                { this.state.ciudad.xalapa.map((Item) => {
+                      return (
+                          <Tab heading={ Item.sucursal } >
+                              <CardSucursal 
+                                sucursal = { Item.sucursal }
+                                calle = { Item.calle }
+                                colonia = { Item.colonia }
+                                cp = { Item.cp }
+                                horario_LV = { Item.horario_LV }
+                                horarioSab = { Item.horarioSab }
+                                celular = { Item.celular }
+                                correo = { Item.correo }
+                                telefono = { Item.telefono }
+                                foto = { Item.foto }
+                                />
+                          </Tab>          
+                      )
+                  }) 
+                }
+              </Tabs>
+            </Container>
         )
         break;
       }      
@@ -61,18 +118,24 @@ export default class Sucursal extends Component {
         return(
           <Container>
               <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
-                <Tab heading="Allende">
-                  <CardSucursal sucursal={'Allende'}/>
-                </Tab>
-                <Tab heading="Dorado">
-                  <CardSucursal sucursal={'Dorado'}/>
-                </Tab>
-                <Tab heading="Ejercito">
-                  <CardSucursal sucursal={'Ejercito'}/>
-                </Tab>
-                <Tab heading="Negrete">
-                  <CardSucursal sucursal={'Negrete'}/>
-                </Tab>
+                { this.state.ciudad.veracruz.map((Item) => {
+                      return (
+                        <Tab heading={ Item.sucursal } >
+                        <CardSucursal 
+                          sucursal = { Item.sucursal }
+                          calle = { Item.calle }
+                          colonia = { Item.colonia }
+                          cp = { Item.cp }
+                          horario_LV = { Item.horario_LV }
+                          horarioSab = { Item.horarioSab }
+                          celular = { Item.celular }
+                          correo = { Item.correo }
+                          telefono = { Item.telefono }
+                          />
+                    </Tab>         
+                      )
+                  }) 
+                }
               </Tabs>
             </Container>
         )
@@ -82,39 +145,55 @@ export default class Sucursal extends Component {
         return(
           <Container>
             <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
-              <Tab heading="Calle 12">
-                <CardSucursal sucursal={'Calle 12'}/>
-              </Tab>
+              { this.state.ciudad.cordoba.map((Item) => {
+                    return (
+                      <Tab heading={ Item.sucursal } >
+                      <CardSucursal 
+                        sucursal = { Item.sucursal }
+                        calle = { Item.calle }
+                        colonia = { Item.colonia }
+                        cp = { Item.cp }
+                        horario_LV = { Item.horario_LV }
+                        horarioSab = { Item.horarioSab }
+                        celular = { Item.celular }
+                        correo = { Item.correo }
+                        telefono = { Item.telefono }
+                        />
+                  </Tab>         
+                    )
+                }) 
+              } 
             </Tabs>
           </Container>
         )
       break;
       }
-      default: {
+      default: {        
         return(
           <Container>
-            <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
-              <Tab heading="Americas">
-                <CardSucursal/>
-              </Tab>
-              <Tab heading="Atenas">
-                <CardSucursal/>
-              </Tab>
-              <Tab heading="Caram">
-                <CardSucursal/>
-              </Tab>
-              <Tab heading="Cumbres">
-                <CardSucursal/>
-              </Tab>
-              <Tab heading="Presidentes">
-                <CardSucursal/>
-              </Tab>
-              <Tab heading="Ruiz">
-                <CardSucursal/>
-              </Tab>
-            </Tabs>
-          </Container>
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+                { this.state.ciudad.xalapa.map((Item) => {
+                      return (
+                        <Tab heading={ Item.sucursal } >
+                          <CardSucursal 
+                            sucursal = { Item.sucursal }
+                            calle = { Item.calle }
+                            colonia = { Item.colonia }
+                            cp = { Item.cp }
+                            horario_LV = { Item.horario_LV }
+                            horarioSab = { Item.horarioSab }
+                            celular = { Item.celular }
+                            correo = { Item.correo }
+                            telefono = { Item.telefono }
+                            />
+                        </Tab>         
+                      )
+                  }) 
+                }
+              </Tabs>
+            </Container>
         )
+        break;
       }
     }
 }

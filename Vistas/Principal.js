@@ -145,7 +145,7 @@ export default class Principal extends React.Component {
                             <Text style={ styles.textButtonArrow }> Anterior </Text>
                         </Button>
                             
-                        <Button iconRight onPress={ ()=>{ 
+                        <Button iconRight onPress={ ()=>{   
                                                             if( this.state.numNoticia <= 3 ){
                                                                 this.setState({ numNoticia: this.state.numNoticia + 1 })
                                                             }else{ 
@@ -169,6 +169,7 @@ export default class Principal extends React.Component {
         )    
     }   
 }
+
 
 const styles = StyleSheet.create ({
     content: {

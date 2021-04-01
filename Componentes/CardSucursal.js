@@ -14,10 +14,12 @@ export default class CardSucursal extends Component {
                 calle:'',
                 colonia:'',
                 cp:'',
-                horario:'',
+                horario_LV:'',
+                horarioSab:'',
                 celular:'',
                 correo:'',
                 telefono:'',
+                foto:'',
             }
         }
     }
@@ -43,31 +45,35 @@ export default class CardSucursal extends Component {
                         </CardItem>
 
                         <CardItem cardBody>
-                            <Image source={{uri: 'https://image.freepik.com/vector-gratis/sucursal-bancaria-moderna-indicador-tipos-cambio-moneda-cajero-automatico-vector-dibujos-animados-entrada_33099-1317.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+                            <Image source= { require( '../Recursos/Imagenes/logo.png' ) }
+                                            style={{height: 200, width: null, flex: 1, resizeMode: 'contain'}}/>
                         </CardItem>
 
-                        <CardItem>
+                        <CardItem style={{ display: 'flex', flexDirection: 'row' }} >
 
-                            <Left>
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy whatsapp')} } >
+                            <View style={{ width: '35%', }} >
+                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy whatsapp')} } 
+                                        style={{ display:'flex' , flexDirection: 'column' }} >
                                     <Icon active name="logo-whatsapp" />
-                                    <Text>WhatsApp</Text>                                
+                                    <Text >WhatsApp</Text>                         
                                 </Button>
-                            </Left>
+                            </View>
 
-                            <Body>
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste son telefono')} } >
-                                    <Icon active name="md-phone-portrait" />
-                                    <Text>Telefono</Text> 
+                            <View style={{ width: '33%', }} >
+                                <Button transparent onPress = { () => {Alert.alert('me aplastaste son telefono')} } 
+                                        style={{ display:'flex' , flexDirection: 'column' }} >
+                                    <Icon active name="md-phone-portrait" style={{ backgroundColor: '' }} />
+                                    <Text>Telefono</Text>
                                 </Button>
-                            </Body>
+                            </View>
 
-                            <Right>
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy correo')} } >
+                            <View style={{ width: '32%', }} >
+                                <Button transparent onPress = { () => {Alert.alert('me aplastaste soy correo')} } 
+                                        style={{ display:'flex' , flexDirection: 'column' }} >
                                     <Icon active name="mail" />
                                     <Text>Correo</Text>
                                 </Button>
-                            </Right>
+                            </View>
 
                         </CardItem>
 
@@ -77,7 +83,7 @@ export default class CardSucursal extends Component {
                 <View>
 
                     <View>
-                        <Text style={styles.direccion} > {this.props.sucursal} </Text>
+                        <Text style={styles.direccion} > Direccion: </Text>
                     </View>
 
                     <View style={styles.contenido} >
@@ -107,12 +113,25 @@ export default class CardSucursal extends Component {
                         </View>
                     </View>
 
+                    <View>
+                        <Text style={styles.direccion} > Horarios: </Text>
+                    </View>
+
                     <View style={styles.contenido} >   
                         <View style={styles.etiqueta} >
-                            <Text style={styles.textEtiqueta} >Horario:</Text>
+                            <Text style={styles.textEtiqueta} > L-V:</Text>
                         </View>
                         <View style={styles.dato} >
-                            <Text style={styles.textDato} > {this.props.horario} </Text>
+                            <Text style={styles.textDato} > {this.props.horario_LV} </Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.contenido} >   
+                        <View style={styles.etiqueta} >
+                            <Text style={styles.textEtiqueta} >Sábado:</Text>
+                        </View>
+                        <View style={styles.dato} >
+                            <Text style={styles.textDato} > {this.props.horarioSab} </Text>
                         </View>
                     </View>
 
