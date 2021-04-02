@@ -36,7 +36,7 @@ export default class App extends React.Component {
     } else {
       return (
         //<Text> Hola </Text>
-        <Drawer/>
+          <Drawer/>
       );
     }
   }

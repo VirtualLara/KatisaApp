@@ -184,8 +184,8 @@ export default class Sucursal extends Component {
     switch(op){
       case 'Xalapa':{
         return(
-          <Container>
-              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+          <Container >
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' >
                 { this.state.ciudad.xalapa.map((Item) => {
                       return (
                           <Tab heading={ Item.sucursal } >
@@ -213,7 +213,7 @@ export default class Sucursal extends Component {
       case 'Veracruz':{
         return(
           <Container>
-              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' >
                 { this.state.ciudad.veracruz.map((Item) => {
                       return (
                         <Tab heading={ Item.sucursal } >
@@ -241,7 +241,7 @@ export default class Sucursal extends Component {
       case 'Cordoba': {
         return(
           <Container>
-            <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+            <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' > 
               { this.state.ciudad.cordoba.map((Item) => {
                     return (
                       <Tab heading={ Item.sucursal } >

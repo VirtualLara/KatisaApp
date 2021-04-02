@@ -23,7 +23,7 @@ export default class TabsExample extends Component {
         return this.state.ciudades.map((Item, Index) => {
             return (
                 <Tab key={Index} heading={Item.ciudad}  Index={Index} >
-                    <Sucursal opc={Item.ciudad}/>
+                    <Sucursal opc={Item.ciudad}  />
                 </Tab>          
             )
         }) 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     headerPos:{
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#29B6F6',
     },
     text: {
         fontSize: 25,

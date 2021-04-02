@@ -54,17 +54,17 @@ export default class CardSucursal extends Component {
 
                             <View style={{ width: '35%', }} >
                                 <Button transparent onPress = { () => { Linking.openURL('whatsapp://send?text=' + 'Hola, me pongo en contacto desde su AppMovil para lo siguiente: ' + '&phone=52' + this.props.celular ) } }                                   
-                                        style={{ display:'flex' , flexDirection: 'column' }} >
-                                    <Icon active name="logo-whatsapp" />
-                                    <Text >WhatsApp</Text>                         
+                                        style={{ display:'flex' , flexDirection: 'column', alignItems: 'center',  }} >
+                                    <Icon active name="logo-whatsapp" style={{ backgroundColor: 'white', color: '#00bb2d', }} />
+                                    <Text style={{ color: '#00bb2d' }} >WhatsApp</Text>                         
                                 </Button>
                             </View>
 
                             <View style={{ width: '33%', }} >
                                 <Button transparent onPress = { () => {Alert.alert('me aplastaste son telefono')} } 
-                                        style={{ display:'flex' , flexDirection: 'column' }} >
-                                    <Icon active name="md-phone-portrait" style={{ backgroundColor: '' }} />
-                                    <Text>Telefono</Text>
+                                        style={{ display:'flex' , flexDirection: 'column', alignItems: 'center', }} >
+                                    <Icon active name="md-phone-portrait" style={{ color: '#0088cc' }} />
+                                    <Text style={{ color: '#0088cc' }} >Telefono</Text>
                                 </Button>
                             </View>
 
@@ -81,9 +81,9 @@ export default class CardSucursal extends Component {
                                                 }).catch(console.error) 
                                             }
                                 }
-                                        style={{ display:'flex' , flexDirection: 'column' }} >
-                                    <Icon active name="mail" />
-                                    <Text>Correo</Text>
+                                        style={{ display:'flex' , flexDirection: 'column', alignItems: 'center', }} >
+                                    <Icon active name="mail" style={{ color: '#db4a39' }} />
+                                    <Text style={{ color: '#db4a39' }} >Correo</Text>
                                 </Button>
                             </View>
 

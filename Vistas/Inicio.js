@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 //import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default class Principal extends React.Component {
+export default class Inicio extends React.Component {
 
     constructor(props){
         super(props);
@@ -74,10 +74,9 @@ export default class Principal extends React.Component {
     }
 
     render(){
-        return(
-            
+        return(     
 
-           <Container style = {styles.content} >
+           <Container style = {styles.content} > 
 
                 <Header style = {styles.header} >
                     <Button style={{ backgroundColor: '#29B6F6' }} onPress = { ()=>this.props.navigation.openDrawer() }>

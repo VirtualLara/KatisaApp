@@ -15,7 +15,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Login from "../Vistas/Login";
 import RecuperarPassword from "../Vistas/RecuperarPassword";
-import Principal from "../Vistas/Principal";
+import Inicio from "../Vistas/Inicio";
 import Registrarse from "../Vistas/Registrarse";
 import Sucursales from "../Vistas/Sucursales";
 
@@ -24,8 +24,8 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Sucursales">
-        <Drawer.Screen name="Principal" component={Principal} />
+      <Drawer.Navigator initialRouteName="Inicio">
+        <Drawer.Screen name="Inicio" component={Inicio} />
         <Drawer.Screen name="Sucursales" component={Sucursales} />
         <Drawer.Screen name="Registrarse" component={Registrarse} />
         <Drawer.Screen name="Login" component={Login} />
@@ -43,7 +43,6 @@ const estilos = StyleSheet.create({
         android: {
             statusBar:{
                 backgroundColor: 'red',
-                marginTop: StatusBar.currentHeight,
             }
         },
         default: {
