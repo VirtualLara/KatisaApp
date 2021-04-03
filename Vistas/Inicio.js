@@ -5,8 +5,6 @@ import { Icon, Container, Header, Footer, Button,View, DeckSwiper, Card, CardIte
 import Carousel from '../Componentes/Carousel.js';
 import { ScrollView } from 'react-native-gesture-handler';
 
-//import Icon from 'react-native-vector-icons/FontAwesome5';
-
 export default class Inicio extends React.Component {
 
     constructor(props){
@@ -74,7 +72,7 @@ export default class Inicio extends React.Component {
     }
 
     render(){
-        return(     
+        return(
 
            <Container style = {styles.content} > 
 

@@ -27,7 +27,6 @@ export default class App extends React.Component {
     this.setState({ load: true });
   }
 
-
   render(){
     if(!this.state.load){
       return(
@@ -35,8 +34,7 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        //<Text> Hola </Text>
-          <Drawer/>
+        <Drawer/>
       );
     }
   }

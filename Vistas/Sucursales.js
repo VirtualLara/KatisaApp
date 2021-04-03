@@ -5,6 +5,8 @@ import { Container, Header, Content, Tab, Tabs, TabHeading, ScrollableTab, Item 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Sucursal from './Sucursal'
 
+import BarMy from '../Componentes/StatusBarMy';
+
 export default class TabsExample extends Component {
 
     constructor(props){
@@ -22,7 +24,10 @@ export default class TabsExample extends Component {
     renderizarCiudades(){
         return this.state.ciudades.map((Item, Index) => {
             return (
-                <Tab key={Index} heading={Item.ciudad}  Index={Index} >
+                <Tab key={Index} heading={Item.ciudad}  Index={Index}
+                            tabStyle={{ backgroundColor:'#29B6F6'}} 
+                            textStyle={{ color: 'black', fontWeight: 'bold',}} 
+                            activeTabStyle={{ backgroundColor: '#4CAF50',}} >
                     <Sucursal opc={Item.ciudad}  />
                 </Tab>          
             )
@@ -41,7 +46,7 @@ export default class TabsExample extends Component {
             </View>
         </Header>
 
-        <Tabs locked='true'>
+        <Tabs locked='true' tabBarUnderlineStyle={{ backgroundColor: 'green' }}>
             { this.renderizarCiudades ( this.state.valorCiudad ) }
         </Tabs>
 
