@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert, TouchableOpacity, } from "react-native";
 import { Header, Button, Text } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -12,215 +12,93 @@ export default class Siguenos extends React.Component {
   }
 
   render() {
+
     return (
-      <View  style={{ flex: 1 }} >
 
-        <StatusBarMy backgroundColor='#29B6F6' />
+      <View style={{ flexDirection: 'column' }} >
 
-        <View>
-          <Header hasTabs style={styles.headerPos}>
+         <Header hasTabs style={styles.headerPos}>
+            <StatusBarMy backgroundColor='#29B6F6' />
             <View styles={styles.header}>
               <Text style={styles.text}>
                 <Icon name="arrow-right" size={30} color="white" />
-                Siguenos en:{" "}
+                Selecciona y siguenos
               </Text>
             </View>
           </Header>
+          
 
-          <View
-            style={{
-              flexDirection: "row",
-              paddingTop: 30,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 120,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#3B5998",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "15%",
-              }}
-            >
+          <TouchableOpacity style={{ flexDirection: "row", paddingTop: 30, justifyContent: "center",
+              alignItems: "center", width: "100%", height: 120,}} onPress={ ()=>{ Alert.alert('ok') } } >
+            <View style={{ backgroundColor: "#3B5998", alignItems: "center", justifyContent: "center",
+                height: 80, width: "15%", }}>
               <Icon name="facebook" size={50} color="white" />
             </View>
-            <View
-              style={{
-                backgroundColor: "#3B5998",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "80%",
-              }}
-            >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
-              >
-                {" "}
-                Distribuidora Katisa Iluminacion LED{" "}
+            <View style={{ backgroundColor: "#3B5998", alignItems: "center", justifyContent: "center",
+                height: 80, width: "80%", }}>
+              <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }} >
+                Distribuidora Katisa Iluminacion LED
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "row",
-              paddingTop: 30,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 120,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#8134AF",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "15%",
-              }}
-            >
+          <TouchableOpacity style={{ flexDirection: "row", paddingTop: 30, justifyContent: "center", alignItems: "center",
+              width: "100%", height: 120, }} onPress={ ()=>{ Alert.alert('ok') } } >
+            <View style={{ backgroundColor: "#8134AF", alignItems: "center", justifyContent: "center",
+                height: 80, width: "15%", }} >
               <Icon name="instagram" size={50} color="#FEDA77" />
             </View>
-            <View
-              style={{
-                backgroundColor: "#8134AF",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "80%",
-              }}
-            >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 18, color: "#FEDA77" }}
-              >
-                {" "}
-                Distribuidora Katisa Iluminacion LED{" "}
+            <View style={{ backgroundColor: "#8134AF", alignItems: "center", justifyContent: "center",
+                height: 80, width: "80%", }}>
+              <Text style={{ fontWeight: "bold", fontSize: 18, color: "#FEDA77" }}>
+                Distribuidora Katisa Iluminacion LED
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "row",
-              paddingTop: 30,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 120,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#C4203B",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "15%",
-              }}
-            >
+          <TouchableOpacity style={{ flexDirection: "row", paddingTop: 30, justifyContent: "center", alignItems: "center",
+              width: "100%", height: 120,}} onPress={ ()=>{ Alert.alert('ok') } } >
+            <View style={{ backgroundColor: "#C4203B", alignItems: "center", justifyContent: "center",
+                height: 80, width: "15%", }}>
               <Icon name="youtube" size={50} color="white" />
             </View>
-            <View
-              style={{
-                backgroundColor: "#C4203B",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "80%",
-              }}
-            >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
-              >
-                {" "}
-                Distribuidora Katisa Iluminacion LED{" "}
+            <View style={{ backgroundColor: "#C4203B", alignItems: "center", justifyContent: "center",
+                height: 80, width: "80%", }}>
+              <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }}>
+                Distribuidora Katisa Iluminacion LED
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "row",
-              paddingTop: 30,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 120,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#2471A3",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "15%",
-              }}
-            >
+          <TouchableOpacity style={{ flexDirection: "row", paddingTop: 30, justifyContent: "center", alignItems: "center",
+              width: "100%",  height: 120, }} onPress={ ()=>{ Alert.alert('ok') } } >
+            <View style={{ backgroundColor: "#2471A3", alignItems: "center", justifyContent: "center",
+                height: 80, width: "15%",}}>
               <Icon name="internet-explorer" size={50} color="white" />
             </View>
-            <View
-              style={{
-                backgroundColor: "#2471A3",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "80%",
-              }}
-            >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
-              >
-                {" "}
-                www.katisailuminacionled.com{" "}
+            <View style={{ backgroundColor: "#2471A3",  alignItems: "center", justifyContent: "center",
+                height: 80,width: "80%",}}>
+              <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }}>
+                www.katisailuminacionled.com
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "row",
-              paddingTop: 30,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 120,
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                height: 80,
-                width: "100%",
-                flexDirection: "row",
-              }}
-            >
-              <Button
-                backgroundColor="#29B6F6"
-                onPress={() => this.props.navigation.openDrawer()}
-              >
-                <Icon
-                  name="arrow-left"
-                  size={30}
-                  color="white"
-                  fontWeight="bold"
-                />
+          <View style={{ flexDirection: "row", paddingTop: 30, justifyContent: "center", alignItems: "center",
+              width: "100%", height: 120, }}>
+            <View style={{ alignItems: "center", justifyContent: "center", height: 80,
+                width: "100%", flexDirection: "row", }}>
+              <Button backgroundColor="#29B6F6" onPress={() => this.props.navigation.openDrawer()}>
+                <Icon name="arrow-left" size={30} color="white" fontWeight="bold"/>
                 <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-                  {" "}
-                  Regresar...{" "}
+                  Regresar...
                 </Text>
               </Button>
             </View>
           </View>
-        </View>
+
       </View>
+
     );
   }
 }

@@ -23,7 +23,7 @@ export default class TabsExample extends Component {
         return this.state.ciudades.map((Item, Index) => {
             return (
                 <Tab key={Index} heading={Item.ciudad}  Index={Index}
-                            tabStyle={{ backgroundColor:'#29B6F6'}} 
+                            tabStyle={{backgroundColor:'#29B6F6'}} 
                             textStyle={{ color: 'black', fontWeight: 'bold',}} 
                             activeTabStyle={{ backgroundColor: '#0288D1',}} >
                     <Sucursal opc={Item.ciudad}  />
@@ -39,7 +39,7 @@ export default class TabsExample extends Component {
         <Header hasTabs style={styles.headerPos}> 
             <View styles={styles.header} >
                 <Text style={styles.text} > 
-                    <Icon name="map-marker-alt" size={30} color='white' /> 
+                    <Icon name="map-marker-alt" size={25} color='white' /> 
                     Ubica nuestras sucursales </Text>
             </View>
         </Header>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#29B6F6',
     },
     text: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
         color: 'white',
     },

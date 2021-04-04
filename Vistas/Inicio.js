@@ -5,6 +5,8 @@ import { Icon, Container, Header, Footer, Button,View, DeckSwiper, Card, CardIte
 import Carousel from '../Componentes/Carousel.js';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import StatusBarMy from "../Componentes/StatusBarMy";
+
 export default class Inicio extends React.Component {
 
     constructor(props){
@@ -74,9 +76,10 @@ export default class Inicio extends React.Component {
     render(){
         return(
 
-           <Container style = {styles.content} > 
+           <View style = {styles.content} > 
 
                 <Header style = {styles.header} >
+                    <StatusBarMy backgroundColor='#29B6F6' />
                     <Button style={{ backgroundColor: '#29B6F6' }} onPress = { ()=>this.props.navigation.openDrawer() }>
                         <Icon name="menu" style={{ fontWeight: 'bold', color: '#fff', fontSize: 40 }} />
                     </Button>
@@ -87,10 +90,10 @@ export default class Inicio extends React.Component {
                     <Carousel/>
                 </View>
                
-                <Header style = {styles.header} >
+                <View style = {styles.header} >
                         <Text style = {styles.textHeader} >
-                        <Icon name="list" style={{ fontWeight: 'bold', color: '#fff', fontSize: 40 }} />   Noticias Katisa </Text>
-                </Header>
+                        <Icon name="book" style={{ fontWeight: 'bold', color: '#fff', fontSize: 40 }} />   Noticias Katisa </Text>
+                </View>
                 
                 <View style = {styles.contentBody}>
                     
@@ -161,7 +164,7 @@ export default class Inicio extends React.Component {
                     <Text style = {styles.textFooter} > ¡Los expertos en iluminación! </Text>
                 </Footer>
 
-            </Container>
+            </View>
 
         )    
     }   
