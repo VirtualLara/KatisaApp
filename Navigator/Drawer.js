@@ -4,11 +4,12 @@ import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer"
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import Inicio from "../Vistas/Inicio";
+import Sucursales from "../Vistas/Sucursales";
+import Siguenos from '../Vistas/Siguenos';
 import Login from "../Vistas/Login";
 import RecuperarPassword from "../Vistas/RecuperarPassword";
-import Inicio from "../Vistas/Inicio";
 import Registrarse from "../Vistas/Registrarse";
-import Sucursales from "../Vistas/Sucursales";
 
 import BarMy from '../Componentes/StatusBarMy';
 
@@ -29,6 +30,7 @@ function Menu(props) {
         </View>
         <DrawerMenu iconName='home' titleName='Inicio' navigation={() => props.navigation.navigate('Inicio')} />
         <DrawerMenu iconName='building' titleName='Sucursales' navigation={() => props.navigation.navigate('Sucursales')} />
+        <DrawerMenu iconName='arrow-right' titleName='Siguenos' navigation={() => props.navigation.navigate('Siguenos')} />
       </View>
     </View>
   )
@@ -58,6 +60,7 @@ export default function App() {
       <Drawer.Navigator drawerContent={(props) => <Menu {...props} />} initialRouteName="Inicio">
         <Drawer.Screen name="Inicio" component={Inicio} />
         <Drawer.Screen name="Sucursales" component={Sucursales} />
+        <Drawer.Screen name="Siguenos" component={Siguenos} />
         <Drawer.Screen name="Registrarse" component={Registrarse} />
         <Drawer.Screen name="Login" component={Login} />
         <Drawer.Screen name="RecuperarPassword" component={RecuperarPassword} />

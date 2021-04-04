@@ -1,0 +1,239 @@
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Header, Button, Text } from "native-base";
+import Icon from "react-native-vector-icons/FontAwesome";
+
+import StatusBarMy from "../Componentes/StatusBarMy";
+
+export default class Siguenos extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <View  style={{ flex: 1 }} >
+
+        <StatusBarMy backgroundColor='#29B6F6' />
+
+        <View>
+          <Header hasTabs style={styles.headerPos}>
+            <View styles={styles.header}>
+              <Text style={styles.text}>
+                <Icon name="arrow-right" size={30} color="white" />
+                Siguenos en:{" "}
+              </Text>
+            </View>
+          </Header>
+
+          <View
+            style={{
+              flexDirection: "row",
+              paddingTop: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: 120,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#3B5998",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "15%",
+              }}
+            >
+              <Icon name="facebook" size={50} color="white" />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#3B5998",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "80%",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
+              >
+                {" "}
+                Distribuidora Katisa Iluminacion LED{" "}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              paddingTop: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: 120,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#8134AF",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "15%",
+              }}
+            >
+              <Icon name="instagram" size={50} color="#FEDA77" />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#8134AF",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "80%",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 18, color: "#FEDA77" }}
+              >
+                {" "}
+                Distribuidora Katisa Iluminacion LED{" "}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              paddingTop: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: 120,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#C4203B",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "15%",
+              }}
+            >
+              <Icon name="youtube" size={50} color="white" />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#C4203B",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "80%",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
+              >
+                {" "}
+                Distribuidora Katisa Iluminacion LED{" "}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              paddingTop: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: 120,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#2471A3",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "15%",
+              }}
+            >
+              <Icon name="internet-explorer" size={50} color="white" />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#2471A3",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "80%",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 18, color: "white" }}
+              >
+                {" "}
+                www.katisailuminacionled.com{" "}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              paddingTop: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: 120,
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: 80,
+                width: "100%",
+                flexDirection: "row",
+              }}
+            >
+              <Button
+                backgroundColor="#29B6F6"
+                onPress={() => this.props.navigation.openDrawer()}
+              >
+                <Icon
+                  name="arrow-left"
+                  size={30}
+                  color="white"
+                  fontWeight="bold"
+                />
+                <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                  {" "}
+                  Regresar...{" "}
+                </Text>
+              </Button>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  headerPos: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#29B6F6",
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "white",
+  },
+});

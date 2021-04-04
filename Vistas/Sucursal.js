@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Container, Header, Tab, Tabs, ScrollableTab } from 'native-base';
 
 import CardSucursal from '../Componentes/CardSucursal';
+import StatusBarMy from '../Componentes/StatusBarMy';
 
 export default class Sucursal extends Component {
 
@@ -183,13 +184,13 @@ export default class Sucursal extends Component {
       case 'Xalapa':{
         return(
           <Container >
-              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'green' }} >
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'white' }} >
                 { this.state.ciudad.xalapa.map((Item) => {
                       return (
                           <Tab heading={ Item.sucursal } 
                                 tabStyle={{ backgroundColor:'#29B6F6'}} 
                                 textStyle={{ color: 'black', fontWeight: 'bold',}} 
-                                activeTabStyle={{ backgroundColor: '#4CAF50',}} >
+                                activeTabStyle={{ backgroundColor: '#0288D1',}} >
                               <CardSucursal 
                                 sucursal = { Item.sucursal }
                                 calle = { Item.calle }
@@ -214,13 +215,13 @@ export default class Sucursal extends Component {
       case 'Veracruz':{
         return(
           <Container>
-              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'green' }} >
+              <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'white' }} >
                 { this.state.ciudad.veracruz.map((Item) => {
                       return (
                         <Tab heading={ Item.sucursal } 
                           tabStyle={{ backgroundColor:'#29B6F6'}} 
                           textStyle={{ color: 'black', fontWeight: 'bold',}} 
-                          activeTabStyle={{ backgroundColor: '#4CAF50',}}>
+                          activeTabStyle={{ backgroundColor: '#0288D1',}}>
                         <CardSucursal 
                           sucursal = { Item.sucursal }
                           calle = { Item.calle }
@@ -245,13 +246,13 @@ export default class Sucursal extends Component {
       case 'Cordoba': {
         return(
           <Container >
-            <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'green' }} > 
+            <Tabs renderTabBar={()=> <ScrollableTab style={{ backgroundColor:'#29B6F6' }} />} tabBarPosition='bottom' tabBarUnderlineStyle={{ backgroundColor: 'white' }} > 
               { this.state.ciudad.cordoba.map((Item) => {
                     return (
                       <Tab heading={ Item.sucursal } 
-                          tabStyle={{ backgroundColor:'#29B6F6'}} 
+                          tabStyle={{ backgroundColor:'#29B6F6', }} 
                           textStyle={{ color: 'black', fontWeight: 'bold',}} 
-                          activeTabStyle={{ backgroundColor: '#4CAF50',}}>
+                          activeTabStyle={{ backgroundColor: '#0288D1',}}>
                       <CardSucursal 
                         sucursal = { Item.sucursal }
                         calle = { Item.calle }
@@ -307,7 +308,12 @@ export default class Sucursal extends Component {
 }
   render() {
     return (
-      this.llenarSucursales(this.props.opc)
+      <View style={{ flex:1 }}>
+
+        <StatusBarMy backgroundColor='#29B6F6' />
+        {this.llenarSucursales(this.props.opc)}
+
+      </View>
     )
   }
 }
