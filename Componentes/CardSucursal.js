@@ -61,7 +61,7 @@ export default class CardSucursal extends Component {
                             </View>
 
                             <View style={{ width: '33%', }} >
-                                <Button transparent onPress = { () => {Alert.alert('me aplastaste son telefono')} } 
+                                <Button transparent onPress = { () => { Linking.openURL('tel:'+this.props.telefono) } } 
                                         style={{ display:'flex' , flexDirection: 'column', alignItems: 'center', }} >
                                     <Icon active name="md-phone-portrait" style={{ color: '#0088cc' }} />
                                     <Text style={{ color: '#0088cc' }} >Telefono</Text>
