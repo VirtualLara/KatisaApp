@@ -19,10 +19,11 @@ export default class Siguenos extends React.Component {
 
          <Header hasTabs style={styles.headerPos}>
             <StatusBarMy backgroundColor='#29B6F6' />
+            <Icon name="arrow-left" size={35} color="#1F618D" onPress={ () => this.props.navigation.openDrawer() } />
+            <Text>     {"\n"} </Text>
             <View styles={styles.header}>
               <Text style={styles.text}>
-                <Icon name="arrow-right" size={30} color="white" />
-                Selecciona y siguenos
+                Siguenos  <Icon name="arrow-right" size={40} color="white" />
               </Text>
             </View>
           </Header>
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#29B6F6",
   },
   text: {
-    fontSize: 25,
+    fontSize: 40,
     fontWeight: "bold",
     color: "white",
   },

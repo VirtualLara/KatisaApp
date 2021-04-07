@@ -36,11 +36,13 @@ export default class TabsExample extends Component {
     return (
       <Container >
 
-        <Header hasTabs style={styles.headerPos}> 
+        <Header hasTabs style={styles.headerPos}>
+        <Icon name="arrow-left" size={35} color="#1F618D" onPress={ () => this.props.navigation.openDrawer() } />
+            <Text>     {"\n"} </Text>
             <View styles={styles.header} >
                 <Text style={styles.text} > 
-                    <Icon name="map-marker-alt" size={25} color='white' /> 
-                    Ubica nuestras sucursales </Text>
+                    Ubicanos  <Icon name="map-marker-alt" size={40} color='white' />
+                </Text> 
             </View>
         </Header>
 
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#29B6F6',
     },
     text: {
-        fontSize: 22,
+        fontSize: 35,
         fontWeight: 'bold',
         color: 'white',
     },

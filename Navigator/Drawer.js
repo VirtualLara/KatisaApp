@@ -7,6 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Inicio from "../Vistas/Inicio";
 import Sucursales from "../Vistas/Sucursales";
 import Siguenos from '../Vistas/Siguenos';
+import Catalogo from '../Vistas/Catalogo';
+import Nosotros from '../Vistas/Nosotros';
+
 import Login from "../Vistas/Login";
 import RecuperarPassword from "../Vistas/RecuperarPassword";
 import Registrarse from "../Vistas/Registrarse";
@@ -29,8 +32,10 @@ function Menu(props) {
           </TouchableOpacity>
         </View>
         <DrawerMenu iconName='home' titleName='Inicio' navigation={() => props.navigation.navigate('Inicio')} />
+        <DrawerMenu iconName='book' titleName='Catalogo' navigation={() => props.navigation.navigate('Catalogo')} />
         <DrawerMenu iconName='building' titleName='Sucursales' navigation={() => props.navigation.navigate('Sucursales')} />
         <DrawerMenu iconName='arrow-right' titleName='Siguenos' navigation={() => props.navigation.navigate('Siguenos')} />
+        <DrawerMenu iconName='users' titleName='Nosotros' navigation={() => props.navigation.navigate('Nosotros')} />
       </View>
     </View>
   )
@@ -58,12 +63,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator drawerContent={(props) => <Menu {...props} />} initialRouteName="Inicio">
-        <Drawer.Screen name="Inicio" component={Inicio} />
-        <Drawer.Screen name="Sucursales" component={Sucursales} />
-        <Drawer.Screen name="Siguenos" component={Siguenos} />
-        <Drawer.Screen name="Registrarse" component={Registrarse} />
-        <Drawer.Screen name="Login" component={Login} />
-        <Drawer.Screen name="RecuperarPassword" component={RecuperarPassword} />
+        <Drawer.Screen name="Inicio" component={ Inicio } />
+        <Drawer.Screen name="Catalogo" component={ Catalogo } />  
+        <Drawer.Screen name="Sucursales" component={ Sucursales } />
+        <Drawer.Screen name="Siguenos" component={ Siguenos } /> 
+        <Drawer.Screen name="Nosotros" component={ Nosotros } /> 
+        <Drawer.Screen name="Registrarse" component={ Registrarse } />
+        <Drawer.Screen name="Login" component={ Login } />
+        <Drawer.Screen name="RecuperarPassword" component={ RecuperarPassword } />
       </Drawer.Navigator>
     </NavigationContainer>
   );
