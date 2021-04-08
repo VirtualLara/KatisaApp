@@ -19,154 +19,133 @@ import IconPass from "react-native-vector-icons/EvilIcons";
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
-export default class Login extends React.Component {
-  render() {
-    return (
-      <Container style={styles.container}>
-        <Header style={styles.titulos}>
-          <StatusBarMy backgroundColor="#29B6F6" />
-          <Text style={styles.textoHeader}>
-            {" "}
-            <Icon name="user-circle" size={35} color="white" /> Inicio de Sesión{" "}
-          </Text>
-        </Header>
+export default function pruebas() {
+  return (
+    <Container style={styles.container}>
+      <Header style={styles.titulos}>
+        <StatusBarMy backgroundColor="#29B6F6" />
+        <Text style={styles.textoHeader}>
+          {" "}
+          <Icon name="user-circle" size={35} color="white" /> Inicio de Sesión{" "}
+        </Text>
+      </Header>
 
-        <Content>
-          <View style={styles.containerImagen}>
-            <Image
-              style={styles.image}
-              source={require("../Recursos/Imagenes/logo.png")}
-            />
+      <Content>
+        <View style={styles.containerImagen}>
+          <Image
+            style={styles.image}
+            source={require("../Recursos/Imagenes/logo.png")}
+          />
+        </View>
+
+        <Form style={styles.form}>
+          <View style={styles.viewForm}>
+            <Text style={styles.Text1}>
+              {" "}
+              <Icon name="user" size={25} color="#01A9DB" /> Usuario{" "}
+            </Text>
           </View>
-
-          <Form style={styles.form}>
-            <View
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.Text1}>
-                {" "}
-                <Icon name="user" size={25} color="#01A9DB" /> Usuario{" "}
-              </Text>
-            </View>
-            <Item>
-              <TextInput
-                placeholder="Ingrese su Usuario"
-                placeholderTextColor="#0B2161"
-                returnKeyType="go"
-                autoCorrect={false}
-                style={{ width: "100%" }}
-              />
-            </Item>
-
-            <Text> {"\n"} </Text>
-
-            <View
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.Text1}>
-                {" "}
-                <IconKey name="key" size={30} color="#01A9DB" /> Contraseña{" "}
-              </Text>
-            </View>
-            <Item last>
-              <TextInput
-                placeholder="Ingrese su Contraseña"
-                placeholderTextColor="#0B2161"
-                returnKeyType="go"
-                secureTextEntry //Vuelve el input tipo password
-                autoCorrect={false}
-                style={{ width: "100%" }}
-              />
-            </Item>
-          </Form>
+          <Item>
+            <TextInput
+              placeholder="Ingrese su usuario"
+              placeholderTextColor="#0B2161"
+              returnKeyType="go"
+              autoCorrect={false}
+              style={{ width: "100%" }}
+            />
+          </Item>
 
           <Text> {"\n"} </Text>
 
-          <View style={styles.botones}>
-            <View>
-              <Button
-                rounded
-                style={styles.boton}
-                onPress={() => {
-                  {
-                    Alert.alert("entremos...");
-                  }
-                }}
-              >
-                <Text style={styles.textboton}>
-                  {" "}
-                  <IconWorld
-                    name="world"
-                    size={35}
-                    color="white"
-                  /> Ingresar{" "}
-                </Text>
-              </Button>
-            </View>
-
-            <Text> {"\n"} </Text>
-
-            <View>
-              <Button
-                rounded
-                style={styles.boton}
-                onPress={() => {
-                  {
-                    Alert.alert("eres nuevo...");
-                  }
-                }}
-              >
-                <Text style={styles.textboton}>
-                  {" "}
-                  <Icon
-                    name="user-plus"
-                    size={35}
-                    color="white"
-                  /> Registrarse{" "}
-                </Text>
-              </Button>
-            </View>
-
-            <Text> {"\n"} </Text>
+          <View style={styles.viewForm}>
+            <Text style={styles.Text1}>
+              {" "}
+              <IconKey name="key" size={30} color="#01A9DB" /> Contraseña{" "}
+            </Text>
           </View>
-        </Content>
+          <Item last>
+            <TextInput
+              placeholder="Ingrese su contraseña"
+              placeholderTextColor="#0B2161"
+              returnKeyType="go"
+              secureTextEntry //Vuelve el input tipo password
+              autoCorrect={false}
+              style={{ width: "100%" }}
+            />
+          </Item>
+        </Form>
 
-        <Footer style={{ backgroundColor: "#29B6F6" }}>
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+        <Text> {"\n"} </Text>
+
+        <View style={styles.botones}>
+          <View>
             <Button
+              rounded
+              success
               style={styles.boton}
-              transparent
               onPress={() => {
                 {
-                  Alert.alert("que pendejo...");
+                  Alert.alert("entremos...");
                 }
               }}
             >
-              <Text style={styles.textbotonTrans}>
+              <Text style={styles.textboton}>
                 {" "}
-                <IconPass name="close-o" size={25} color="white" />
-                ¿Olvidaste tu contraseña?{" "}
+                <IconWorld name="world" size={35} color="white" /> Ingresar{" "}
               </Text>
             </Button>
           </View>
-        </Footer>
-      </Container>
-    );
-  }
+
+          <Text> {"\n"} </Text>
+
+          <View>
+            <Button
+              rounded
+              style={styles.botonText}
+              onPress={() => {
+                {
+                  Alert.alert("eres nuevo...");
+                }
+              }}
+            >
+              <Text style={styles.textbotontext}>
+                {" "}
+                <Icon
+                  name="user-plus"
+                  size={35}
+                  color="#1976D2"
+                  fontWeight="bold"
+                />{" "}
+                Registrarse{" "}
+              </Text>
+            </Button>
+          </View>
+
+          <Text> {"\n"} </Text>
+        </View>
+      </Content>
+
+      <Footer style={{ backgroundColor: "#29B6F6" }}>
+        <View style={styles.viewForm}>
+          <Button
+            style={styles.botonOlvidaste}
+            transparent
+            onPress={() => {
+              {
+                Alert.alert("que pendejo...");
+              }
+            }}
+          >
+            <Text style={styles.textbotonTrans}>
+              {" "}
+              <IconPass name="close-o" size={40} color="white" />
+              Recuperar contraseña{" "}
+            </Text>
+          </Button>
+        </View>
+      </Footer>
+    </Container>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -208,12 +187,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   boton: {
-    width: 300,
+    width: "100%",
     height: 56,
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: "#28B463",
   },
   textboton: {
     fontSize: 25,
@@ -221,8 +200,34 @@ const styles = StyleSheet.create({
     color: "white",
   },
   textbotonTrans: {
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: "bold",
     color: "white",
+  },
+  botonText: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+    width: "90%",
+  },
+  textbotontext: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1976D2",
+  },
+  widthInput: {
+    width: "95%",
+    height: 60,
+  },
+  botonOlvidaste: {
+    backgroundColor: "#E67E22",
+    height: "100%",
+    width: "100%",
+  },
+
+  viewForm: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
