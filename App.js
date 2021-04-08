@@ -1,20 +1,19 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
 import Asset from "expo-asset";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
-import  Root  from "native-base";
+import Root from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
-import Drawer from './Navigator/Drawer.js';
+import AppFirst from "./Vistas/AppFirst";
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
 
-    this.state = { 
-      load: false 
+    this.state = {
+      load: false,
     };
   }
 
@@ -27,15 +26,11 @@ export default class App extends React.Component {
     this.setState({ load: true });
   }
 
-  render(){
-    if(!this.state.load){
-      return(
-        <AppLoading/>
-      )
+  render() {
+    if (!this.state.load) {
+      return <AppLoading />;
     } else {
-      return (
-        <Drawer/>
-      );
+      return <AppFirst />;
     }
   }
 }
