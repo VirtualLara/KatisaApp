@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert, Image } from "react-native";
 import { Container, Header, Content, Form, Item, Footer } from "native-base";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -23,19 +23,21 @@ export default function pruebas(props) {
   });
 
   return (
-    <View>
-      <Header style={styles.header}>
-        <StatusBarMy backgroundColor="#29b6f6" />
-        <Icon name="users" size={30} color="#0B2161" />
-        <Text style={styles.textoHeader}> Registro Nuevos Usuarios </Text>
-      </Header>
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <StatusBarMy backgroundColor="#29b6f6" />
+
+      <View style={styles.containerImagen}>
+        <Image
+          style={styles.image}
+          source={require("../Recursos/Imagenes/logo.png")}
+        />
+      </View>
 
       <View>
         <View style={styles.titulos}>
           <Text style={styles.textoTitulos}>
-            {" "}
-            <IconGenerales name="user-tie" size={20} color="#01A9DB" /> Datos
-            generales:{" "}
+            <IconGenerales name="user-check" size={20} color="#01A9DB" /> Datos
+            De Sesión:
           </Text>
         </View>
 
@@ -43,69 +45,38 @@ export default function pruebas(props) {
           <Item>
             <Text style={styles.textos}>
               {" "}
-              <IconGenerales name="user-tag" size={20} color="#0B2161" /> Nombre
-              (s){" "}
-            </Text>
-          </Item>
-        </View>
-
-        <Item>
-          <TextInput
-            placeholder="Nombre (s)"
-            placeholderTextColor="#0B2161"
-            returnKeyType="go"
-            autoCorrect={false}
-            style={styles.widthInput}
-            onChangeText={(text) => formik.setFieldValue("name", text)}
-          />
-        </Item>
-
-        <View>
-          <Item>
-            <Text style={styles.textos}>
-              {" "}
-              <IconPhone name="phone" size={20} color="#0B2161" />/
-              <IconCell
-                name="cellphone-android"
+              <IconGenerales
+                name="envelope-square"
                 size={20}
                 color="#0B2161"
               />{" "}
-              Telefono o Celular{" "}
+              Correo
             </Text>
           </Item>
         </View>
         <Item>
           <TextInput
-            placeholder="Telefono / Celular"
+            placeholder="Ingrese un correo"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             autoCorrect={false}
-            keyboardType="numeric"
             style={styles.widthInput}
-            onChangeText={(text) => formik.setFieldValue("celphone", text)}
+            onChangeText={(text) => formik.setFieldValue("email", text)}
           />
         </Item>
-
-        <View style={styles.titulos}>
-          <Text style={styles.textoTitulos}>
-            {" "}
-            <IconGenerales name="user-check" size={20} color="#01A9DB" /> Datos
-            De Sesión:{" "}
-          </Text>
-        </View>
 
         <View>
           <Item>
             <Text style={styles.textos}>
               {" "}
-              <IconGenerales name="user-alt" size={20} color="#0B2161" /> Correo
-              (Usuario){" "}
+              <IconGenerales name="user-alt" size={20} color="#0B2161" />{" "}
+              Usuario
             </Text>
           </Item>
         </View>
         <Item>
           <TextInput
-            placeholder="Ingrese su Usuario"
+            placeholder="Ingrese nombre de usuario"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             autoCorrect={false}
@@ -125,7 +96,7 @@ export default function pruebas(props) {
         </View>
         <Item last>
           <TextInput
-            placeholder="Ingrese su Contraseña"
+            placeholder="Ingrese su contraseña"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             secureTextEntry //Vuelve el input tipo password
@@ -146,7 +117,7 @@ export default function pruebas(props) {
         </View>
         <Item last>
           <TextInput
-            placeholder="Repita la Contraseña"
+            placeholder="Repita sus Contraseña"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             secureTextEntry //Vuelve el input tipo password
@@ -161,6 +132,7 @@ export default function pruebas(props) {
 
       <View
         style={{
+          paddingTop: 10,
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -190,9 +162,8 @@ export default function pruebas(props) {
 
 function initialValues() {
   return {
-    name: "",
-    celphone: "",
     user: "",
+    email: "",
     password: "",
     repeatPassword: "",
   };
@@ -248,12 +219,23 @@ const styles = StyleSheet.create({
   },
   widthInput: {
     width: "100%",
-    height: 60,
+    height: 50,
   },
 
   view: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  containerImagen: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 130,
+    width: "100%",
+  },
+  image: {
+    width: "100%",
+    height: 110,
+    resizeMode: "contain",
   },
 });

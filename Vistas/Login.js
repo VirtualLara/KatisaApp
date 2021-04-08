@@ -38,7 +38,7 @@ export default function pruebas() {
           />
         </View>
 
-        <Form style={styles.form}>
+        <View style={styles.form}>
           <View style={styles.viewForm}>
             <Text style={styles.Text1}>
               {" "}
@@ -51,7 +51,7 @@ export default function pruebas() {
               placeholderTextColor="#0B2161"
               returnKeyType="go"
               autoCorrect={false}
-              style={{ width: "100%" }}
+              style={styles.widthInput}
             />
           </Item>
 
@@ -70,10 +70,10 @@ export default function pruebas() {
               returnKeyType="go"
               secureTextEntry //Vuelve el input tipo password
               autoCorrect={false}
-              style={{ width: "100%" }}
+              style={styles.widthInput}
             />
           </Item>
-        </Form>
+        </View>
 
         <Text> {"\n"} </Text>
 
@@ -165,13 +165,13 @@ const styles = StyleSheet.create({
   containerImagen: {
     justifyContent: "center",
     alignItems: "center",
-    height: 150,
+    height: 170,
     width: "100%",
-    backgroundColor: "#FFFFFF",
   },
   image: {
-    width: "65%",
-    height: 150,
+    width: "100%",
+    height: 160,
+    resizeMode: "contain",
   },
   form: {
     alignItems: "center",
@@ -216,8 +216,8 @@ const styles = StyleSheet.create({
     color: "#1976D2",
   },
   widthInput: {
-    width: "95%",
-    height: 60,
+    width: "100%",
+    height: 50,
   },
   botonOlvidaste: {
     backgroundColor: "#E67E22",
