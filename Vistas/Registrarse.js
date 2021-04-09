@@ -2,13 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, Alert, Image } from "react-native";
 import { Container, Header, Content, Form, Item, Footer } from "native-base";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as Yup from "yup";
 import { Button, TextInput } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconGenerales from "react-native-vector-icons/FontAwesome5";
 import IconPhone from "react-native-vector-icons/Fontisto";
 import IconCell from "react-native-vector-icons/MaterialCommunityIcons";
 
+import { registerApi } from "../api/user";
 import StatusBarMy from "../Componentes/StatusBarMy";
 
 export default function pruebas(props) {
@@ -16,9 +17,14 @@ export default function pruebas(props) {
 
   const formik = useFormik({
     initialValues: initialValues(),
-    onSubmit: (formData) => {
-      console.log("registro enviado");
-      console.log(formData);
+    validationSchema: Yup.object(validationSchema()),
+    onSubmit: async (formData) => {
+      try {
+        await registerApi(formData);
+        console.log("ok");
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -62,6 +68,8 @@ export default function pruebas(props) {
             autoCorrect={false}
             style={styles.widthInput}
             onChangeText={(text) => formik.setFieldValue("email", text)}
+            value={formik.values.email}
+            error={formik.errors.email}
           />
         </Item>
 
@@ -82,6 +90,8 @@ export default function pruebas(props) {
             autoCorrect={false}
             style={styles.widthInput}
             onChangeText={(text) => formik.setFieldValue("user", text)}
+            value={formik.values.user}
+            error={formik.errors.user}
           />
         </Item>
 
@@ -103,6 +113,8 @@ export default function pruebas(props) {
             autoCorrect={false}
             style={styles.widthInput}
             onChangeText={(text) => formik.setFieldValue("password", text)}
+            value={formik.values.password}
+            error={formik.errors.password}
           />
         </Item>
 
@@ -126,6 +138,8 @@ export default function pruebas(props) {
             onChangeText={(text) =>
               formik.setFieldValue("repeatPassword", text)
             }
+            value={formik.values.repeatPassword}
+            error={formik.errors.repeatPassword}
           />
         </Item>
       </View>
@@ -158,15 +172,6 @@ export default function pruebas(props) {
       </View>
     </View>
   );
-}
-
-function initialValues() {
-  return {
-    user: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  };
 }
 
 const styles = StyleSheet.create({
@@ -239,3 +244,23 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 });
+
+function initialValues() {
+  return {
+    user: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+  };
+}
+
+function validationSchema() {
+  return {
+    email: Yup.string().email(true).required(true),
+    user: Yup.string().required(true),
+    password: Yup.string().required(true),
+    repeatPassword: Yup.string()
+      .required(true)
+      .oneOf([Yup.ref("password"), true]),
+  };
+}
