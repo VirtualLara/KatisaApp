@@ -1,17 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, Alert } from "react-native";
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Form,
-  Item,
-  Input,
-  Header,
-  Footer,
-} from "native-base";
+import { Container, Content, Card, Item, Header, Footer } from "native-base";
 import { TextInput, Button } from "react-native-paper";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import Toast from "react-native-root-toast";
+import { loginApi } from "../api/user";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconKey from "react-native-vector-icons/MaterialCommunityIcons";
 import IconWorld from "react-native-vector-icons/Fontisto";
@@ -19,7 +13,30 @@ import IconPass from "react-native-vector-icons/EvilIcons";
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
-export default function pruebas() {
+export default function pruebas(props) {
+  const [loading, setLoading] = useState(false);
+
+  const { changeForm } = props;
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    onSubmit: async (formData) => {
+      setLoading(true);
+      try {
+        const response = await loginApi(formData);
+        if (response.statusCode) throw "Error en usuario o contraseña";
+        console.log(response);
+      } catch (error) {
+        Alert.alert(error);
+        /*         Toast.show(error, {
+          position: Toast.positions.CENTER,
+        }); */
+        setLoading(false);
+      }
+    },
+  });
+
   return (
     <Container style={styles.container}>
       <Header style={styles.titulos}>
@@ -42,16 +59,20 @@ export default function pruebas() {
           <View style={styles.viewForm}>
             <Text style={styles.Text1}>
               {" "}
+              <Icon name="envelope" size={25} color="#01A9DB" /> Correo /{" "}
               <Icon name="user" size={25} color="#01A9DB" /> Usuario{" "}
             </Text>
           </View>
           <Item>
             <TextInput
-              placeholder="Ingrese su usuario"
+              placeholder="Ingrese correo o usuario"
               placeholderTextColor="#0B2161"
               returnKeyType="go"
               autoCorrect={false}
               style={styles.widthInput}
+              onChangeText={(text) => formik.setFieldValue("identifier", text)}
+              value={formik.values.identifier}
+              error={formik.errors.identifier}
             />
           </Item>
 
@@ -71,6 +92,9 @@ export default function pruebas() {
               secureTextEntry //Vuelve el input tipo password
               autoCorrect={false}
               style={styles.widthInput}
+              onChangeText={(text) => formik.setFieldValue("password", text)}
+              value={formik.values.password}
+              error={formik.errors.password}
             />
           </Item>
         </View>
@@ -83,11 +107,8 @@ export default function pruebas() {
               rounded
               success
               style={styles.boton}
-              onPress={() => {
-                {
-                  Alert.alert("entremos...");
-                }
-              }}
+              onPress={formik.handleSubmit}
+              loading={loading}
             >
               <Text style={styles.textboton}>
                 {" "}
@@ -99,15 +120,7 @@ export default function pruebas() {
           <Text> {"\n"} </Text>
 
           <View>
-            <Button
-              rounded
-              style={styles.botonText}
-              onPress={() => {
-                {
-                  Alert.alert("eres nuevo...");
-                }
-              }}
-            >
+            <Button rounded style={styles.botonText} onPress={changeForm}>
               <Text style={styles.textbotontext}>
                 {" "}
                 <Icon
@@ -231,3 +244,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+function initialValues() {
+  return {
+    identifier: "",
+    password: "",
+  };
+}
+
+function validationSchema() {
+  return {
+    identifier: Yup.string().required(true),
+    password: Yup.string().required(true),
+  };
+}

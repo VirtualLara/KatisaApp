@@ -1,29 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Alert, Image } from "react-native";
-import { Container, Header, Content, Form, Item, Footer } from "native-base";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { Item } from "native-base";
 import { Button, TextInput } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconGenerales from "react-native-vector-icons/FontAwesome5";
 import IconPhone from "react-native-vector-icons/Fontisto";
 import IconCell from "react-native-vector-icons/MaterialCommunityIcons";
-
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { registerApi } from "../api/user";
+import Toast from "react-native-root-toast";
+
 import StatusBarMy from "../Componentes/StatusBarMy";
 
 export default function pruebas(props) {
   const { changeForm } = props;
 
+  const [loading, setLoading] = useState(false);
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
+      setLoading(true);
       try {
-        await registerApi(formData);
-        console.log("ok");
+        const response = await registerApi(formData);
+        changeForm();
       } catch (error) {
-        console.log(error);
+        setLoading(false);
+        Alert.alert("Error al registrar el usuario");
+        /* Toast.show("Error al registrar el usuario", {
+          position: Toast.positions.CENTER,
+        }); */
       }
     },
   });
@@ -89,9 +97,9 @@ export default function pruebas(props) {
             returnKeyType="go"
             autoCorrect={false}
             style={styles.widthInput}
-            onChangeText={(text) => formik.setFieldValue("user", text)}
-            value={formik.values.user}
-            error={formik.errors.user}
+            onChangeText={(text) => formik.setFieldValue("username", text)}
+            value={formik.values.username}
+            error={formik.errors.username}
           />
         </Item>
 
@@ -155,6 +163,7 @@ export default function pruebas(props) {
           mode="contained"
           style={styles.boton}
           onPress={formik.handleSubmit}
+          loading={loading}
         >
           <Icon name="check" size={30} color="white" fontWeight="bold" />
           <Text style={styles.textboton}> Registrarse </Text>
@@ -247,7 +256,7 @@ const styles = StyleSheet.create({
 
 function initialValues() {
   return {
-    user: "",
+    userName: "",
     email: "",
     password: "",
     repeatPassword: "",
@@ -257,7 +266,7 @@ function initialValues() {
 function validationSchema() {
   return {
     email: Yup.string().email(true).required(true),
-    user: Yup.string().required(true),
+    username: Yup.string().required(true),
     password: Yup.string().required(true),
     repeatPassword: Yup.string()
       .required(true)

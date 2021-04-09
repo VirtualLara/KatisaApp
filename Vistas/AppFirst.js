@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import {
-  View,
-  KeyboardAvoidingView,
-  TextInput,
-  StyleSheet,
-  Text,
-  Platform,
-  TouchableWithoutFeedback,
-  Button,
-  Keyboard,
-} from "react-native";
+import { View, KeyboardAvoidingView, StyleSheet, Platform } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 
 import RegisterScreeen from "../Vistas/Registrarse";
 import LoginScreen from "../Vistas/Login";
 
 const AppFirst = () => {
-  const [login, setlogin] = useState(undefined);
+  const [login, setlogin] = useState(true);
 
   const changeForm = () => setlogin(!login);
 
@@ -27,7 +17,11 @@ const AppFirst = () => {
         keyboardVerticalOffset="-150"
         style={styles.container}
       >
-        {login ? <LoginScreen /> : <RegisterScreeen changeForm={changeForm} />}
+        {login ? (
+          <LoginScreen changeForm={changeForm} />
+        ) : (
+          <RegisterScreeen changeForm={changeForm} />
+        )}
       </KeyboardAvoidingView>
     </View>
   );
