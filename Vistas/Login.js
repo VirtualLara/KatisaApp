@@ -25,6 +25,7 @@ export default function pruebas(props) {
       setLoading(true);
       try {
         const response = await loginApi(formData);
+        Alert.alert("Bienvenido");
         if (response.statusCode) throw "Error en usuario o contraseña";
         console.log(response);
       } catch (error) {
@@ -145,7 +146,7 @@ export default function pruebas(props) {
             transparent
             onPress={() => {
               {
-                Alert.alert("que pendejo...");
+                Alert.alert("Pronto se podra restaurar...");
               }
             }}
           >
