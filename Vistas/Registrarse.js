@@ -24,7 +24,8 @@ export default function pruebas(props) {
     onSubmit: async (formData) => {
       setLoading(true);
       try {
-        const response = await registerApi(formData);
+        await registerApi(formData);
+        Alert.alert("Registro exitoso..."); //esto lo puse yoo
         changeForm();
       } catch (error) {
         setLoading(false);

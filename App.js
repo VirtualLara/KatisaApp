@@ -6,7 +6,8 @@ import * as Font from "expo-font";
 import Root from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
-import AppFirst from "./Vistas/AppFirst";
+import VerifyInitialApp from "./VerifyInitialApp";
+import Drawer from "./Navigator/Drawer";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class App extends React.Component {
     if (!this.state.load) {
       return <AppLoading />;
     } else {
-      return <AppFirst />;
+      return <VerifyInitialApp />;
     }
   }
 }

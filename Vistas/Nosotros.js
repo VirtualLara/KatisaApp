@@ -60,7 +60,7 @@ export default class Nosotros extends Component {
                     /> */}
                 <Text> Katisa Iluminacion LED </Text>
                 <Text> {"\n"} </Text>
-                <Text>
+                <Text style={styles.parrafo}>
                   Es una empresa mexicana de origen xalapeño. Fundada en el año
                   2016, con la intencion de proveer a la poblacion de la capital
                   del estado veracruzano, asi como de sus alrededores de todo
@@ -97,7 +97,7 @@ export default class Nosotros extends Component {
                     /> */}
                 <Text> Katisa Iluminacion LED </Text>
                 <Text> {"\n"} </Text>
-                <Text>
+                <Text style={styles.parrafo}>
                   Es una empresa mexicana de origen xalapeño. Fundada en el año
                   2016, con la intencion de proveer a la poblacion de la capital
                   del estado veracruzano, asi como de sus alrededores de todo
@@ -134,7 +134,7 @@ export default class Nosotros extends Component {
                     /> */}
                 <Text> Katisa Iluminacion LED </Text>
                 <Text> {"\n"} </Text>
-                <Text>
+                <Text style={styles.parrafo}>
                   Es una empresa mexicana de origen xalapeño. Fundada en el año
                   2016, con la intencion de proveer a la poblacion de la capital
                   del estado veracruzano, asi como de sus alrededores de todo
@@ -171,7 +171,7 @@ export default class Nosotros extends Component {
                     /> */}
                 <Text> Katisa Iluminacion LED </Text>
                 <Text> {"\n"} </Text>
-                <Text>
+                <Text style={styles.parrafo}>
                   Es una empresa mexicana de origen xalapeño. Fundada en el año
                   2016, con la intencion de proveer a la poblacion de la capital
                   del estado veracruzano, asi como de sus alrededores de todo
@@ -206,5 +206,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
+  },
+  parrafo: {
+    textAlign: "justify",
   },
 });

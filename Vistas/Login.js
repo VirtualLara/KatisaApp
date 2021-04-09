@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, Alert } from "react-native";
 import { Container, Content, Card, Item, Header, Footer } from "native-base";
 import { TextInput, Button } from "react-native-paper";
+import { loginApi } from "../api/user";
+import useAuth from "../hooks/UseAuth";
+import Toast from "react-native-root-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import Toast from "react-native-root-toast";
-import { loginApi } from "../api/user";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconKey from "react-native-vector-icons/MaterialCommunityIcons";
 import IconWorld from "react-native-vector-icons/Fontisto";
@@ -15,6 +16,8 @@ import StatusBarMy from "../Componentes/StatusBarMy";
 
 export default function pruebas(props) {
   const [loading, setLoading] = useState(false);
+  const auth = useAuth();
+  const { login } = useAuth();
 
   const { changeForm } = props;
 
@@ -25,9 +28,9 @@ export default function pruebas(props) {
       setLoading(true);
       try {
         const response = await loginApi(formData);
-        Alert.alert("Bienvenido");
+        Alert.alert("Bienvenido"); //esto lo puse yoo
         if (response.statusCode) throw "Error en usuario o contraseña";
-        console.log(response);
+        login(response);
       } catch (error) {
         Alert.alert(error);
         /*         Toast.show(error, {

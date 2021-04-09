@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, KeyboardAvoidingView, StyleSheet, Platform } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 
-import RegisterScreeen from "../Vistas/Registrarse";
-import LoginScreen from "../Vistas/Login";
+import RegisterScreeen from "./Registrarse";
+import LoginScreen from "./Login";
 
-const AppFirst = () => {
+const Auth = () => {
   const [login, setlogin] = useState(true);
 
   const changeForm = () => setlogin(!login);
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppFirst;
+export default Auth;
