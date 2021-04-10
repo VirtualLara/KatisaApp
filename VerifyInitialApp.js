@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Text } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
+import jwtDecode from "jwt-decode";
 
 import AuthScreen from "./Vistas/Auth";
 import Authcontext from "./context/Authcontext";
-import { setTokenApi } from "./api/token";
+import { setTokenApi, getTokenApi, removeTokenApi } from "./api/token";
 
 import Drawer from "./Navigator/Drawer";
 
@@ -12,7 +13,17 @@ export default function VerifyInitialApp() {
   const [auth, setAuth] = useState(undefined);
 
   useEffect(() => {
-    setAuth(null);
+    (async () => {
+      const token = await getTokenApi();
+      if (token) {
+        setAuth({
+          token,
+          idUser: jwtDecode(token).id,
+        });
+      } else {
+        setAuth(null);
+      }
+    })();
   }, []);
 
   const login = (user) => {
@@ -24,11 +35,18 @@ export default function VerifyInitialApp() {
     });
   };
 
+  const logout = () => {
+    if (auth) {
+      removeTokenApi();
+      setAuth(null);
+    }
+  };
+
   const authData = useMemo(
     () => ({
       auth,
       login,
-      logout: () => null,
+      logout,
     }),
     [auth]
   );
@@ -37,7 +55,11 @@ export default function VerifyInitialApp() {
 
   return (
     <Authcontext.Provider value={authData}>
-      <PaperProvider>{auth ? <Drawer /> : <AuthScreen />}</PaperProvider>
+      <PaperProvider>
+        {auth ? <Drawer logout={closeSesion} /> : <AuthScreen />}
+      </PaperProvider>
     </Authcontext.Provider>
   );
 }
+
+const closeSesion = () => authData.logout;
