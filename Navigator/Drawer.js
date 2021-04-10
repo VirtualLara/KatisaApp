@@ -15,26 +15,37 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import useAuth from "../hooks/UseAuth";
+import BarMy from "../Componentes/StatusBarMy";
 import Inicio from "../Vistas/Inicio";
 import Sucursales from "../Vistas/Sucursales";
 import Siguenos from "../Vistas/Siguenos";
 import Catalogo from "../Vistas/Catalogo";
 import Nosotros from "../Vistas/Nosotros";
 
-import Login from "../Vistas/Login";
-import RecuperarPassword from "../Vistas/RecuperarPassword";
-import Registrarse from "../Vistas/Registrarse";
-
-import BarMy from "../Componentes/StatusBarMy";
-
 function Menu(props) {
-  const { closeSesion } = props;
+  const { logout } = useAuth();
+  const logoutAccount = () => {
+    Alert.alert(
+      "Al seguir se cerrara la session.",
+      "¿Deseas salir?",
+      [
+        {
+          tex: "NO",
+        },
+        { tex: "SI", onPress: logout },
+      ],
+      {
+        cancelable: false,
+      }
+    );
+  };
 
   return (
     <View>
       <BarMy backgroundColor="#29B6F6" />
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
         <View style={styles.containImage}>
           <Image
             source={require("../Recursos/Imagenes/logo.png")}
@@ -82,17 +93,17 @@ function Menu(props) {
             flexDirection: "row",
             alignItems: "center",
           }}
-          onPress={closeSesion}
+          onPress={logoutAccount}
         >
           <Icon
             style={{
-              fontSize: 22,
+              fontSize: 35,
               fontWeight: "bold",
               margin: 5,
               padding: 5,
               color: "#1F618D",
             }}
-            name="user"
+            name="window-close"
           />
           <Text style={styles.textCerrarSesion}> Cerrar sesion... </Text>
         </TouchableOpacity>
@@ -130,9 +141,6 @@ export default function App() {
         <Drawer.Screen name="Sucursales" component={Sucursales} />
         <Drawer.Screen name="Siguenos" component={Siguenos} />
         <Drawer.Screen name="Nosotros" component={Nosotros} />
-        <Drawer.Screen name="Registrarse" component={Registrarse} />
-        <Drawer.Screen name="Login" component={Login} />
-        <Drawer.Screen name="RecuperarPassword" component={RecuperarPassword} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

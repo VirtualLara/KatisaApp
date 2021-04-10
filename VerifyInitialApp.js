@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Text } from "react-native";
+import { Alert, Text, View, Button } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import jwtDecode from "jwt-decode";
 
@@ -27,7 +27,6 @@ export default function VerifyInitialApp() {
   }, []);
 
   const login = (user) => {
-    console.log("LOGIN APP.JS");
     setTokenApi(user.jwt);
     setAuth({
       token: user.jwt,
@@ -55,11 +54,7 @@ export default function VerifyInitialApp() {
 
   return (
     <Authcontext.Provider value={authData}>
-      <PaperProvider>
-        {auth ? <Drawer logout={closeSesion} /> : <AuthScreen />}
-      </PaperProvider>
+      <PaperProvider>{auth ? <Drawer /> : <AuthScreen />}</PaperProvider>
     </Authcontext.Provider>
   );
 }
-
-const closeSesion = () => authData.logout;
