@@ -1,22 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Image, Alert } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right,
-  Input,
-  Form,
-  Item,
-  Label,
-} from "native-base";
+import { Card, CardItem, Thumbnail, Text, Left, Body } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native";
 import { Value } from "react-native-reanimated";
@@ -25,7 +9,17 @@ export default class CardArticulo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cantidad: 0,
+      articulo: {
+        clave: "",
+        nombre: "",
+        watts: "",
+        lumen: "",
+        temperarura: "",
+        voltajemin: "",
+        voltajemax: "",
+        medida: "",
+        imagen: "",
+      },
     };
   }
 
@@ -33,7 +27,10 @@ export default class CardArticulo extends Component {
     return (
       <Card style={styles.container}>
         <CardItem>
-          <Text style={styles.textClave}> 1234567 </Text>
+          <Text style={styles.textClave}>
+            {" "}
+            {this.props.nombre}: {this.props.clave}{" "}
+          </Text>
         </CardItem>
 
         <View style={styles.card}>
@@ -58,10 +55,7 @@ export default class CardArticulo extends Component {
             <Card>
               <CardItem>
                 <Image
-                  source={{
-                    uri:
-                      "https://satkit.com/image/cache/catalog/products/wasserdichte-aussenleuchte-led-30w-6500k-kaltweiss-led-lights-6040-700x700.jpg",
-                  }}
+                  source={{ uri: this.props.imagen }}
                   style={styles.imagen}
                 />
               </CardItem>
@@ -71,12 +65,12 @@ export default class CardArticulo extends Component {
           <Card style={styles.containerPropiedad}>
             <View style={styles.containerPropiedades}>
               <Text style={styles.textNombrePropiedad}> Watts: </Text>
-              <Text style={styles.textPropiedad}> 18 W </Text>
+              <Text style={styles.textPropiedad}> {this.props.watts}W </Text>
             </View>
 
             <View style={styles.containerPropiedades}>
               <Text style={styles.textNombrePropiedad}> Lumen: </Text>
-              <Text style={styles.textPropiedad}> 1800 LM </Text>
+              <Text style={styles.textPropiedad}> {this.props.lumen}LM </Text>
             </View>
 
             <View style={styles.containerPropiedades}>
@@ -84,60 +78,24 @@ export default class CardArticulo extends Component {
                 {" "}
                 Temperatura Color:{" "}
               </Text>
-              <Text style={styles.textPropiedad}> 6500 K </Text>
+              <Text style={styles.textPropiedad}>
+                {" "}
+                {this.props.temperarura}K
+              </Text>
             </View>
 
             <View style={styles.containerPropiedades}>
               <Text style={styles.textNombrePropiedad}> Voltaje: </Text>
-              <Text style={styles.textPropiedad}> 85-220 V </Text>
+              <Text style={styles.textPropiedad}>
+                {this.props.voltajemin}-{this.props.voltajemax}V{" "}
+              </Text>
             </View>
 
             <View style={styles.containerPropiedades}>
               <Text style={styles.textNombrePropiedad}> Medida: </Text>
-              <Text style={styles.textPropiedad}> 240 * 320 * 80 MM </Text>
+              <Text style={styles.textPropiedad}> {this.props.medida} MM </Text>
             </View>
           </Card>
-        </View>
-
-        <View style={styles.contentCotizar}>
-          <View style={styles.contentInput}>
-            <Form>
-              <Item
-                regular
-                stackedLabel
-                style={{ flexDirection: "row", padding: 10 }}
-              >
-                <Icon
-                  active
-                  name="pencil"
-                  size={30}
-                  style={{ width: "25%", padding: 5, color: "#2E4053" }}
-                />
-                <Input
-                  placeholder="Cantidad:"
-                  keyboardType="numeric"
-                  style={{ width: "75%", textAlign: "center", borderWidth: 1 }}
-                  onChange={(Value) => console.log(Input.Value)}
-                />
-              </Item>
-            </Form>
-          </View>
-
-          <View style={styles.contentBtn}>
-            <Button rounded success style={{ width: "100%" }}>
-              <Input min={0}> </Input>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: 25,
-                  fontWeight: "bold",
-                }}
-              >
-                {" "}
-                Cotizar{" "}
-              </Text>
-            </Button>
-          </View>
         </View>
       </Card>
     );
@@ -195,20 +153,5 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "15%",
     backgroundColor: "green",
-  },
-  contentCotizar: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    height: 75,
-  },
-  contentInput: {
-    width: "55%",
-  },
-  contentBtn: {
-    width: "45%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
