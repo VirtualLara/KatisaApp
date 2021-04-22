@@ -7,9 +7,8 @@ import Root from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
 import VerifyInitialApp from "./VerifyInitialApp";
-import Drawer from "./Navigator/Drawer";
 
-import { name, getProducts } from "./api/ApiServer";
+import Aa from "./Vistas/Noticias";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,7 +35,6 @@ export default class App extends React.Component {
       return (
         <>
           <VerifyInitialApp />
-          {name()}
         </>
       );
     }

@@ -8,10 +8,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import {
-  createDrawerNavigator,
-  DrawerItemList,
-} from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -22,6 +19,7 @@ import Sucursales from "../Vistas/Sucursales";
 import Siguenos from "../Vistas/Siguenos";
 import Catalogo from "../Vistas/Catalogo";
 import Nosotros from "../Vistas/Nosotros";
+import Noticias from "../Vistas/Noticias";
 
 function Menu(props) {
   const { logout } = useAuth();
@@ -73,6 +71,11 @@ function Menu(props) {
             iconName="building"
             titleName="Sucursales"
             navigation={() => props.navigation.navigate("Sucursales")}
+          />
+          <DrawerMenu
+            iconName="book"
+            titleName="Noticias"
+            navigation={() => props.navigation.navigate("Noticias")}
           />
           <DrawerMenu
             iconName="arrow-right"
@@ -141,6 +144,7 @@ export default function App() {
         <Drawer.Screen name="Sucursales" component={Sucursales} />
         <Drawer.Screen name="Siguenos" component={Siguenos} />
         <Drawer.Screen name="Nosotros" component={Nosotros} />
+        <Drawer.Screen name="Noticias" component={Noticias} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
