@@ -9,6 +9,8 @@ import { Ionicons } from "@expo/vector-icons";
 import VerifyInitialApp from "./VerifyInitialApp";
 import Drawer from "./Navigator/Drawer";
 
+import { name, getProducts } from "./api/ApiServer";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,12 @@ export default class App extends React.Component {
     if (!this.state.load) {
       return <AppLoading />;
     } else {
-      return <VerifyInitialApp />;
+      return (
+        <>
+          <VerifyInitialApp />
+          {name()}
+        </>
+      );
     }
   }
 }
