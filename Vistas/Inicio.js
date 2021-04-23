@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Alert, TouchableOpacity, Image } from "react-native";
 import { View, Header, Button, Text, Footer } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
 
 import Carousel from "../Componentes/Carousel.js";
 import StatusBarMy from "../Componentes/StatusBarMy";
@@ -19,7 +21,7 @@ export default class Inicio extends React.Component {
           >
             <Icon
               name="bars"
-              style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
+              style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }}
             />
           </Button>
           <Text style={styles.textHeader}> ¡Promociones y más! </Text>
@@ -62,28 +64,33 @@ export default class Inicio extends React.Component {
                   <Text style={styles.subtitleTextRifa}>Termina:</Text>
                   <Text style={styles.textRifa}> 10-05-21</Text>
                 </View>
-                <View>
-                  <Text style={styles.textBases}>
-                    {" "}
-                    Consulta las bases de la promoción en el botón dinámica.
-                  </Text>
-                </View>
+                {/* <View>
+                  <Text style={styles.textBases}> Obten tus boletos.</Text>
+                </View> */}
+                <Popover />
               </View>
               <View style={styles.contentImageRifa}>
-                <Image
+                <ZoomImage
                   source={{
                     uri:
                       "https://scontent.fmex24-1.fna.fbcdn.net/v/t1.6435-9/68994693_1318259351682213_290906583158751232_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=730e14&_nc_ohc=o2zat73KNDUAX-uDmcz&_nc_ht=scontent.fmex24-1.fna&oh=9c4ffc27ee3b304a84cc2bb8c16697d0&oe=60A7D2B6",
                   }}
+                  imgStyle={{
+                    height: "100%",
+                    width: "95%",
+                    resizeMode: "contain",
+                  }}
                   style={{
                     height: "100%",
-                    width: "100%",
-                    resizeMode: "cover",
+                    width: "95%",
+                    resizeMode: "contain",
                   }}
+                  duration={2000}
+                  enableScaling={false}
+                  easingFunc={Easing.ease}
                 />
               </View>
             </View>
-            <Popover />
           </View>
         </View>
 
@@ -143,14 +150,16 @@ const styles = StyleSheet.create({
   },
   imageArea: {
     flexDirection: "row",
-    height: "80%",
+    height: "90%",
   },
   contentImageRifa: {
-    width: "60%",
+    width: "65%",
     height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   contentDatos: {
-    width: "40%",
+    width: "35%",
     height: "100%",
   },
   titleTextRifa: {
@@ -175,7 +184,7 @@ const styles = StyleSheet.create({
   textBases: {
     paddingLeft: 10,
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: 16,
     color: "#F1C40F",
     textAlign: "center",
     backgroundColor: "#212F3D",

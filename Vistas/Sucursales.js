@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Tab,
-  Tabs,
-  TabHeading,
-  ScrollableTab,
-  Item,
-} from "native-base";
+import { Container, Header, Tab, Tabs } from "native-base";
 
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Sucursal from "./Sucursal";
@@ -49,12 +40,11 @@ export default class TabsExample extends Component {
       <Container>
         <Header hasTabs style={styles.headerPos}>
           <Icon
-            name="arrow-left"
+            name="bars"
             size={35}
             color="#1F618D"
             onPress={() => this.props.navigation.openDrawer()}
           />
-          <Text> {"\n"} </Text>
           <View styles={styles.header}>
             <Text style={styles.text}>
               Ubicanos <Icon name="map-marker-alt" size={40} color="white" />
@@ -73,12 +63,16 @@ export default class TabsExample extends Component {
 const styles = StyleSheet.create({
   headerPos: {
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     backgroundColor: "#29B6F6",
   },
   text: {
     fontSize: 35,
     fontWeight: "bold",
     color: "white",
+  },
+  header: {
+    flexDirection: "row",
+    width: "100%",
   },
 });

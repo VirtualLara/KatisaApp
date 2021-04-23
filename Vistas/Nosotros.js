@@ -101,7 +101,7 @@ export default class Nosotros extends Component {
         <Header hasTabs style={styles.headerPos}>
           <StatusBarMy backgroundColor="#29B6F6" />
           <Icon
-            name="arrow-left"
+            name="bars"
             size={35}
             color="#1F618D"
             onPress={() => this.props.navigation.openDrawer()}
@@ -131,7 +131,7 @@ export default class Nosotros extends Component {
 const styles = StyleSheet.create({
   headerPos: {
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     backgroundColor: "#29B6F6",
   },
   textHeader: {

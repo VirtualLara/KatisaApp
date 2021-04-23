@@ -256,7 +256,7 @@ export default class Catalogo extends Component {
           <StatusBarMy backgroundColor="#29B6F6" />
 
           <Icon
-            name="arrow-left"
+            name="bars"
             size={35}
             color="#1F618D"
             onPress={() => this.props.navigation.openDrawer()}

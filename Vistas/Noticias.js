@@ -9,7 +9,6 @@ import {
   Text,
   Left,
   Body,
-  Content,
 } from "native-base";
 
 import StatusBarMy from "../Componentes/StatusBarMy";
@@ -21,7 +20,7 @@ export default class Noticias extends Component {
       numNoticia: 0,
       noticia: [
         {
-          tittle: "AVISO DE SEMANA SANTA",
+          tittle: "AVISO DE SEMANA SANTA Y DEMAS DIAS",
           subtittle: "DIAS NO LABORABLES",
           infoNoticia: {
             parrafo1: "Atodos nuestros clientes les informamos lo siguiente:",
@@ -33,15 +32,74 @@ export default class Noticias extends Component {
             parrafo5: "",
           },
         },
+        {
+          tittle: "NOTICIA 2",
+          subtittle: "OTRA NOTICIA",
+          infoNoticia: {
+            parrafo1: "Atodos nuestros clientes les informamos lo siguiente:",
+            parrafo2:
+              "Por celebracion de los dias de semana santa, suspenderemos labores los dias 1 y 2 de abril del presente año.",
+            parrafo3:
+              "Reanudando actividades el dia 3 de abril en todas nuestra sucursales.",
+            parrafo4: "En los horarios que ya conocen como de costumrbe.",
+            parrafo5:
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos.",
+          },
+        },
+        {
+          tittle: "NOTICIA 3 DE EJEMPLO",
+          subtittle: "OTRA NOTICIA",
+          infoNoticia: {
+            parrafo1: "Atodos nuestros clientes les informamos lo siguiente:",
+            parrafo2:
+              "Por celebracion de los dias de semana santa, suspenderemos labores los dias 1 y 2 de abril del presente año.",
+            parrafo3:
+              "Reanudando actividades el dia 3 de abril en todas nuestra sucursales.",
+            parrafo4: "En los horarios que ya conocen como de costumrbe.",
+            parrafo5:
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos.",
+          },
+        },
+        {
+          tittle: "EJEMPLO 4 NOTICAS",
+          subtittle: "OTRA NOTICIA",
+          infoNoticia: {
+            parrafo1: "Atodos nuestros clientes les informamos lo siguiente:",
+            parrafo2:
+              "Por celebracion de los dias de semana santa, suspenderemos labores los dias 1 y 2 de abril del presente año.",
+            parrafo3:
+              "Reanudando actividades el dia 3 de abril en todas nuestra sucursales.",
+            parrafo4: "En los horarios que ya conocen como de costumrbe.",
+            parrafo5:
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos." +
+              " Vamos a poner otro texto aqui nadamas de relleno para que se vea en el ejemplo de los campos.",
+          },
+        },
       ],
     };
   }
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <StatusBarMy backgroundColor="#29b6f6" />
 
         <View style={styles.header}>
+          <Icon
+            name="menu"
+            style={{
+              fontWeight: "bold",
+              color: "#fff",
+              fontSize: 50,
+              color: "#1F618D",
+            }}
+            onPress={() => this.props.navigation.openDrawer()}
+          />
+
           <Text style={styles.textHeader}>
             <Icon
               name="book"
@@ -51,22 +109,16 @@ export default class Noticias extends Component {
           </Text>
         </View>
 
-        <View
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "red",
-          }}
-        >
-          <View style={{ height: "85%" }}>
-            <View style={{ height: "30%" }}>
+        <View style={styles.contentNoticia}>
+          <View style={{ height: "100%" }}>
+            <View style={{ height: "20%" }}>
               <CardItem style={{ height: "100%" }}>
                 <Left>
                   <Thumbnail
                     source={require("../Recursos/Imagenes/logo.png")}
                   />
                   <Body>
-                    <Text>
+                    <Text style={styles.title}>
                       {" "}
                       {this.state.noticia[this.state.numNoticia].tittle}{" "}
                     </Text>
@@ -78,6 +130,7 @@ export default class Noticias extends Component {
                 </Left>
               </CardItem>
             </View>
+
             <CardItem style={{ height: "70%" }}>
               <ScrollView>
                 <Text style={styles.textNoticia}>
@@ -114,53 +167,54 @@ export default class Noticias extends Component {
                 </Text>
               </ScrollView>
             </CardItem>
-          </View>
-        </View>
-        <View
-          style={{
-            height: "15%",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            iconLeft
-            onPress={() => {
-              if (this.state.numNoticia !== 0) {
-                this.setState({ numNoticia: this.state.numNoticia - 1 });
-              } else {
-                Alert.alert(
-                  "Estas en la primer noticia." +
-                    `\n` +
-                    "No hay mas para mostar..."
-                );
-              }
-            }}
-            style={styles.buttonArrow}
-          >
-            <Icon name="arrow-back" style={styles.iconArrow} />
-            <Text style={styles.textButtonArrow}> Anterior </Text>
-          </Button>
 
-          <Button
-            iconRight
-            onPress={() => {
-              if (this.state.numNoticia <= this.state.noticia.length - 2) {
-                this.setState({ numNoticia: this.state.numNoticia + 1 });
-              } else {
-                Alert.alert(
-                  "Estas en la ultima noticia." +
-                    `\n` +
-                    "En breve publicaremos..."
-                );
-              }
-            }}
-            style={styles.buttonArrow}
-          >
-            <Text style={styles.textButtonArrow}> Siguiente </Text>
-            <Icon name="arrow-forward" style={styles.iconArrow} />
-          </Button>
+            <View style={styles.contentBoton}>
+              <View>
+                <Button
+                  iconLeft
+                  onPress={() => {
+                    if (this.state.numNoticia !== 0) {
+                      this.setState({ numNoticia: this.state.numNoticia - 1 });
+                    } else {
+                      Alert.alert(
+                        "Estas en la primer noticia." +
+                          `\n` +
+                          "No hay mas para mostar..."
+                      );
+                    }
+                  }}
+                  style={styles.buttonArrow}
+                >
+                  <Icon name="arrow-back" style={styles.iconArrow} />
+                  <Text style={styles.textButtonArrow}> Anterior </Text>
+                </Button>
+              </View>
+
+              <View>
+                <Button
+                  iconRight
+                  onPress={() => {
+                    if (
+                      this.state.numNoticia <=
+                      this.state.noticia.length - 2
+                    ) {
+                      this.setState({ numNoticia: this.state.numNoticia + 1 });
+                    } else {
+                      Alert.alert(
+                        "Estas en la ultima noticia." +
+                          `\n` +
+                          "En breve publicaremos..."
+                      );
+                    }
+                  }}
+                  style={styles.buttonArrow}
+                >
+                  <Text style={styles.textButtonArrow}> Siguiente </Text>
+                  <Icon name="arrow-forward" style={styles.iconArrow} />
+                </Button>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     );
@@ -173,16 +227,44 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "#29B6F6",
-    height: "auto",
+    height: "8%",
   },
   textHeader: {
     color: "white",
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: "bold",
     height: "auto",
+  },
+  contentNoticia: {
+    width: "100%",
+    height: "92%",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1B2631",
+  },
+  textNoticia: {
+    textAlign: "justify",
+    fontSize: 18,
+  },
+  contentBoton: {
+    height: "10%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    backgroundColor: "#34495E",
+  },
+  buttonArrow: {
+    backgroundColor: "#29b6f6",
+  },
+  textButtonArrow: {
+    fontSize: 18,
+    fontWeight: "bold",
   },
   textFooter: {
     color: "white",

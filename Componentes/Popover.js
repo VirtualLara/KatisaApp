@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <TouchableOpacity onPress={() => setShowPopover(true)}>
-        <Text style={styles.titleDinamica}> Dinámica </Text>
+        <Text style={styles.titleDinamica}> Obtener boletos </Text>
       </TouchableOpacity>
       <Popover
         isVisible={showPopover}
@@ -80,12 +80,11 @@ const styles = StyleSheet.create({
     color: "darkgreen",
   },
   titleDinamica: {
-    paddingLeft: 10,
-    marginLeft: 5,
-    fontSize: 30,
+    textAlign: "center",
+    fontSize: 28,
     fontWeight: "bold",
-    color: "#21618C",
-    backgroundColor: "#A9CCE3",
+    color: "#F1C40F",
+    backgroundColor: "#212F3D",
   },
   text: {
     paddingLeft: 25,

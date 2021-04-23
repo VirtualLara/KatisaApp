@@ -4,6 +4,8 @@ import { Card, CardItem, Thumbnail, Text, Left, Body } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native";
 import { Value } from "react-native-reanimated";
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
 
 export default class CardArticulo extends Component {
   constructor(props) {
@@ -54,9 +56,13 @@ export default class CardArticulo extends Component {
 
             <Card>
               <CardItem>
-                <Image
+                <ZoomImage
                   source={{ uri: this.props.imagen }}
+                  imgStyle={styles.imagen}
                   style={styles.imagen}
+                  duration={2000}
+                  enableScaling={false}
+                  easingFunc={Easing.ease}
                 />
               </CardItem>
             </Card>
