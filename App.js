@@ -8,8 +8,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import VerifyInitialApp from "./VerifyInitialApp";
 
-import Aa from "./Vistas/Noticias";
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);

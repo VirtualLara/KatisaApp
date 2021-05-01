@@ -82,15 +82,17 @@ export default class Nosotros extends Component {
   renderizarCards() {
     return this.state.cards.map((Item, Index) => {
       return (
-        <CardInfoNosotros
-          title={Item.title}
-          subtitle={Item.subtitle}
-          parrafo1={Item.text.parrafo1}
-          parrafo2={Item.text.parrafo2}
-          parrafo3={Item.text.parrafo3}
-          parrafo4={Item.text.parrafo4}
-          parrafo5={Item.text.parrafo5}
-        />
+        <View key={Index} >
+          <CardInfoNosotros
+            title={Item.title}
+            subtitle={Item.subtitle}
+            parrafo1={Item.text.parrafo1}
+            parrafo2={Item.text.parrafo2}
+            parrafo3={Item.text.parrafo3}
+            parrafo4={Item.text.parrafo4}
+            parrafo5={Item.text.parrafo5}
+          />
+        </View>
       );
     });
   }

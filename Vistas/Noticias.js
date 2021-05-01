@@ -178,8 +178,8 @@ export default class Noticias extends Component {
                     } else {
                       Alert.alert(
                         "Estas en la primer noticia." +
-                          `\n` +
-                          "No hay mas para mostar..."
+                        `\n` +
+                        "No hay mas para mostar..."
                       );
                     }
                   }}
@@ -202,8 +202,8 @@ export default class Noticias extends Component {
                     } else {
                       Alert.alert(
                         "Estas en la ultima noticia." +
-                          `\n` +
-                          "En breve publicaremos..."
+                        `\n` +
+                        "En breve publicaremos..."
                       );
                     }
                   }}

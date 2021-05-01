@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Alert, TouchableOpacity, Image } from "react-native";
 import { View, Header, Button, Text, Footer } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
 
@@ -64,6 +65,9 @@ export default class Inicio extends React.Component {
                   <Text style={styles.subtitleTextRifa}>Termina:</Text>
                   <Text style={styles.textRifa}> 10-05-21</Text>
                 </View>
+
+                <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
+
                 {/* <View>
                   <Text style={styles.textBases}> Obten tus boletos.</Text>
                 </View> */}
