@@ -20,7 +20,7 @@ import Siguenos from "../Vistas/Siguenos";
 import Catalogo from "../Vistas/Catalogo";
 import Nosotros from "../Vistas/Nosotros";
 import Noticias from "../Vistas/Noticias";
-import Account from '../Vistas/account/Account';
+import AccountStack from '../Navigator/AccountStack';
 
 function Menu(props) {
   const { logout } = useAuth();
@@ -91,7 +91,7 @@ function Menu(props) {
           <DrawerMenu
             iconName="user"
             titleName="Mi perfil"
-            navigation={() => props.navigation.navigate("Account")}
+            navigation={() => props.navigation.navigate("AccountStack")}
           />
         </ScrollView>
       </View>
@@ -151,7 +151,7 @@ export default function App() {
         <Drawer.Screen name="Siguenos" component={Siguenos} />
         <Drawer.Screen name="Nosotros" component={Nosotros} />
         <Drawer.Screen name="Noticias" component={Noticias} />
-        <Drawer.Screen name="Account" component={Account} />
+        <Drawer.Screen name="AccountStack" component={AccountStack} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

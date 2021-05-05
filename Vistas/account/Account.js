@@ -1,49 +1,74 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState, useCallback } from "react";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { useFocusEffect } from '@react-navigation/native';
 import { Header } from 'native-base';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import StatusBarMy from '../../Componentes/StatusBarMy';
+import UserInfo from '../../Componentes/account/UserInfo';
+
+import UseAuth from '../../hooks/UseAuth';
+import { getMeApi } from '../../api/user';
+import Loading from '../../Componentes/Loading';
 
 export default function Account(props) {
 
   const openMyDrawer = props;
 
+  const [user, setUser] = useState(null);
+  const { auth } = UseAuth();
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const response = await getMeApi(auth.token)
+        setUser(response)
+        console.log(response)
+      })()
+    }, [])
+  )
+
+
 
   return (
-    <View>
+
+    <View style={{ flex: 1 }} >
+
+
       <Header hasTabs style={styles.headerPos}>
         <StatusBarMy backgroundColor="#29B6F6" />
-
         <View style={styles.headerContent} >
-          <Icon
-            name="bars" size={35} color="#1F618D"
-            onPress={() => openMyDrawer.navigation.openDrawer()}
-          />
-
-          <Text style={styles.text}>
-            Mi perfil
-          </Text>
-
+          <Icon name="bars" size={35} color="#1F618D" onPress={() => openMyDrawer.navigation.openDrawer()} />
+          <Text style={styles.text}> Mi perfil </Text>
           <Icon name="user" size={40} color="white" />
         </View>
-
       </Header>
 
-      <Text> mi perfil... </Text>
-    </View>
+      {!user ? (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+          <Loading size='large' text="hola" color='#29b6f6' />
+        </View>
+      ) : (
+        <ScrollView>
+          <UserInfo user={user} />
+        </ScrollView >
+      )
+      }
+
+    </View >
+
   );
 }
 
 const styles = StyleSheet.create({
   headerPos: {
+    display: 'flex',
     flexDirection: 'row',
     width: "100%",
     alignItems: "center",
     backgroundColor: "#29B6F6",
   },
   header: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
