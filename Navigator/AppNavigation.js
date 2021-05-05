@@ -1,5 +1,7 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 
 import Inicio from '../Vistas/Inicio';
@@ -12,13 +14,18 @@ export default function AppNavigation() {
     const Tab = createMaterialBottomTabNavigator();
 
     return (
-        <Tab.Navigator>
+        <Tab.Navigator barStyle={styles.navigationStyle} screenOptions={({ route }) => ({
+            tabBarIcon: (routeStatus) => {
+                return setIcon(route, routeStatus);
+            }
+        })}>
             <Tab.Screen
                 name='Inicio'
                 component={Inicio}
                 options={{
-                    title: 'Inicio'
-                }} />
+                    title: 'Inicio',
+                }}
+            />
             <Tab.Screen
                 name='Favorites'
                 component={Favorites}
@@ -40,3 +47,37 @@ export default function AppNavigation() {
         </Tab.Navigator>
     )
 }
+
+function setIcon(route, routeStatus) {
+    let iconName = "";
+
+    switch (route.name) {
+        case 'Inicio':
+            iconName = "home"
+            break;
+        case 'Favorites':
+            iconName = "heart"
+            break;
+        case 'Cotizacion':
+            iconName = "list"
+            break;
+        case 'Mi Perfil':
+            iconName = "user"
+            break;
+
+        default:
+            break;
+    }
+    return <AwesomeIcon name={iconName} style={styles.icon} />
+}
+
+const styles = StyleSheet.create({
+    navigationStyle: {
+        backgroundColor: '#29b6f6',
+        color: "#fff",
+    },
+    icon: {
+        fontSize: 20,
+        color: '#fff'
+    },
+})

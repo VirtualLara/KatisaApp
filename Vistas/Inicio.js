@@ -52,7 +52,7 @@ export default class Inicio extends React.Component {
             </View>
             <View style={styles.imageArea}>
               <View style={styles.contentDatos}>
-                <View style={{ height: 121 }}>
+                <View style={{ height: 110 }}>
                   <Text style={styles.titleTextRifa}>Actividad:</Text>
                   <Text style={styles.textRifa}>
                     Rifa ventilador para la reyna de la casa MAMÁ
@@ -68,9 +68,6 @@ export default class Inicio extends React.Component {
 
                 <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
 
-                {/* <View>
-                  <Text style={styles.textBases}> Obten tus boletos.</Text>
-                </View> */}
                 <Popover />
               </View>
               <View style={styles.contentImageRifa}>
@@ -98,9 +95,9 @@ export default class Inicio extends React.Component {
           </View>
         </View>
 
-        <Footer style={styles.header}>
+        {/*         <Footer style={styles.header}>
           <Text style={styles.textFooter}> ¡Los expertos en iluminación! </Text>
-        </Footer>
+        </Footer> */}
       </View>
     );
   }
@@ -169,14 +166,14 @@ const styles = StyleSheet.create({
   titleTextRifa: {
     paddingLeft: 5,
     fontWeight: "bold",
-    fontSize: 26,
+    fontSize: 20,
     color: "#4A235A",
     backgroundColor: "#D4E6F1",
   },
   subtitleTextRifa: {
     paddingLeft: 5,
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 18,
     color: "#C0392B",
   },
   textRifa: {
