@@ -4,12 +4,14 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Header } from 'native-base';
 import Icon from "react-native-vector-icons/FontAwesome";
 
-import StatusBarMy from '../../Componentes/StatusBarMy';
-import UserInfo from '../../Componentes/account/UserInfo';
-
 import UseAuth from '../../hooks/UseAuth';
 import { getMeApi } from '../../api/user';
 import Loading from '../../Componentes/Loading';
+
+import StatusBarMy from '../../Componentes/StatusBarMy';
+import UserInfo from '../../Componentes/account/UserInfo';
+import Menu from '../../Componentes/account/Menu';
+
 
 export default function Account(props) {
 
@@ -23,7 +25,6 @@ export default function Account(props) {
       (async () => {
         const response = await getMeApi(auth.token)
         setUser(response)
-        console.log(response)
       })()
     }, [])
   )
@@ -46,11 +47,12 @@ export default function Account(props) {
 
       {!user ? (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-          <Loading size='large' text="hola" color='#29b6f6' />
+          <Loading size='large' text="Cargando..." color='#29b6f6' />
         </View>
       ) : (
         <ScrollView>
           <UserInfo user={user} />
+          <Menu />
         </ScrollView >
       )
       }

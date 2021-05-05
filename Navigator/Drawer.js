@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import useAuth from "../hooks/UseAuth";
 import BarMy from "../Componentes/StatusBarMy";
-import Inicio from "../Vistas/Inicio";
+import AppNavigation from "../Navigator/AppNavigation";
 import Sucursales from "../Vistas/Sucursales";
 import Siguenos from "../Vistas/Siguenos";
 import Catalogo from "../Vistas/Catalogo";
@@ -23,6 +23,7 @@ import Noticias from "../Vistas/Noticias";
 import AccountStack from '../Navigator/AccountStack';
 
 function Menu(props) {
+
   const { logout } = useAuth();
   const logoutAccount = () => {
     Alert.alert(
@@ -61,7 +62,7 @@ function Menu(props) {
           <DrawerMenu
             iconName="home"
             titleName="Inicio"
-            navigation={() => props.navigation.navigate("Inicio")}
+            navigation={() => props.navigation.navigate("AppNavigation")}
           />
           <DrawerMenu
             iconName="book"
@@ -145,7 +146,7 @@ export default function App() {
         drawerContent={(props) => <Menu {...props} />}
         initialRouteName="Inicio"
       >
-        <Drawer.Screen name="Inicio" component={Inicio} />
+        <Drawer.Screen name="AppNavigation" component={AppNavigation} />
         <Drawer.Screen name="Catalogo" component={Catalogo} />
         <Drawer.Screen name="Sucursales" component={Sucursales} />
         <Drawer.Screen name="Siguenos" component={Siguenos} />

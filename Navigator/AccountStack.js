@@ -14,7 +14,6 @@ export default function AccountStack() {
                 component={Account}
                 options={{ title: 'Cuenta', headerShown: false }}
             />
-
         </Stack.Navigator>
     )
 }
