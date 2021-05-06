@@ -27,16 +27,19 @@ function Menu(props) {
   const { logout } = useAuth();
   const logoutAccount = () => {
     Alert.alert(
-      "Al seguir se cerrara la session.",
-      "¿Deseas salir?",
+      "Si contunua cerrara su sesión.",
+      "¿Continuar...?",
       [
         {
           tex: "NO",
         },
-        { tex: "SI", onPress: logout },
+        {
+          tex: "SI",
+          onPress: logout
+        },
       ],
       {
-        cancelable: false,
+        cancelable: true,
       }
     );
   };

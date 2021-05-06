@@ -14,11 +14,12 @@ export default function AppNavigation() {
     const Tab = createMaterialBottomTabNavigator();
 
     return (
-        <Tab.Navigator barStyle={styles.navigationStyle} screenOptions={({ route }) => ({
-            tabBarIcon: (routeStatus) => {
-                return setIcon(route, routeStatus);
-            }
-        })}>
+        <Tab.Navigator activeColor="#fff" barStyle={styles.navigationStyle}
+            screenOptions={({ route }) => ({
+                tabBarIcon: (routeStatus) => {
+                    return setIcon(route, routeStatus);
+                }
+            })}>
             <Tab.Screen
                 name='Inicio'
                 component={Inicio}
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         color: "#fff",
     },
     icon: {
-        fontSize: 20,
+        fontSize: 25,
         color: '#fff'
     },
 })
