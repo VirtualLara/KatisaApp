@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   textbotonTrans: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
     color: "white",
   },

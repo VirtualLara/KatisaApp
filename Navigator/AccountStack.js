@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Account from '../Vistas/account/Account';
 import CambiarNombre from '../Vistas/account/CambiarNombre';
+import CambiarEmail from '../Vistas/account/CambiarEmail';
 
 export default function AccountStack() {
 
@@ -24,6 +25,11 @@ export default function AccountStack() {
                 name='CambiarNombre'
                 component={CambiarNombre}
                 options={{ title: 'Cambiar Nombre y Apellidos' }}
+            />
+            <Stack.Screen
+                name='CambiarEmail'
+                component={CambiarEmail}
+                options={{ title: 'Cambiar Correo Electrónico' }}
             />
         </Stack.Navigator>
     )

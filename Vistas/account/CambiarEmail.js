@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useFormik } from 'formik';
@@ -9,7 +9,8 @@ import Toast from 'react-native-root-toast';
 import { getMeApi, updateUserApi } from '../../api/user';
 import UseAuth from '../../hooks/UseAuth';
 
-export default function Cambiarnombre() {
+
+export default function CambiarEmail() {
 
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
@@ -20,14 +21,13 @@ export default function Cambiarnombre() {
         useCallback(() => {
             (async () => {
                 const response = await getMeApi(auth.token);
-                if (response.name && response.lastname) {
-                    await formik.setFieldValue('name', response.name)
-                    await formik.setFieldValue('lastname', response.lastname)
+                console.log(response);
+                if (response.email) {
+                    await formik.setFieldValue('email', response.email)
                 }
             })()
         }, [])
     );
-
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -49,36 +49,31 @@ export default function Cambiarnombre() {
     })
 
     return (
-        <View style={styles.container}>
-            <TextInput label='Nombre' style={styles.label}
-                onChangeText={(text) => formik.setFieldValue('name', text)}
+        <View style={styles.container} >
+
+            <TextInput label='Email' style={styles.label}
+                onChangeText={(text) => formik.setFieldValue('email', text)}
                 value={formik.values.name}
                 error={formik.errors.name} />
 
-            <TextInput label='apellidos' style={styles.label}
-                onChangeText={(text) => formik.setFieldValue('lastname', text)}
-                value={formik.values.lastname}
-                error={formik.errors.lastname} />
-
             <Button mode='contained' style={styles.button}
-                onPress={formik.handleSubmit} loading={loading}> Guardar Cambios </Button>
+                onPress={formik.handleSubmit} loading={loading} > Guardar Cambios </Button>
         </View>
     )
 }
 
 function initialValues() {
     return {
-        name: '',
-        lastname: ''
+        email: '',
     }
 }
 
 function validationSchema() {
     return {
-        name: Yup.string().required(true),
-        lastname: Yup.string().required(true),
+        email: Yup.string().required(true),
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {

@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Alert, TouchableOpacity, Image } from "react-native";
-import { View, Header, Button, Text, Footer } from "native-base";
+import { StyleSheet, ScrollView } from "react-native";
+import { View, Header, Button, Text, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import ZoomImage from "react-native-zoom-image";
@@ -13,7 +13,7 @@ import Popover from "../Componentes/Popover";
 export default class Inicio extends React.Component {
   render() {
     return (
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         <Header style={styles.header}>
           <StatusBarMy backgroundColor="#29B6F6" />
           <Button
@@ -98,7 +98,7 @@ export default class Inicio extends React.Component {
         {/*         <Footer style={styles.header}>
           <Text style={styles.textFooter}> ¡Los expertos en iluminación! </Text>
         </Footer> */}
-      </View>
+      </ScrollView>
     );
   }
 }
