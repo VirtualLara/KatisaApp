@@ -5,6 +5,7 @@ import Account from '../Vistas/account/Account';
 import CambiarNombre from '../Vistas/account/CambiarNombre';
 import CambiarEmail from '../Vistas/account/CambiarEmail';
 import CambiarUsuario from '../Vistas/account/CambiarUsuario';
+import CambiarContraseña from '../Vistas/account/CambiarContraseña';
 
 export default function AccountStack() {
 
@@ -36,6 +37,11 @@ export default function AccountStack() {
                 name='CambiarUsuario'
                 component={CambiarUsuario}
                 options={{ title: 'Cambiar Nombre de Usuario' }}
+            />
+            <Stack.Screen
+                name='CambiarContraseña'
+                component={CambiarContraseña}
+                options={{ title: 'Cambiar contraseña' }}
             />
         </Stack.Navigator>
     )

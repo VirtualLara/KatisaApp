@@ -142,7 +142,7 @@ export default function pruebas(props) {
         </View>
       </Content>
 
-      <Footer style={{ backgroundColor: "#29B6F6" }}>
+      {/* <Footer style={{ backgroundColor: "#29B6F6" }}>
         <View style={styles.viewForm}>
           <Button
             style={styles.botonOlvidaste}
@@ -160,7 +160,7 @@ export default function pruebas(props) {
             </Text>
           </Button>
         </View>
-      </Footer>
+      </Footer> */}
     </Container>
   );
 }
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   image: {
-    width: "100%",
-    height: 160,
+    width: 230,
+    height: 230,
     resizeMode: "contain",
   },
   form: {

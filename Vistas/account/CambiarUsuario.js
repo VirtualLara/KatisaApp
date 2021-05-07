@@ -74,7 +74,7 @@ function initialValues() {
 
 function validationSchema() {
     return {
-        username: Yup.string().required(true),
+        username: Yup.string().min(4, true).required(true),
     }
 }
 
