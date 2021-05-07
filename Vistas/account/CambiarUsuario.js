@@ -19,7 +19,7 @@ export default function CambiarEmail() {
         useCallback(() => {
             (async () => {
                 const response = await getMeApi(auth.token);
-                await formik.setFieldValue("email", response.email);
+                await formik.setFieldValue("username", response.username);
             })()
         }, [])
     );
@@ -33,8 +33,8 @@ export default function CambiarEmail() {
             try {
                 const response = await updateUserApi(auth, formData);
                 if (response.statusCode) throw Alert.alert(
-                    "Este correo ya esta registrado.",
-                    "Ingrese otro correo.",
+                    "Este nombre de usuario ya esta registrado.",
+                    "Ingrese otro nombre de usuario.",
                     [
                         {
                             tex: "SI",
@@ -43,10 +43,10 @@ export default function CambiarEmail() {
                     {
                         cancelable: true,
                     }
-                );;
+                );
                 navigation.goBack();
             } catch (error) {
-                formik.setFieldError("email", true)
+                formik.setFieldError("username", true)
                 setLoading(false);
             }
         }
@@ -55,10 +55,10 @@ export default function CambiarEmail() {
     return (
         <View style={styles.container} >
 
-            <TextInput label="Email" style={styles.label}
-                onChangeText={(text) => formik.setFieldValue("email", text)}
-                value={formik.values.email}
-                error={formik.errors.email} />
+            <TextInput label="username" style={styles.label}
+                onChangeText={(text) => formik.setFieldValue("username", text)}
+                value={formik.values.username}
+                error={formik.errors.username} />
 
             <Button mode="contained" style={styles.button}
                 onPress={formik.handleSubmit} loading={loading} > Guardar Cambios </Button>
@@ -68,13 +68,13 @@ export default function CambiarEmail() {
 
 function initialValues() {
     return {
-        email: "",
+        username: "",
     }
 }
 
 function validationSchema() {
     return {
-        email: Yup.string().email(true).required(true),
+        username: Yup.string().required(true),
     }
 }
 

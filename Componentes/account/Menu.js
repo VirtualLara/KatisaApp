@@ -50,7 +50,7 @@ export default function Menu() {
                     title='Cambiar Nombre de Usuario'
                     description='Cambiar el nombre de usuario de tu cuenta'
                     left={(props) => <List.Icon{...props} icon='sim' />}
-                    onPress={() => console.log('Cambiar nombre de usuario')}
+                    onPress={() => navigation.navigate('CambiarUsuario')}
                 />
                 <List.Item
                     title='Cambiar Contraseña'

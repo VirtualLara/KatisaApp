@@ -4,7 +4,6 @@ import { TextInput, Button } from 'react-native-paper';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Toast from 'react-native-root-toast';
 
 import { getMeApi, updateUserApi } from '../../api/user';
 import UseAuth from '../../hooks/UseAuth';
@@ -39,9 +38,18 @@ export default function Cambiarnombre() {
                 await updateUserApi(auth, formData);
                 navigation.goBack();
             } catch (error) {
-                Toast.show('Error al actualizar los datos.', {
-                    position: Toast.positions.CENTER,
-                })
+                Alert.alert(
+                    "Error al actualizar los datos.",
+                    "Intente nuevamente.",
+                    [
+                        {
+                            tex: "SI",
+                        },
+                    ],
+                    {
+                        cancelable: true,
+                    }
+                );
                 setLoading(false);
             }
 
