@@ -1,63 +1,77 @@
-import React, { Component } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, StyleSheet, Alert } from "react-native";
-import { Container, Header, Tab, Tabs } from "native-base";
-
+import { Container, Header, Tab, Tabs, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Sucursal from "./Sucursal";
+import { map } from 'lodash';
 
-export default class TabsExample extends Component {
-  constructor(props) {
-    super(props);
+import { getCitysApi } from '../api/Sucursales';
 
-    this.state = {
-      ciudades: [
-        { ciudad: "Xalapa" },
-        { ciudad: "Veracruz" },
-        { ciudad: "Cordoba" },
-      ],
-    };
-  }
+import StatusBarMy from '../Componentes/StatusBarMy';
+import Sucursal from "../Vistas/Sucursal";
 
-  renderizarCiudades() {
-    return this.state.ciudades.map((Item, Index) => {
-      return (
-        <Tab
-          key={Index}
-          heading={Item.ciudad}
-          Index={Index}
-          tabStyle={{ backgroundColor: "#29B6F6" }}
-          textStyle={{ color: "black", fontWeight: "bold" }}
-          activeTabStyle={{ backgroundColor: "#0288D1" }}
-        >
-          <Sucursal opc={Item.ciudad} />
-        </Tab>
-      );
-    });
-  }
+export default function Sucursales(props) {
 
-  render() {
-    return (
-      <Container>
-        <Header hasTabs style={styles.headerPos}>
-          <Icon
-            name="bars"
-            size={35}
-            color="#1F618D"
-            onPress={() => this.props.navigation.openDrawer()}
-          />
-          <View styles={styles.header}>
-            <Text style={styles.text}>
-              Ubicanos <Icon name="map-marker-alt" size={40} color="white" />
-            </Text>
-          </View>
-        </Header>
+  const { navigation } = props;
+  const [citys, setCitys] = useState(null);
 
-        <Tabs locked="true" tabBarUnderlineStyle={{ backgroundColor: "white" }}>
-          {this.renderizarCiudades(this.state.valorCiudad)}
-        </Tabs>
-      </Container>
+
+  useEffect(() => {
+    (async () => {
+      const response = await getCitysApi();
+      setCitys(response);
+    })()
+  });
+
+  /*   useFocusEffect(
+      useCallback(() => {
+        (async () => {
+          const response = await getCitysApi();
+          setCitys(response);
+        })()
+      }, [])
     );
-  }
+   */
+
+  return (
+    <Container>
+      <Header hasTabs style={styles.headerPos}>
+        <StatusBarMy backgroundColor='#29b6f6' />
+        <Icon
+          name="bars"
+          size={35}
+          color="#1F618D"
+          onPress={() => navigation.openDrawer()}
+        />
+        <View styles={styles.header}>
+          <Text style={styles.text}>
+            Ubicanos <Icon name="map-marker-alt" size={40} color="white" />
+          </Text>
+        </View>
+      </Header>
+
+      {<Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: "white" }}>
+        {map(citys, (city) => (
+
+          <Tab
+            key={city._id}
+            heading={city.nombreciudad}
+            tabStyle={{ backgroundColor: "#29B6F6" }}
+            textStyle={{ color: "black", fontWeight: "bold" }}
+            activeTabStyle={{ backgroundColor: "#0288D1" }}
+          >
+
+            {/*  {<Sucursal op={city.nombreciudad} />} */}
+
+          </Tab>
+
+        ))}
+
+      </Tabs>}
+
+    </Container>
+
+  )
 }
 
 const styles = StyleSheet.create({
@@ -75,4 +89,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
   },
-});
+})
