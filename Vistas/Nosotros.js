@@ -1,103 +1,34 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Image, ScrollView } from "react-native";
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from '@react-navigation/native';
+import { View, StyleSheet, ActivityIndicator, ScrollView } from "react-native";
 import { Header, Text } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { map } from 'lodash';
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 import CardInfoNosotros from "../Componentes/CardInfoNosotros";
 
-export default class Nosotros extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cards: [
-        {
-          title: "Historia",
-          subtitle: "Desde 07/Dic/2016",
-          text: {
-            parrafo1: "El inicio",
-            parrafo2:
-              "Empresa mexicana de origen Xalapeño, fundada el 7 de diciembre del año 2016.",
-            parrafo3:
-              "Desde el inico el giro se ha enfocado en la venta y distribucion de las mejores marcas" +
-              "de iluminacion LED, para todo tipo de uso domestico, comercial o industrial.",
-            parrafo4:
-              "Siempre ofreciendo el respaldo a nuestros clientes ofreciendo productos garantizados hasta por 5 años.",
-            parrafo5:
-              "Actualmente tenemos presencia en las ciudades de Xalapa, Veracruz y Cordoba, todas en el estado de Veracruz.",
-          },
-        },
-        {
-          title: "Mision",
-          subtitle: "Desde 07/Dic/2016",
-          text: {
-            parrafo1: "El inicio",
-            parrafo2:
-              "Empresa mexicana de origen Xalapeño, fundada el 7 de diciembre del año 2016.",
-            parrafo3:
-              "Desde el inico el giro se ha enfocado en la venta y distribucion de las mejores marcas" +
-              "de iluminacion LED, para todo tipo de uso domestico, comercial o industrial.",
-            parrafo4:
-              "Siempre ofreciendo el respaldo a nuestros clientes ofreciendo productos garantizados hasta por 5 años.",
-            parrafo5:
-              "Actualmente tenemos presencia en las ciudades de Xalapa, Veracruz y Cordoba, todas en el estado de Veracruz.",
-          },
-        },
-        {
-          title: "Vision",
-          subtitle: "Desde 07/Dic/2016",
-          text: {
-            parrafo1: "El inicio",
-            parrafo2:
-              "Empresa mexicana de origen Xalapeño, fundada el 7 de diciembre del año 2016.",
-            parrafo3:
-              "Desde el inico el giro se ha enfocado en la venta y distribucion de las mejores marcas" +
-              "de iluminacion LED, para todo tipo de uso domestico, comercial o industrial.",
-            parrafo4:
-              "Siempre ofreciendo el respaldo a nuestros clientes ofreciendo productos garantizados hasta por 5 años.",
-            parrafo5:
-              "Actualmente tenemos presencia en las ciudades de Xalapa, Veracruz y Cordoba, todas en el estado de Veracruz.",
-          },
-        },
-        {
-          title: "Valores",
-          subtitle: "Desde 07/Dic/2016",
-          text: {
-            parrafo1: "El inicio",
-            parrafo2:
-              "Empresa mexicana de origen Xalapeño, fundada el 7 de diciembre del año 2016.",
-            parrafo3:
-              "Desde el inico el giro se ha enfocado en la venta y distribucion de las mejores marcas" +
-              "de iluminacion LED, para todo tipo de uso domestico, comercial o industrial.",
-            parrafo4:
-              "Siempre ofreciendo el respaldo a nuestros clientes ofreciendo productos garantizados hasta por 5 años.",
-            parrafo5:
-              "Actualmente tenemos presencia en las ciudades de Xalapa, Veracruz y Cordoba, todas en el estado de Veracruz.",
-          },
-        },
-      ],
-    };
-  }
+import { getNosotrosApi } from '../api/Nosotros';
 
-  renderizarCards() {
-    return this.state.cards.map((Item, Index) => {
-      return (
-        <View key={Index} >
-          <CardInfoNosotros
-            title={Item.title}
-            subtitle={Item.subtitle}
-            parrafo1={Item.text.parrafo1}
-            parrafo2={Item.text.parrafo2}
-            parrafo3={Item.text.parrafo3}
-            parrafo4={Item.text.parrafo4}
-            parrafo5={Item.text.parrafo5}
-          />
-        </View>
-      );
-    });
-  }
 
-  render() {
+export default function Nosotros(props) {
+
+  const { navigation } = props;
+  const [loading, setLoading] = useState(false);
+  const [cards, setCards] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const response = await getNosotrosApi();
+        setCards(response);
+        setLoading(true)
+      })()
+    }, [])
+  );
+
+
+  if (loading) {
     return (
       <View>
         <Header hasTabs style={styles.headerPos}>
@@ -106,7 +37,7 @@ export default class Nosotros extends Component {
             name="bars"
             size={35}
             color="#1F618D"
-            onPress={() => this.props.navigation.openDrawer()}
+            onPress={() => navigation.openDrawer()}
           />
           <Text> {"\n"} </Text>
           <View styles={styles.header}>
@@ -117,17 +48,34 @@ export default class Nosotros extends Component {
         </Header>
 
         <ScrollView>
-          {this.renderizarCards()}
-          <Text>
-            {" "}
-            {"\n"}
-            {"\n"}
-            {"\n"}{" "}
-          </Text>
+          {map(cards, (card) => (
+            <View key={card._id}>
+              <CardInfoNosotros
+                title={card.titulo}
+                subtitle={card.subtitulo}
+                parrafo1={card.parrafo1}
+                parrafo2={card.parrafo2}
+                parrafo3={card.parrafo3}
+                parrafo4={card.parrafo4}
+                parrafo5={card.parrafo5}
+                image={card.logo.url}
+              />
+            </View>
+          ))}
         </ScrollView>
+
       </View>
-    );
+    )
+  } else {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator color='#29b6f6' size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obtieniendo información...</Text>
+      </View>
+    )
   }
+
+
 }
 
 const styles = StyleSheet.create({

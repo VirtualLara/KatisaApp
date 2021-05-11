@@ -36,8 +36,8 @@ export default function ListSucursales(props) {
                                         calle={sucursal.callesuc}
                                         colonia={sucursal.colsuc}
                                         cp={sucursal.cpsuc}
-                                        horario_LV={sucursal.horainisuc + "-" + sucursal.horafinsuc}
-                                        horarioSab={sucursal.horainisuc + "-" + sucursal.hracierresuc}
+                                        horario_LV={sucursal.horainisuc + ":00 AM - " + sucursal.horafinsuc + ":00 PM"}
+                                        horarioSab={sucursal.horainisuc + ":00 AM - " + sucursal.hracierresuc + ":00 PM"}
                                         celular={sucursal.celularsuc}
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
@@ -67,8 +67,8 @@ export default function ListSucursales(props) {
                                         calle={sucursal.callesuc}
                                         colonia={sucursal.colsuc}
                                         cp={sucursal.cpsuc}
-                                        horario_LV={sucursal.horainisuc + "-" + sucursal.horafinsuc}
-                                        horarioSab={sucursal.horainisuc + "-" + sucursal.hracierresuc}
+                                        horario_LV={sucursal.horainisuc + ":00 AM - " + sucursal.horafinsuc + ":00 PM"}
+                                        horarioSab={sucursal.horainisuc + ":00 AM - " + sucursal.hracierresuc + ":00 PM"}
                                         celular={sucursal.celularsuc}
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
@@ -98,8 +98,8 @@ export default function ListSucursales(props) {
                                         calle={sucursal.callesuc}
                                         colonia={sucursal.colsuc}
                                         cp={sucursal.cpsuc}
-                                        horario_LV={sucursal.horainisuc + "-" + sucursal.horafinsuc}
-                                        horarioSab={sucursal.horainisuc + "-" + sucursal.hracierresuc}
+                                        horario_LV={sucursal.horainisuc + ":00 AM - " + sucursal.horafinsuc + ":00 PM"}
+                                        horarioSab={sucursal.horainisuc + ":00 AM - " + sucursal.hracierresuc + ":00 PM"}
                                         celular={sucursal.celularsuc}
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
