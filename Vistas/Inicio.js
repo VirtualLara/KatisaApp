@@ -1,16 +1,141 @@
-import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from '@react-navigation/native';
+import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { View, Header, Button, Text, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
+import { getrifaApi } from '../api/rifa';
+import { API_URL } from '../utils/constants';
+import moment from 'moment';
 
 import Carousel from "../Componentes/Carousel.js";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Popover from "../Componentes/Popover";
 
-export default class Inicio extends React.Component {
+export default function Inicio(props) {
+
+  const { navigation } = props;
+  const [rifaApi, setRifaApi] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const response = await getrifaApi();
+        setRifaApi(response);
+        setLoading(true);
+      })()
+    }, [])
+  );
+
+
+  if (loading) {
+
+    return (
+      <ScrollView style={styles.content}>
+
+        <Header style={styles.header}>
+          <StatusBarMy backgroundColor="#29B6F6" />
+
+          <Button
+            style={{ backgroundColor: "#29B6F6" }}
+            onPress={() => navigation.openDrawer()}
+          >
+            <Icon
+              name="bars"
+              style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }}
+            />
+          </Button>
+          <Text style={styles.textHeader}> ¡Promociones y más! </Text>
+        </Header>
+
+        <View style={styles.contentCarousel}>
+          <Carousel />
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <View style={styles.headerOferta}>
+            <Text style={styles.textHeader}>
+              <Icon
+                name="archive"
+                style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
+              />{" "}
+                Rifa de temporada{" "}
+            </Text>
+          </View>
+
+          <View style={styles.contentOferta}>
+            <View style={styles.contentTitleRifa}>
+              <Text style={styles.titleRifa}>
+                {rifaApi[0].titulo}
+              </Text>
+            </View>
+            <View style={styles.imageArea}>
+              <View style={styles.contentDatos}>
+                <View style={{ height: 110 }}>
+                  <Text style={styles.titleTextRifa}>Actividad:</Text>
+                  <Text style={styles.textRifa}>
+                    {rifaApi[0].subtitulo}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.titleTextRifa}>Vigencia:</Text>
+                  <Text style={styles.subtitleTextRifa}>Inicia:</Text>
+                  <Text style={styles.textRifa}>{rifaApi[0].fechini}</Text>
+                  <Text style={styles.subtitleTextRifa}>Termina:</Text>
+                  <Text style={styles.textRifa}> {rifaApi[0].fechfin} </Text>
+                </View>
+
+                <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
+
+                <Popover />
+              </View>
+              <View style={styles.contentImageRifa}>
+                <ZoomImage
+                  source={{
+                    uri: `${API_URL}${rifaApi[0].imagen.url}`
+                  }}
+                  imgStyle={{
+                    height: "100%",
+                    width: "95%",
+                    resizeMode: "contain",
+                  }}
+                  style={{
+                    height: "100%",
+                    width: "95%",
+                    resizeMode: "contain",
+                  }}
+                  duration={2000}
+                  enableScaling={false}
+                  easingFunc={Easing.ease}
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+
+      </ScrollView>
+    )
+
+  } else {
+
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator color='#29b6f6' size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obtieniendo información...</Text>
+      </View>
+
+    )
+  }
+
+
+
+}
+
+
+/* export default class Inicio extends React.Component {
   render() {
     return (
       <ScrollView style={styles.content}>
@@ -27,6 +152,7 @@ export default class Inicio extends React.Component {
           </Button>
           <Text style={styles.textHeader}> ¡Promociones y más! </Text>
         </Header>
+
 
         <View style={styles.contentCarousel}>
           <Carousel />
@@ -95,13 +221,10 @@ export default class Inicio extends React.Component {
           </View>
         </View>
 
-        {/*         <Footer style={styles.header}>
-          <Text style={styles.textFooter}> ¡Los expertos en iluminación! </Text>
-        </Footer> */}
       </ScrollView>
     );
   }
-}
+} */
 
 const styles = StyleSheet.create({
   content: {
