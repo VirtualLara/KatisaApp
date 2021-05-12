@@ -27,21 +27,22 @@ export default function Sucursales(props) {
 
   if (loading) {
     return (
-      <Container style={{ flex: 1 }}>
-        <Header hasTabs style={styles.headerPos}>
-          <StatusBarMy backgroundColor='#29b6f6' />
+      <Container >
+
+        <StatusBarMy backgroundColor='#29b6f6' />
+
+        <View style={styles.headerPos}>
           <Icon
             name="bars"
             size={35}
             color="#1F618D"
             onPress={() => navigation.openDrawer()}
           />
-          <View styles={styles.header}>
-            <Text style={styles.text}>
-              Ubicanos <Icon name="map-marker-alt" size={40} color="white" />
+          <Text style={styles.text}>
+            Ubicanos
             </Text>
-          </View>
-        </Header>
+          <Icon name="map-marker-alt" size={40} color="white" />
+        </View>
 
         { citys && <ListCiudades citys={citys} />}
 
@@ -64,6 +65,8 @@ export default function Sucursales(props) {
 
 const styles = StyleSheet.create({
   headerPos: {
+    flexDirection: 'row',
+    width: '100%',
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: "#29B6F6",

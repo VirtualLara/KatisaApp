@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { View, StyleSheet, ScrollView, Alert } from "react-native";
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from '@react-navigation/native';
+import { View, StyleSheet, ActivityIndicator, ScrollView, Alert } from "react-native";
 import {
   Header,
   Text,
@@ -9,146 +10,35 @@ import {
 } from "native-base";
 import { TextInput } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { map } from 'lodash';
 
 import CardArticulo from "../Componentes/CardArticulo";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Search from "../Componentes/search/index";
 
-export default class Catalogo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      articulos: [
-        {
-          nombre: "Reflector",
-          clave: "1600386",
-          watts: "150",
-          lumen: "1500",
-          temperarura: "6500",
-          voltajemin: "80",
-          voltajemax: "220",
-          medida: "50*30*70",
-          imagen:
-            "https://resources.claroshop.com/medios-plazavip/s2/10382/1216720/5d93ab966d603-277157899bc8195570724df5c92d1917862d77e4-1600x1600.jpg",
-        },
-        {
-          nombre: "Reflector",
-          clave: "1600386",
-          watts: "150",
-          lumen: "1500",
-          temperarura: "6500",
-          voltajemin: "80",
-          voltajemax: "220",
-          medida: "50*30*70",
-          imagen:
-            "https://resources.claroshop.com/medios-plazavip/s2/10382/1216720/5d93ab966d603-277157899bc8195570724df5c92d1917862d77e4-1600x1600.jpg",
-        },
-        {
-          nombre: "Reflector",
-          clave: "1600386",
-          watts: "150",
-          lumen: "1500",
-          temperarura: "6500",
-          voltajemin: "80",
-          voltajemax: "220",
-          medida: "50*30*70",
-          imagen:
-            "https://resources.claroshop.com/medios-plazavip/s2/10382/1216720/5d93ab966d603-277157899bc8195570724df5c92d1917862d77e4-1600x1600.jpg",
-        },
-        {
-          nombre: "Reflector",
-          clave: "1600386",
-          watts: "150",
-          lumen: "1500",
-          temperarura: "6500",
-          voltajemin: "80",
-          voltajemax: "220",
-          medida: "50*30*70",
-          imagen:
-            "https://resources.claroshop.com/medios-plazavip/s2/10382/1216720/5d93ab966d603-277157899bc8195570724df5c92d1917862d77e4-1600x1600.jpg",
-        },
-        {
-          nombre: "Reflector",
-          clave: "1600386",
-          watts: "150",
-          lumen: "1500",
-          temperarura: "6500",
-          voltajemin: "80",
-          voltajemax: "220",
-          medida: "50*30*70",
-          imagen:
-            "https://resources.claroshop.com/medios-plazavip/s2/10382/1216720/5d93ab966d603-277157899bc8195570724df5c92d1917862d77e4-1600x1600.jpg",
-        },
-      ],
-    };
-  }
+import { getProductsApi } from '../api/products';
+import { color } from "react-native-reanimated";
 
-  renderizarArticulos() {
-    return this.state.articulos.map((Item, Index) => {
-      return (
-        <View key={Index}>
-          <CardArticulo
-            nombre={Item.nombre}
-            clave={Item.clave}
-            watts={Item.watts}
-            lumen={Item.lumen}
-            temperarura={Item.temperarura}
-            voltajemin={Item.voltajemin}
-            voltajemax={Item.voltajemax}
-            medida={Item.medida}
-            imagen={Item.imagen}
-          />
+export default function Catalogo(props) {
 
-          <View style={styles.contentCotizar}>
-            <View style={styles.contentInput}>
-              <Form>
-                <CardItem>
-                  <Icon
-                    active
-                    name="pencil"
-                    size={30}
-                    style={{ width: "25%", padding: 5, color: "#2E4053" }}
-                  />
-                  <TextInput
-                    placeholder="Cantidad:"
-                    keyboardType="numeric"
-                    style={{
-                      width: "75%",
-                      height: 50,
-                      textAlign: "center",
-                      borderWidth: 1,
-                    }}
-                  />
-                </CardItem>
-              </Form>
-            </View>
+  const { navigation } = props;
+  const [productsApi, setProductsApi] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-            <View style={styles.contentBtn}>
-              <View>
-                <Button rounded success
-                  style={{ width: "80%" }}
-                  onPress={() => { Alert.alert('agregado') }}
-                >
-                  <Text style={{
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "bold",
-                  }}
-                  >
-                    Cotizar
-                  </Text>
-                </Button>
-              </View>
-            </View>
-          </View>
-        </View>
-      );
-    });
-  }
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const response = await getProductsApi();
+        setProductsApi(response);
+        setLoading(true);
+      })()
+    }, [])
+  );
 
-  render() {
+  if (loading) {
     return (
       <View>
+
         <Header hasTabs style={styles.headerPos}>
           <StatusBarMy backgroundColor="#29B6F6" />
 
@@ -156,7 +46,7 @@ export default class Catalogo extends Component {
             name="bars"
             size={35}
             color="#1F618D"
-            onPress={() => this.props.navigation.openDrawer()}
+            onPress={() => navigation.openDrawer()}
           />
           <Text> {"\n"} </Text>
           <View styles={styles.header}>
@@ -171,7 +61,68 @@ export default class Catalogo extends Component {
         <Search />
 
         <ScrollView>
-          {this.renderizarArticulos()}
+          {map(productsApi, (product) => (
+            <View key={product._id}>
+              <CardArticulo
+                nombre={product.descripcion}
+                clave={product.clave}
+                watts={product.watts}
+                lumen={product.lumen}
+                temperarura={product.temperarura}
+                voltajemin={product.voltminimo}
+                voltajemax={product.volmaximo}
+                medida={product.medida}
+                imagen={product.foto.url}
+              />
+
+              <View style={styles.contentCotizar}>
+                <View style={styles.contentInput}>
+                  <Form>
+                    <CardItem>
+                      <Icon
+                        active
+                        name="heart"
+                        size={30}
+                        style={{ width: "35%", padding: 5, color: "#2E4053" }}
+                        onPress={() => { Alert.alert('Favorito') }}
+                      />
+                      <TextInput
+                        placeholder="Cantidad:"
+                        keyboardType="numeric"
+                        style={{
+                          width: "65%",
+                          height: 50,
+                          textAlign: "center",
+                          borderWidth: 1,
+                        }}
+                      />
+                    </CardItem>
+                  </Form>
+                </View>
+
+                <View style={styles.contentBtn}>
+                  <View>
+                    <Button rounded success
+                      style={{ width: "80%" }}
+                      onPress={() => { Alert.alert('agregado') }}
+                    >
+                      <Text style={{
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                      >
+                        Cotizar
+                  </Text>
+                    </Button>
+                  </View>
+                </View>
+
+              </View>
+
+
+            </View>
+          ))}
 
           <View
             style={{
@@ -195,9 +146,19 @@ export default class Catalogo extends Component {
           </Text>
         </ScrollView>
       </View>
-    );
 
+    )
+  } else {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator color='#29b6f6' size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obtieniendo información...</Text>
+      </View>
+
+    )
   }
+
+
 }
 
 const styles = StyleSheet.create({
@@ -221,15 +182,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     width: "100%",
-    height: 70,
+    height: 80,
+
   },
   contentInput: {
     width: "55%",
   },
   contentBtn: {
     width: "45%",
-    height: "100%",
+    height: "95%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#fff',
   },
 });

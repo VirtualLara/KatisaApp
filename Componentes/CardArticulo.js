@@ -7,6 +7,8 @@ import { Value } from "react-native-reanimated";
 import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
 
+import { API_URL } from '../utils/constants';
+
 export default class CardArticulo extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +59,7 @@ export default class CardArticulo extends Component {
             <Card>
               <CardItem>
                 <ZoomImage
-                  source={{ uri: this.props.imagen }}
+                  source={{ uri: `${API_URL}${this.props.imagen}` }}
                   imgStyle={styles.imagen}
                   style={styles.imagen}
                   duration={2000}
