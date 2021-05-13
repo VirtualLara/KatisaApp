@@ -5,7 +5,6 @@ import {
   Header,
   Text,
   Form,
-  Button,
   CardItem,
 } from "native-base";
 import { TextInput } from "react-native-paper";
@@ -15,15 +14,17 @@ import { map } from 'lodash';
 import CardArticulo from "../Componentes/CardArticulo";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Search from "../Componentes/search/index";
+import Favoritos from '../Componentes/FavoritesComponent';
+import BtnCotizar from '../Componentes/BtnCotizar';
 
 import { getProductsApi } from '../api/products';
-import { color } from "react-native-reanimated";
 
 export default function Catalogo(props) {
 
   const { navigation } = props;
   const [productsApi, setProductsApi] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [cantidad, setCantidad] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
@@ -76,16 +77,11 @@ export default function Catalogo(props) {
               />
 
               <View style={styles.contentCotizar}>
+
                 <View style={styles.contentInput}>
                   <Form>
                     <CardItem>
-                      <Icon
-                        active
-                        name="heart"
-                        size={30}
-                        style={{ width: "35%", padding: 5, color: "#2E4053" }}
-                        onPress={() => { Alert.alert('Favorito') }}
-                      />
+                      <Favoritos product={product} />
                       <TextInput
                         placeholder="Cantidad:"
                         keyboardType="numeric"
@@ -95,6 +91,7 @@ export default function Catalogo(props) {
                           textAlign: "center",
                           borderWidth: 1,
                         }}
+                        onChangeText={(text) => { setCantidad(text) }}
                       />
                     </CardItem>
                   </Form>
@@ -102,19 +99,7 @@ export default function Catalogo(props) {
 
                 <View style={styles.contentBtn}>
                   <View>
-                    <Button rounded success
-                      style={{ width: "80%" }}
-                      onPress={() => { Alert.alert('agregado') }}
-                    >
-                      <Text style={{
-                        textAlign: "center",
-                        fontSize: 20,
-                        fontWeight: "bold",
-                      }}
-                      >
-                        Cotizar
-                  </Text>
-                    </Button>
+                    <BtnCotizar product={product} cantidad={cantidad} />
                   </View>
                 </View>
 
