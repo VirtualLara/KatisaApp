@@ -1,30 +1,32 @@
 import React, { useState, useCallback } from "react";
-import { useFocusEffect } from '@react-navigation/native';
-import { View, StyleSheet, ActivityIndicator, ScrollView, Alert } from "react-native";
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity, Alert } from "react-native";
 import {
   Header,
   Text,
   Form,
   CardItem,
 } from "native-base";
-import { TextInput } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { map } from 'lodash';
 
-import CardArticulo from "../Componentes/CardArticulo";
+import Articulo from "../Componentes/Articulo";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Search from "../Componentes/search/index";
-import Favoritos from '../Componentes/FavoritesComponent';
-import BtnCotizar from '../Componentes/BtnCotizar';
 
 import { getProductsApi } from '../api/products';
 
 export default function Catalogo(props) {
 
-  const { navigation } = props;
+  //const { navigation } = props;
   const [productsApi, setProductsApi] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cantidad, setCantidad] = useState(0);
+
+  const navigation = useNavigation();
+  const goProduct = (id) => {
+    navigation.push("ArticuloDetalles", { idProduct: id })
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -39,7 +41,6 @@ export default function Catalogo(props) {
   if (loading) {
     return (
       <View>
-
         <Header hasTabs style={styles.headerPos}>
           <StatusBarMy backgroundColor="#29B6F6" />
 
@@ -58,78 +59,61 @@ export default function Catalogo(props) {
             </Text>
           </View>
         </Header>
-
         <Search />
-
         <ScrollView>
           {map(productsApi, (product) => (
-            <View key={product._id}>
-              <CardArticulo
-                nombre={product.descripcion}
-                clave={product.clave}
-                watts={product.watts}
-                lumen={product.lumen}
-                temperarura={product.temperarura}
-                voltajemin={product.voltminimo}
-                voltajemax={product.volmaximo}
-                medida={product.medida}
-                imagen={product.foto.url}
-              />
+            <TouchableOpacity key={product._id}
+              onPress={() => goProduct(product._id)} >
+              <View>
+                <Articulo
+                  nombre={product.descripcion}
+                  clave={product.clave}
+                  watts={product.watts}
+                  temperatura={product.temperatura}
+                  imagen={product.foto.url}
+                />
 
-              <View style={styles.contentCotizar}>
+                {/* <View style={styles.contentCotizar}>
 
-                <View style={styles.contentInput}>
-                  <Form>
-                    <CardItem>
-                      <Favoritos product={product} />
-                      <TextInput
-                        placeholder="Cantidad:"
-                        keyboardType="numeric"
-                        style={{
-                          width: "65%",
-                          height: 50,
-                          textAlign: "center",
-                          borderWidth: 1,
-                        }}
-                        onChangeText={(text) => { setCantidad(text) }}
-                      />
-                    </CardItem>
-                  </Form>
-                </View>
+<View style={styles.contentInput}>
+<Form>
+<CardItem>
+<Favoritos product={product} />
+<TextInput
+placeholder="Cantidad:"
+keyboardType="numeric"
+style={{
+  width: "65%",
+  height: 50,
+  textAlign: "center",
+  borderWidth: 1,
+}}
+onChangeText={(text) => { setCantidad(text) }}
+/>
+</CardItem>
+</Form>
+</View>
 
-                <View style={styles.contentBtn}>
-                  <View>
-                    <BtnCotizar product={product} cantidad={cantidad} />
-                  </View>
-                </View>
+<View style={styles.contentBtn}>
+<View>
+<BtnCotizar product={product} cantidad={cantidad} setCantidad={setCantidad} />
+</View>
+</View>
+
+</View> */}
+
 
               </View>
-
-
-            </View>
+            </TouchableOpacity>
           ))}
 
-          <View
-            style={{
-              justifyContent: "center",
-              alignContent: "center",
-              paddingTop: 50,
-              paddingBottom: 50,
-            }}
-          >
-            <Text
-              style={{ fontWeight: "bold", fontSize: 20, color: "#29b6f6", width: 'auto' }}
-            >
-              No hay mas articulos para mostrar...
+          <View style={styles.contenttextFin}          >
+            <Text style={{ fontWeight: "bold", fontSize: 20, color: "#29b6f6", width: 'auto', textAlign: 'center' }}>
+              No hay mas artículos para mostrar...
             </Text>
           </View>
-          <Text>
-            {"\n"}
-            {"\n"}
-            {"\n"}
-            {"\n"}
-          </Text>
         </ScrollView>
+
       </View>
 
     )
@@ -179,5 +163,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: '#fff',
+  },
+  contenttextFin: {
+    justifyContent: "center",
+    alignContent: "center",
+    paddingTop: 50,
+    paddingBottom: 150,
   },
 });

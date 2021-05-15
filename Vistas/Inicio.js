@@ -8,9 +8,8 @@ import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
 import { getrifaApi } from '../api/rifa';
 import { API_URL } from '../utils/constants';
-import moment from 'moment';
 
-import Carousel from "../Componentes/Carousel.js";
+import BannersComponent from "../Componentes/BannersComponent";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Popover from "../Componentes/Popover";
 
@@ -52,7 +51,7 @@ export default function Inicio(props) {
         </Header>
 
         <View style={styles.contentCarousel}>
-          <Carousel />
+          <BannersComponent />
         </View>
 
         <View style={{ flex: 1 }}>
@@ -67,19 +66,24 @@ export default function Inicio(props) {
           </View>
 
           <View style={styles.contentOferta}>
+
             <View style={styles.contentTitleRifa}>
               <Text style={styles.titleRifa}>
                 {rifaApi[0].titulo}
               </Text>
             </View>
+
             <View style={styles.imageArea}>
+
               <View style={styles.contentDatos}>
+
                 <View style={{ height: 110 }}>
                   <Text style={styles.titleTextRifa}>Actividad:</Text>
                   <Text style={styles.textRifa}>
                     {rifaApi[0].subtitulo}
                   </Text>
                 </View>
+
                 <View>
                   <Text style={styles.titleTextRifa}>Vigencia:</Text>
                   <Text style={styles.subtitleTextRifa}>Inicia:</Text>
@@ -91,27 +95,30 @@ export default function Inicio(props) {
                 <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
 
                 <Popover />
+
               </View>
+
               <View style={styles.contentImageRifa}>
+
                 <ZoomImage
+                  resizeMode={'cover'}
                   source={{
                     uri: `${API_URL}${rifaApi[0].imagen.url}`
                   }}
                   imgStyle={{
-                    height: "100%",
-                    width: "95%",
-                    resizeMode: "contain",
+                    height: '100%',
+                    width: '100%',
                   }}
                   style={{
-                    height: "100%",
-                    width: "95%",
-                    resizeMode: "contain",
+                    height: '100%',
+                    width: '100%',
                   }}
                   duration={2000}
                   enableScaling={false}
                   easingFunc={Easing.ease}
                 />
               </View>
+
             </View>
           </View>
         </View>
@@ -126,105 +133,10 @@ export default function Inicio(props) {
         <ActivityIndicator color='#29b6f6' size={75} />
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obtieniendo información...</Text>
       </View>
-
     )
   }
 
-
-
 }
-
-
-/* export default class Inicio extends React.Component {
-  render() {
-    return (
-      <ScrollView style={styles.content}>
-        <Header style={styles.header}>
-          <StatusBarMy backgroundColor="#29B6F6" />
-          <Button
-            style={{ backgroundColor: "#29B6F6" }}
-            onPress={() => this.props.navigation.openDrawer()}
-          >
-            <Icon
-              name="bars"
-              style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }}
-            />
-          </Button>
-          <Text style={styles.textHeader}> ¡Promociones y más! </Text>
-        </Header>
-
-
-        <View style={styles.contentCarousel}>
-          <Carousel />
-        </View>
-
-        <View style={{ flex: 1 }}>
-          <View style={styles.headerOferta}>
-            <Text style={styles.textHeader}>
-              <Icon
-                name="archive"
-                style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
-              />{" "}
-              Rifa de temporada{" "}
-            </Text>
-          </View>
-
-          <View style={styles.contentOferta}>
-            <View style={styles.contentTitleRifa}>
-              <Text style={styles.titleRifa}>
-                {" "}
-                Consiente a Mama este 10 de Mayo{" "}
-              </Text>
-            </View>
-            <View style={styles.imageArea}>
-              <View style={styles.contentDatos}>
-                <View style={{ height: 110 }}>
-                  <Text style={styles.titleTextRifa}>Actividad:</Text>
-                  <Text style={styles.textRifa}>
-                    Rifa ventilador para la reyna de la casa MAMÁ
-                  </Text>
-                </View>
-                <View>
-                  <Text style={styles.titleTextRifa}>Vigencia:</Text>
-                  <Text style={styles.subtitleTextRifa}>Inicia:</Text>
-                  <Text style={styles.textRifa}>22-04-21</Text>
-                  <Text style={styles.subtitleTextRifa}>Termina:</Text>
-                  <Text style={styles.textRifa}> 10-05-21</Text>
-                </View>
-
-                <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
-
-                <Popover />
-              </View>
-              <View style={styles.contentImageRifa}>
-                <ZoomImage
-                  source={{
-                    uri:
-                      "https://scontent.fmex24-1.fna.fbcdn.net/v/t1.6435-9/68994693_1318259351682213_290906583158751232_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=730e14&_nc_ohc=o2zat73KNDUAX-uDmcz&_nc_ht=scontent.fmex24-1.fna&oh=9c4ffc27ee3b304a84cc2bb8c16697d0&oe=60A7D2B6",
-                  }}
-                  imgStyle={{
-                    height: "100%",
-                    width: "95%",
-                    resizeMode: "contain",
-                  }}
-                  style={{
-                    height: "100%",
-                    width: "95%",
-                    resizeMode: "contain",
-                  }}
-                  duration={2000}
-                  enableScaling={false}
-                  easingFunc={Easing.ease}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-
-      </ScrollView>
-    );
-  }
-} */
 
 const styles = StyleSheet.create({
   content: {
@@ -277,13 +189,13 @@ const styles = StyleSheet.create({
     height: "90%",
   },
   contentImageRifa: {
-    width: "65%",
+    width: "60%",
     height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   contentDatos: {
-    width: "35%",
+    width: "40%",
     height: "100%",
   },
   titleTextRifa: {

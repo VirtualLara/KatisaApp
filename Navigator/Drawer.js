@@ -17,7 +17,7 @@ import BarMy from "../Componentes/StatusBarMy";
 import AppNavigation from "../Navigator/AppNavigation";
 import Sucursales from "../Vistas/Sucursales";
 import Siguenos from "../Vistas/Siguenos";
-import Catalogo from "../Vistas/Catalogo";
+import Catalogo from "../Navigator/ArticulosStack";
 import Nosotros from "../Vistas/Nosotros";
 import Noticias from "../Vistas/Noticias";
 import AccountStack from '../Navigator/AccountStack';
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   viewDrawerMenu: {
     width: "100%",
     flexDirection: "row",
-    margin: 10,
+    margin: 7,
     paddingHorizontal: 5,
   },
   textDrawerMenu: {

@@ -28,11 +28,11 @@ export default function pruebas(props) {
       setLoading(true);
       try {
         const response = await loginApi(formData);
-        Alert.alert("Bienvenido"); //esto lo puse yoo
         if (response.statusCode) throw "Error en usuario o contraseña";
         login(response);
+        Alert.alert("Bienvenido"); //esto lo puse yoo
       } catch (error) {
-        Alert.alert(error);
+        Alert.alert('Favor de Reintentar... ' + error);
         /*         Toast.show(error, {
           position: Toast.positions.CENTER,
         }); */
@@ -55,7 +55,7 @@ export default function pruebas(props) {
         <View style={styles.containerImagen}>
           <Image
             style={styles.image}
-            source={require("../Recursos/Imagenes/logo.png")}
+            source={require("../Recursos/Imagenes/logorednom.png")}
           />
         </View>
 

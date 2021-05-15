@@ -49,8 +49,8 @@ export default class CardArticulo extends Component {
                     }}
                   />
                   <Body>
-                    <Text>Adquierelo:</Text>
-                    <Text note>Katisa Iluminacion </Text>
+                    <Text>Katisa</Text>
+                    <Text note>Iluminación LED</Text>
                   </Body>
                 </Left>
               </CardItem>
