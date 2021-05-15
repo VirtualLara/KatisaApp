@@ -19,7 +19,7 @@ export default function FavoritesComponent(props) {
     }, [product])
 
     const addFavorites = () => {
-        Alert.alert('favorito: ')
+        Alert.alert('favorito: ' + product._id)
     }
 
 

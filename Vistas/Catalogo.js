@@ -1,12 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity, Alert } from "react-native";
-import {
-  Header,
-  Text,
-  Form,
-  CardItem,
-} from "native-base";
+import { Header, Text, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { map } from 'lodash';
 
@@ -16,14 +11,14 @@ import Search from "../Componentes/search/index";
 
 import { getProductsApi } from '../api/products';
 
-export default function Catalogo(props) {
+export default function Catalogo() {
 
   //const { navigation } = props;
   const [productsApi, setProductsApi] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [cantidad, setCantidad] = useState(0);
 
   const navigation = useNavigation();
+
   const goProduct = (id) => {
     navigation.push("ArticuloDetalles", { idProduct: id })
   }
@@ -41,6 +36,7 @@ export default function Catalogo(props) {
   if (loading) {
     return (
       <View>
+
         <Header hasTabs style={styles.headerPos}>
           <StatusBarMy backgroundColor="#29B6F6" />
 
@@ -60,6 +56,7 @@ export default function Catalogo(props) {
           </View>
         </Header>
         <Search />
+
         <ScrollView>
           {map(productsApi, (product) => (
             <TouchableOpacity key={product._id}
@@ -72,37 +69,6 @@ export default function Catalogo(props) {
                   temperatura={product.temperatura}
                   imagen={product.foto.url}
                 />
-
-                {/* <View style={styles.contentCotizar}>
-
-<View style={styles.contentInput}>
-<Form>
-<CardItem>
-<Favoritos product={product} />
-<TextInput
-placeholder="Cantidad:"
-keyboardType="numeric"
-style={{
-  width: "65%",
-  height: 50,
-  textAlign: "center",
-  borderWidth: 1,
-}}
-onChangeText={(text) => { setCantidad(text) }}
-/>
-</CardItem>
-</Form>
-</View>
-
-<View style={styles.contentBtn}>
-<View>
-<BtnCotizar product={product} cantidad={cantidad} setCantidad={setCantidad} />
-</View>
-</View>
-
-</View> */}
-
-
               </View>
             </TouchableOpacity>
           ))}
@@ -119,9 +85,10 @@ onChangeText={(text) => { setCantidad(text) }}
     )
   } else {
     return (
+
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obtieniendo información...</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
       </View>
 
     )
