@@ -34,9 +34,9 @@ export default function BannersComponent() {
         return (
             <View style={styles.content} >
                 <Carousel
-                    layout={"default"}
+                    //layout={"default"}
                     //layout={"stack"}
-                    //layout={"tinder"}
+                    layout={"tinder"}
                     data={banners}
                     sliderWidth={width}
                     itemWidth={width}
@@ -60,7 +60,7 @@ export default function BannersComponent() {
                 <Text>...</Text>
             </View>
         )
-    }
+    } n
 }
 
 const styles = StyleSheet.create({

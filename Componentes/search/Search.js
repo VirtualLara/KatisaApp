@@ -1,26 +1,67 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Header, Button, Badge } from "native-base";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Keyboard, Animated } from "react-native";
+import { Button, Badge } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from '@react-navigation/native';
+
 import { Searchbar } from "react-native-paper";
+import SearchHistory from './SearchHistory';
+
 
 export default function Search(props) {
-  const { cantidad } = props;
-  return (
-    <View style={styles.contentSearch}>
-      <Searchbar style={styles.searchStyle} />
 
-      <View style={styles.viewBtn}>
-        <Button info badge style={styles.btn}>
-          <Badge warning>
-            <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
-              {cantidad}
-            </Text>
-          </Badge>
-          <Icon name="cart-arrow-down" size={40} color="white" />
-        </Button>
+  const { cantidad } = props;
+  const navigation = useNavigation();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showHistory, setShowHistory] = useState(false);
+  const onChangeSearch = (query) => setSearchQuery(query);
+
+  const onSearch = () => {
+    console.log('Buscando... ' + searchQuery);
+    closeSearch();
+
+    navigation.push('SearchView', {
+      search: searchQuery
+    })
+  }
+
+  const openSearch = () => {
+    setShowHistory(!showHistory);
+  }
+
+  const closeSearch = () => {
+    Keyboard.dismiss();
+    setShowHistory(!showHistory);
+  }
+
+  return (
+
+    <>
+      <View style={styles.contentSearch}>
+        <Searchbar style={styles.searchStyle}
+          placeholder='Escriba para filtrar'
+          value={searchQuery}
+          onFocus={openSearch}
+          onChangeText={onChangeSearch}
+          onSubmitEditing={onSearch} />
+
+        <View style={styles.viewBtn}>
+          <Button info badge style={styles.btn}>
+            <Badge warning>
+              <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
+                {cantidad}
+              </Text>
+            </Badge>
+            <Icon name="cart-arrow-down" size={30} color="white" />
+          </Button>
+        </View>
+
       </View>
-    </View>
+
+      <SearchHistory showHistory={showHistory} />
+    </>
+
   );
 }
 
@@ -35,11 +76,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#29b6f6",
   },
   searchStyle: {
-    width: "60%",
+    width: "70%",
     height: 50,
   },
   viewBtn: {
-    width: "30%",
+    width: "25%",
     height: 50,
   },
   btn: {

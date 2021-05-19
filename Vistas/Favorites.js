@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import StatusBarMy from '../Componentes/StatusBarMy';
 import SearchSinCart from '../Componentes/search/SearchSinCart';
 
+
 export default function Favorites(props) {
 
     const { navigation } = props;
@@ -23,10 +24,26 @@ export default function Favorites(props) {
                     Mis Favoritos
                     </Text>
                 <Icon name="heart" size={40} color="white" />
-
             </View>
 
             <SearchSinCart />
+
+            <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+
+                width: '100%',
+                height: '100%'
+            }} >
+
+
+
+            </View>
+
+
+
+
+
 
         </View>
     )

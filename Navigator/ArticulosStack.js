@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Catalogo from '../Vistas/Catalogo';
 import ArticuloDetalles from '../Componentes/ArticuloDetalles';
+import SearchView from '../Vistas/SearchView';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +25,11 @@ export default function ArticulosStack() {
                 name='ArticuloDetalles'
                 component={ArticuloDetalles}
                 options={{ title: 'Detalles del Articulo' }}
+            />
+            <Stack.Screen
+                name='SearchView'
+                component={SearchView}
+                options={{ title: 'Resultados de la búsqueda...' }}
             />
         </Stack.Navigator>
     )
