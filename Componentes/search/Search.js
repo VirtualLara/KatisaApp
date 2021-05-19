@@ -14,11 +14,9 @@ export default function Search(props) {
   const navigation = useNavigation();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [showHistory, setShowHistory] = useState(false);
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const onSearch = () => {
-    console.log('Buscando... ' + searchQuery);
     closeSearch();
 
     navigation.push('SearchView', {
@@ -26,41 +24,32 @@ export default function Search(props) {
     })
   }
 
-  const openSearch = () => {
-    setShowHistory(!showHistory);
-  }
-
   const closeSearch = () => {
     Keyboard.dismiss();
-    setShowHistory(!showHistory);
   }
 
   return (
 
-    <>
-      <View style={styles.contentSearch}>
-        <Searchbar style={styles.searchStyle}
-          placeholder='Escriba para filtrar'
-          value={searchQuery}
-          onFocus={openSearch}
-          onChangeText={onChangeSearch}
-          onSubmitEditing={onSearch} />
+    <View style={styles.contentSearch} >
+      <Searchbar style={styles.searchStyle}
+        placeholder='Escriba para filtrar'
+        value={searchQuery}
 
-        <View style={styles.viewBtn}>
-          <Button info badge style={styles.btn}>
-            <Badge warning>
-              <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
-                {cantidad}
-              </Text>
-            </Badge>
-            <Icon name="cart-arrow-down" size={30} color="white" />
-          </Button>
-        </View>
+        onChangeText={onChangeSearch}
+        onSubmitEditing={onSearch} />
 
+      <View style={styles.viewBtn}>
+        <Button info badge style={styles.btn}>
+          <Badge warning>
+            <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
+              {cantidad}
+            </Text>
+          </Badge>
+          <Icon name="cart-arrow-down" size={30} color="white" />
+        </Button>
       </View>
 
-      <SearchHistory showHistory={showHistory} />
-    </>
+    </View>
 
   );
 }

@@ -55,6 +55,7 @@ export default function Catalogo() {
             </Text>
           </View>
         </Header>
+
         <Search />
 
         <ScrollView>
