@@ -130,14 +130,7 @@ export default function ArticuloDetalles(props) {
                         <BtnCotizar product={product} cantidad={cantidad} />
                     </View>
 
-                    <View style={styles.contentHeart} >
-                        <View>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Marcar como Favorito </Text>
-                        </View>
-                        <View>
-                            <Favoritos product={product} />
-                        </View>
-                    </View>
+                    <Favoritos product={product} />
 
                 </View>
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, KeyboardAvoidingView, StyleSheet, Platform } from "react-native";
-import { Provider as PaperProvider } from "react-native-paper";
 
 import RegisterScreeen from "./Registrarse";
 import LoginScreen from "./Login";

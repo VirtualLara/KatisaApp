@@ -5,8 +5,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from '@react-navigation/native';
 
 import { Searchbar } from "react-native-paper";
-import SearchHistory from './SearchHistory';
-
 
 export default function Search(props) {
 

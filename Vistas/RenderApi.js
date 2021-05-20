@@ -4,7 +4,6 @@ import { Spinner } from "native-base";
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
-import { exists } from "fs";
 
 export default class RenderApi extends Component {
   constructor(props) {

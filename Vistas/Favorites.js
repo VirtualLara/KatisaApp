@@ -26,7 +26,7 @@ export default function Favorites(props) {
                 <Icon name="heart" size={40} color="white" />
             </View>
 
-            <SearchSinCart />
+            {/* <SearchSinCart /> */}
 
             <View style={{
                 justifyContent: 'center',
