@@ -20,6 +20,7 @@ export default function ArticuloDetalles(props) {
     const [cantidad, setCantidad] = useState(0);
 
     useEffect(() => {
+        setProduct(null);
         (async () => {
             const response = await getProductApi(params.idProduct);
             setProduct(response);

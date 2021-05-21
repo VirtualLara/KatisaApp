@@ -58,12 +58,12 @@ export default function Menu() {
                     left={(props) => <List.Icon{...props} icon='key' />}
                     onPress={() => navigation.navigate('CambiarContraseña')}
                 />
-                <List.Item
+                {/*  <List.Item
                     title='Mis Direcciones'
                     description='Administra tus direcciones de envío'
                     left={(props) => <List.Icon{...props} icon='map' />}
                     onPress={() => console.log('Cambiar direcciones')}
-                />
+                /> */}
             </List.Section>
 
             <List.Section>

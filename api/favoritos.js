@@ -63,3 +63,21 @@ export async function deleteFavoritoApi(auth, idProduct) {
         return null;
     }
 }
+
+export async function getFavoritosUserApi(auth) {
+    try {
+        const url = `${API_URL}/favoritos?user=${auth.idUser}`;
+        const params = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${auth.token}`
+            }
+        }
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
