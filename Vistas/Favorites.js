@@ -3,25 +3,22 @@ import { View, Text, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity
 import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
-import { map, size } from 'lodash';
+import { size } from 'lodash';
 
 import StatusBarMy from '../Componentes/StatusBarMy';
-import Articulo from "../Componentes/Articulo";
+import FavoritesList from '../Componentes/FavoritesList';
 
 import { getFavoritosUserApi } from '../api/favoritos';
 import useAuth from '../hooks/UseAuth';
 
-export default function Favorites(props) {
+export default function Favorites() {
 
     const navigation = useNavigation();
     const { auth } = useAuth();
 
     const [myfavorites, setMyfavorites] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    const goProduct = (id) => {
-        navigation.navigate("ArticuloDetalles", { idProduct: id })
-    }
+    const [reload, setReload] = useState(false);
 
     useFocusEffect(
         useCallback(() => {
@@ -31,7 +28,8 @@ export default function Favorites(props) {
                 setMyfavorites(response);
                 setLoading(false);
             })()
-        }, [])
+            setReload(false);
+        }, [reload])
     );
 
     if (!loading) {
@@ -53,30 +51,7 @@ export default function Favorites(props) {
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
 
-                        <ScrollView>
-                            {map(myfavorites, (favorite) => (
-                                <TouchableOpacity key={favorite.product._id}
-                                    onPress={() => goProduct(favorite.product._id)} >
-                                    <View>
-                                        <Articulo
-                                            nombre={favorite.product.descripcion}
-                                            clave={favorite.product.clave}
-                                            watts={favorite.product.watts}
-                                            temperatura={favorite.product.temperatura}
-                                            imagen={favorite.product.foto.url}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                            ))}
-
-                            <View style={styles.contenttextFin} >
-                                <Text> {'\n'} </Text>
-                                <Text> {'\n'} </Text>
-                                <Text style={{ fontWeight: "bold", fontSize: 22, color: "#29b6f6", width: 'auto', textAlign: 'center' }}>
-                                    No hay más favoritos...
-                            </Text>
-                            </View>
-                        </ScrollView>
+                        <FavoritesList myfavorites={myfavorites} setReload={setReload} />
 
                     </View>
                 </>

@@ -21,6 +21,7 @@ import Catalogo from "../Navigator/ArticulosStack";
 import Nosotros from "../Vistas/Nosotros";
 import Noticias from "../Vistas/Noticias";
 import AccountStack from '../Navigator/AccountStack';
+import ArticuloDetalles from '../Componentes/ArticuloDetalles';
 
 function Menu(props) {
 
@@ -156,6 +157,7 @@ export default function App() {
         <Drawer.Screen name="Nosotros" component={Nosotros} />
         <Drawer.Screen name="Noticias" component={Noticias} />
         <Drawer.Screen name="AccountStack" component={AccountStack} />
+        <Drawer.Screen name="ArticuloDetalles" component={ArticuloDetalles} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
