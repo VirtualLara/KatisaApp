@@ -58,16 +58,27 @@ export default function Favorites() {
             )
         } else {
             return (
-                <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
-                    <Image source={require('../Recursos/Imagenes/logored.png')} style={{ width: 200, height: 200 }} />
-                    <Text> {'\n'} </Text>
-                    {/* <ActivityIndicator color='#29b6f6' size={75} />
-                    <Text> {'\n'} </Text> */}
-                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#29b6f6' }} > Aún no tienes favoritos...</Text>
-                </View>
+                <>
+                    <View>
+                        <StatusBarMy backgroundColor="#29B6F6" />
+                        <View style={styles.headerPos}>
+                            <Icon name="bars" size={35} color="#1F618D"
+                                onPress={() => navigation.openDrawer()}
+                            />
+                            <Text style={styles.text}>
+                                Mis Favoritos
+                        </Text>
+                            <Icon name="heart" size={40} color="white" />
+                        </View>
+                    </View>
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
+                        <Image source={require('../Recursos/Imagenes/logored.png')} style={{ width: 200, height: 200 }} />
+                        <Text> {'\n'} </Text>
+                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#29b6f6' }} > Aún no tienes favoritos...</Text>
+                    </View>
+                </>
             )
-
-
         }
     } else {
         return (

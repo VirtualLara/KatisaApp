@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
+import { StyleSheet, ScrollView, ActivityIndicator, Image } from "react-native";
 import { View, Header, Button, Text, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { size } from 'lodash';
 
 import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
@@ -30,6 +31,7 @@ export default function Inicio(props) {
   );
 
 
+
   if (loading) {
 
     return (
@@ -54,74 +56,79 @@ export default function Inicio(props) {
           <BannersComponent />
         </View>
 
-        <View style={{ flex: 1 }}>
-          <View style={styles.headerOferta}>
-            <Text style={styles.textHeader}>
-              <Icon
-                name="archive"
-                style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
-              />{" "}
-                Rifa de temporada{" "}
-            </Text>
-          </View>
-
-          <View style={styles.contentOferta}>
-
-            <View style={styles.contentTitleRifa}>
-              <Text style={styles.titleRifa}>
-                {rifaApi[0].titulo}
+        { size(rifaApi) > 0 ?
+          <View style={{ flex: 1 }}>
+            <View style={styles.headerOferta}>
+              <Text style={styles.textHeader}>
+                <Icon
+                  name="archive"
+                  style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
+                />{" "}
+              Rifa de temporada{" "}
               </Text>
             </View>
 
-            <View style={styles.imageArea}>
+            <View style={styles.contentOferta}>
 
-              <View style={styles.contentDatos}>
-
-                <View style={{ height: 110 }}>
-                  <Text style={styles.titleTextRifa}>Actividad:</Text>
-                  <Text style={styles.textRifa}>
-                    {rifaApi[0].subtitulo}
-                  </Text>
-                </View>
-
-                <View>
-                  <Text style={styles.titleTextRifa}>Vigencia:</Text>
-                  <Text style={styles.subtitleTextRifa}>Inicia:</Text>
-                  <Text style={styles.textRifa}>{rifaApi[0].fechini}</Text>
-                  <Text style={styles.subtitleTextRifa}>Termina:</Text>
-                  <Text style={styles.textRifa}> {rifaApi[0].fechfin} </Text>
-                </View>
-
-                <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
-
-                <Popover />
-
+              <View style={styles.contentTitleRifa}>
+                <Text style={styles.titleRifa}>
+                  {rifaApi[0].titulo}
+                </Text>
               </View>
 
-              <View style={styles.contentImageRifa}>
+              <View style={styles.imageArea}>
 
-                <ZoomImage
-                  resizeMode={'cover'}
-                  source={{
-                    uri: `${API_URL}${rifaApi[0].imagen.url}`
-                  }}
-                  imgStyle={{
-                    height: '100%',
-                    width: '100%',
-                  }}
-                  style={{
-                    height: '100%',
-                    width: '100%',
-                  }}
-                  duration={2000}
-                  enableScaling={false}
-                  easingFunc={Easing.ease}
-                />
+                <View style={styles.contentDatos}>
+
+                  <View style={{ height: 110 }}>
+                    <Text style={styles.titleTextRifa}>Actividad:</Text>
+                    <Text style={styles.textRifa}>
+                      {rifaApi[0].subtitulo}
+                    </Text>
+                  </View>
+
+                  <View>
+                    <Text style={styles.titleTextRifa}>Vigencia:</Text>
+                    <Text style={styles.subtitleTextRifa}>Inicia:</Text>
+                    <Text style={styles.textRifa}>{rifaApi[0].fechini}</Text>
+                    <Text style={styles.subtitleTextRifa}>Termina:</Text>
+                    <Text style={styles.textRifa}> {rifaApi[0].fechfin} </Text>
+                  </View>
+
+                  <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
+
+                  <Popover />
+
+                </View>
+
+                <View style={styles.contentImageRifa}>
+
+                  <ZoomImage
+                    resizeMode={'contain'}
+                    source={{
+                      uri: `${API_URL}${rifaApi[0].imagen.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
               </View>
-
             </View>
           </View>
-        </View>
+          : <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+            <Text> nooooooooooooooooooo... .</Text>
+            <Image source={require('../Recursos/Imagenes/logorednom.png')} style={{ width: 200, height: 200 }} />
+          </View>}
 
       </ScrollView>
     )

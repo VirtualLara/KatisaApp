@@ -1,13 +1,20 @@
 import React from 'react';
 import { Text, Alert, View, StyleSheet } from 'react-native';
 import { Button } from 'native-base';
+import { addProductCotizacionApi } from '../api/cotizacion';
 
 export default function BtnCotizar(props) {
 
     const { product, cantidad } = props;
 
-    const agregarProductoCotizar = () => {
-        Alert.alert('agregando: ' + cantidad + ' piezas de: ' + product._id + product.descripcion)
+    const agregarProductoCotizar = async () => {
+        const response = await addProductCotizacionApi(product._id, cantidad);
+
+        if (response) {
+            Alert.alert('Añadido exitoso...')
+        } else {
+            Alert.alert('Error... ')
+        }
     }
 
 

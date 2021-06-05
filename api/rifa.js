@@ -1,8 +1,6 @@
 import { API_URL } from '../utils/constants';
 
-
-
-export async function getrifaApi() {
+export async function getrifaApi(termina) {
 
     try {
         var date = new Date(), y = date.getFullYear(), m = date.getMonth();
@@ -12,7 +10,8 @@ export async function getrifaApi() {
         firstDay = moment(firstDay).format('YYYY-MM-DD');
         lastDay = moment(lastDay).format('YYYY-MM-DD');
 
-        const url = `${API_URL}/rifas?fechini=${firstDay}&fechfin=${lastDay}`;
+        //const url = `${API_URL}/rifas?fechini=${firstDay}&fechfin=${lastDay}`;
+        const url = `${API_URL}/rifas`;
         const response = await fetch(url);
         const result = await response.json();
         return result;

@@ -57,7 +57,8 @@ export default function FavoriteItem(props) {
                                 active
                                 name='heart'
                                 size={50}
-                                style={{ padding: 5, color: "#E50000", }}
+                                //style={{ padding: 5, color: "#E50000", }}
+                                style={{ padding: 5, color: "#2980B9", }}
                                 onPress={() => deleteFavorite(favorito.product._id)}
                             />
                         </View>

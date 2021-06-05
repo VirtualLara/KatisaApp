@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Image, Dimensions, } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { size } from 'lodash';
 
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
+
 import { getBannersApi } from '../api/banners';
 import { API_URL } from '../utils/constants';
 
@@ -18,8 +21,18 @@ export default function BannersComponent() {
 
     const renderItem = ({ item }) => {
         return (
-            <Image style={styles.ImgCarousel} source={{ uri: `${API_URL}${item.banner.url}` }} />
+            <ZoomImage
+                resizeMode={'contain'}
+                source={{ uri: `${API_URL}${item.banner.url}` }}
+                imgStyle={styles.ImgCarousel}
+                style={styles.ImgCarousel}
+                duration={2000}
+                enableScaling={false}
+                easingFunc={Easing.ease}
+            />
         )
+        //Podemos meter esta arriba y solo seran imagenes estaticas...
+        {/* <Image style={styles.ImgCarousel} source={{ uri: `${API_URL}${item.banner.url}` }} /> */ }
     }
 
     useEffect(() => {
