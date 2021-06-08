@@ -24,26 +24,26 @@ export default function AppNavigation() {
                 name='Inicio'
                 component={Inicio}
                 options={{
-                    title: 'Inicio',
+                    title: 'INICIO',
                 }}
             />
             <Tab.Screen
                 name='Favorites'
                 component={Favorites}
                 options={{
-                    title: 'Favoritos'
+                    title: 'FAVORITOS'
                 }} />
             <Tab.Screen
                 name='Cotizacion'
                 component={Cotizacion}
                 options={{
-                    title: 'Cotizacion'
+                    title: 'COTIZACION'
                 }} />
             <Tab.Screen
                 name='Mi Perfil'
                 component={AccountStack}
                 options={{
-                    title: 'Mi Perfil'
+                    title: 'MI PERFIL'
                 }} />
         </Tab.Navigator>
     )

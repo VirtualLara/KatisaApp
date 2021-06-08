@@ -24,7 +24,7 @@ export default function ProductCotizacion(props) {
 
     const decrementQuantity = async () => {
         const response = await decrementQuantityApi(product._id);
-        if (response !== null) setReloadCotizacion(true)
+        if (response) setReloadCotizacion(true)
     }
 
     return (

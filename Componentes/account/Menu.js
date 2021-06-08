@@ -68,15 +68,15 @@ export default function Menu() {
 
             <List.Section>
                 <List.Subheader>App</List.Subheader>
-                <List.Item
+                {/*  <List.Item
                     title='Cotizaciones'
                     description='Listado de tus cotizaciones'
                     left={(props) => <List.Icon{...props} icon='clipboard-list' />}
                     onPress={() => console.log('Cotizaciones')}
-                />
+                /> */}
                 <List.Item
                     title='Lista de Deseos'
-                    description='Listado de articulos que te gustaron'
+                    description='Listado de artículos que te gustaron'
                     left={(props) => <List.Icon{...props} icon='heart' />}
                     onPress={() => navigation.navigate('Favorites')}
                 />

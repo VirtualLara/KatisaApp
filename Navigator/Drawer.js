@@ -70,7 +70,7 @@ function Menu(props) {
           />
           <DrawerMenu
             iconName="book"
-            titleName="Catalogo"
+            titleName="Catálogo"
             navigation={() => props.navigation.navigate("Catalogo")}
           />
           <DrawerMenu
@@ -85,7 +85,7 @@ function Menu(props) {
           />
           <DrawerMenu
             iconName="arrow-right"
-            titleName="Siguenos"
+            titleName="Síguenos"
             navigation={() => props.navigation.navigate("Siguenos")}
           />
           <DrawerMenu

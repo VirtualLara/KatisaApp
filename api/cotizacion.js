@@ -2,6 +2,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { size, map, filter } from 'lodash';
 import { COTIZACION } from '../utils/constants';
 
+export async function vaciarCotizacion() {
+    await AsyncStorage.removeItem(COTIZACION);
+}
+
 export async function getProductCotizacionApi() {
     //Elimina articulos del carrito...
     //await AsyncStorage.removeItem(COTIZACION);
