@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Image, View, StyleSheet, Linking } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import email from 'react-native-email';
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
 
 export default class CardSucursal extends Component {
 
@@ -45,8 +47,18 @@ export default class CardSucursal extends Component {
                         </CardItem>
 
                         <CardItem cardBody>
-                            <Image source={{ uri: this.props.foto }}
-                                style={{ height: 200, width: null, flex: 1, resizeMode: 'cover' }} />
+                            <ZoomImage
+                                resizeMode={'contain'}
+                                source={{ uri: this.props.foto }}
+                                imgStyle={{ height: 200, width: null, flex: 1, resizeMode: 'cover' }}
+                                style={{ height: 200, width: null, flex: 1, resizeMode: 'cover' }}
+                                duration={2000}
+                                enableScaling={false}
+                                easingFunc={Easing.ease}
+                            />
+
+                            {/* <Image source={{ uri: this.props.foto }}
+                                style={{ height: 200, width: null, flex: 1, resizeMode: 'cover' }} /> */}
                         </CardItem>
 
                         <CardItem style={{ display: 'flex', flexDirection: 'row' }} >
