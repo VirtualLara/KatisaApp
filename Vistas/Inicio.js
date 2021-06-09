@@ -7,7 +7,7 @@ import { size } from 'lodash';
 
 import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
-import { getrifaApi } from '../api/rifa';
+import { getrifaApi, getOfertasApi } from '../api/rifa';
 import { API_URL } from '../utils/constants';
 
 import BannersComponent from "../Componentes/BannersComponent";
@@ -18,6 +18,7 @@ export default function Inicio(props) {
 
   const { navigation } = props;
   const [rifaApi, setRifaApi] = useState(null);
+  const [ofertarApi, setOfertarApi] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useFocusEffect(
@@ -25,6 +26,8 @@ export default function Inicio(props) {
       (async () => {
         const response = await getrifaApi();
         setRifaApi(response);
+        const responseOfertas = await getOfertasApi();
+        setOfertarApi(responseOfertas);
         setLoading(true);
       })()
     }, [])
@@ -35,78 +38,252 @@ export default function Inicio(props) {
   if (loading) {
 
     return (
-      <ScrollView style={styles.content}>
+      <View style={{ flex: 1 }} >
 
-        <Header style={styles.header}>
-          <StatusBarMy backgroundColor="#29B6F6" />
-
-          <Button
-            style={{ backgroundColor: "#29B6F6" }}
-            onPress={() => navigation.openDrawer()}
-          >
-            <Icon
-              name="bars"
-              style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }}
-            />
-          </Button>
-          <Text style={styles.textHeader}> ¡Promociones y más! </Text>
-        </Header>
-
-        <View style={styles.contentCarousel}>
-          <BannersComponent />
+        <View style={{ height: 'auto' }} >
+          <Header style={styles.header}>
+            <StatusBarMy backgroundColor="#29B6F6" />
+            <Button style={{ backgroundColor: "#29B6F6" }} onPress={() => navigation.openDrawer()}>
+              <Icon name="bars" style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }} />
+            </Button>
+            <Text style={styles.textHeader}> ¡Promociones y más! </Text>
+          </Header>
         </View>
 
-        { size(rifaApi) > 0 ?
-          <View style={{ flex: 1 }}>
-            <View style={styles.headerOferta}>
-              <Text style={styles.textHeader}>
-                <Icon
-                  name="archive"
-                  style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }}
-                />{" "}
-              Rifa de temporada{" "}
-              </Text>
+        {size(rifaApi) > 0 ?
+          <View style={{ height: '100%', flex: 1 }} >
+
+            <View style={{ height: '35%', }} >
+              <BannersComponent />
             </View>
 
-            <View style={styles.contentOferta}>
+            <View style={{ height: '55%', }} >
 
-              <View style={styles.contentTitleRifa}>
-                <Text style={styles.titleRifa}>
-                  {rifaApi[0].titulo}
-                </Text>
-              </View>
-
-              <View style={styles.imageArea}>
-
-                <View style={styles.contentDatos}>
-
-                  <View style={{ height: 110 }}>
-                    <Text style={styles.titleTextRifa}>Actividad:</Text>
-                    <Text style={styles.textRifa}>
-                      {rifaApi[0].subtitulo}
-                    </Text>
-                  </View>
-
-                  <View>
-                    <Text style={styles.titleTextRifa}>Vigencia:</Text>
-                    <Text style={styles.subtitleTextRifa}>Inicia:</Text>
-                    <Text style={styles.textRifa}>{rifaApi[0].fechini}</Text>
-                    <Text style={styles.subtitleTextRifa}>Termina:</Text>
-                    <Text style={styles.textRifa}> {rifaApi[0].fechfin} </Text>
-                  </View>
-
-                  <Text style={{ fontWeight: "bold" }}> Obtener Boletos </Text>
-
-                  <Popover />
-
+              <View style={styles.contentInfoRifa} >
+                <View style={styles.headerOferta}>
+                  <Icon name="archive" style={{ fontWeight: "bold", color: "#fff", fontSize: 40 }} />
+                  <Text style={styles.textHeader}>Rifa de temporada</Text>
                 </View>
 
-                <View style={styles.contentImageRifa}>
+                <View style={styles.contentTitleRifa}>
+                  <Text style={styles.titleRifa}> {rifaApi[0].titulo}</Text>
+                </View>
 
+                <View>
+                  <Text style={styles.textRifa}> {rifaApi[0].subtitulo} </Text>
+                </View>
+              </View>
+
+              <View style={styles.contentImageRifa}>
+                <ZoomImage
+                  resizeMode={'cover'}
+                  source={{
+                    uri: `${API_URL}${rifaApi[0].imagen.url}`
+                  }}
+                  imgStyle={{
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  style={{
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  duration={2000}
+                  enableScaling={false}
+                  easingFunc={Easing.ease}
+                />
+              </View>
+
+              <View style={styles.contentTxtVigencia} >
+                <Text style={styles.titleTextRifa}>Vigencia: </Text>
+                <Text style={styles.textVigencia}>{rifaApi[0].fechini} - {rifaApi[0].fechfin}</Text>
+              </View>
+
+
+
+            </View>
+
+            <View style={{ height: '10%', }} >
+
+              <View style={{ flexDirection: 'row' }} >
+                <View style={styles.contentTexBoletos} >
+                  <Text style={styles.textBoletos}> Como obtener boletos...  </Text>
+                  <Icon name='arrow-right' size={20} style={{ color: 'blue' }} />
+                  <Icon name='chevron-right' size={20} style={{ color: 'blue' }} />
+                  <Icon name='chevron-right' size={20} style={{ color: 'blue' }} />
+                </View>
+
+                <View style={styles.contentBotonBoletos} >
+                  <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} ><Popover /></View>
+                </View>
+              </View>
+
+            </View>
+
+          </View>
+          : <View style={{ height: '100%', flex: 1 }}  >
+
+            <View style={{ height: '35%', }} >
+              <BannersComponent />
+            </View>
+
+            <View style={{ height: '65%', width: '100%', }} >
+
+              <View style={{ height: '15%', flexDirection: 'row', width: '100%', backgroundColor: '#00b0f0', justifyContent: 'center', alignItems: 'center' }} >
+                <Text style={styles.textHeader}>  ***Ofertas del mes*** </Text>
+              </View>
+
+              <View style={{ height: '30%', flexDirection: 'row' }} >
+                <View style={{ width: '40%', height: '100%', borderWidth: 3, borderColor: 'white' }} >
                   <ZoomImage
-                    resizeMode={'contain'}
+                    resizeMode={'cover'}
                     source={{
-                      uri: `${API_URL}${rifaApi[0].imagen.url}`
+                      uri: `${API_URL}${ofertarApi[0].oferta1.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
+                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta2.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+              </View>
+
+              <View style={{ height: '30%', flexDirection: 'row', }} >
+                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta3.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
+                <View style={{ width: '40%', height: '100%', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta4.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+              </View>
+
+              <View style={{ height: '25%', flexDirection: 'row' }} >
+
+                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta5.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
+                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta6.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
+                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta7.url}`
+                    }}
+                    imgStyle={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                  />
+                </View>
+
+                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                  <ZoomImage
+                    resizeMode={'cover'}
+                    source={{
+                      uri: `${API_URL}${ofertarApi[0].oferta8.url}`
                     }}
                     imgStyle={{
                       height: '100%',
@@ -123,14 +300,14 @@ export default function Inicio(props) {
                 </View>
 
               </View>
+
             </View>
           </View>
-          : <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-            <Text> nooooooooooooooooooo... .</Text>
-            <Image source={require('../Recursos/Imagenes/logorednom.png')} style={{ width: 200, height: 200 }} />
-          </View>}
+        }
 
-      </ScrollView>
+
+
+      </View>
     )
 
   } else {
@@ -147,90 +324,80 @@ export default function Inicio(props) {
 }
 
 const styles = StyleSheet.create({
-  content: {
-    flexDirection: "column",
-    flex: 1,
-  },
   header: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#29B6F6",
-    height: "auto",
   },
   textHeader: {
     color: "white",
     fontSize: 28,
     fontWeight: "bold",
-    height: "auto",
-  },
-  contentCarousel: {
-    height: "auto",
-  },
-  textFooter: {
-    color: "white",
-    fontSize: 25,
-    fontWeight: "bold",
   },
   headerOferta: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#29B6F6",
-    height: "10%",
+    flexDirection: 'row',
+    backgroundColor: '#29b6f6',
+    justifyContent: 'center',
+    alignContent: 'center'
   },
-  contentOferta: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: "90%",
+  contentInfoRifa: {
+    height: '45%'
   },
   contentTitleRifa: {
-    height: "10%",
-    width: "100%",
+    justifyContent: 'center',
+    alignContent: 'center',
+
   },
   titleRifa: {
-    fontWeight: "bold",
-    fontSize: 20,
-    textAlign: "center",
-    color: "purple",
-  },
-  imageArea: {
-    flexDirection: "row",
-    height: "90%",
-  },
-  contentImageRifa: {
-    width: "60%",
-    height: "100%",
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  contentDatos: {
-    width: "40%",
-    height: "100%",
-  },
-  titleTextRifa: {
-    paddingLeft: 5,
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "#4A235A",
-    backgroundColor: "#D4E6F1",
-  },
-  subtitleTextRifa: {
-    paddingLeft: 5,
-    fontWeight: "bold",
-    fontSize: 18,
-    color: "#C0392B",
+    textAlign: 'center',
+    fontSize: 'bold',
+    fontSize: 25,
+    color: 'green',
   },
   textRifa: {
-    paddingLeft: 10,
-    fontWeight: "bold",
     fontSize: 16,
-    color: "#2E86C1",
+    color: 'darkblue',
   },
-  textBases: {
-    paddingLeft: 10,
+  titleTextRifa: {
+    fontSize: 20,
+    color: 'yellow',
+    fontWeight: 'bold'
+  },
+  contentImageRifa: {
+    height: '45%',
+    width: '100%'
+  },
+  contentTxtVigencia: {
+    height: '10%',
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textVigencia: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  contentPopover: {
+    height: '15%',
+    flexDirection: 'row'
+  },
+  contentTexBoletos: {
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  textBoletos: {
     fontWeight: "bold",
-    fontSize: 16,
-    color: "#F1C40F",
-    textAlign: "center",
-    backgroundColor: "#212F3D",
+    fontSize: 18,
+    color: 'blue',
+    textAlign: 'center',
+  },
+  contentBotonBoletos: {
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });

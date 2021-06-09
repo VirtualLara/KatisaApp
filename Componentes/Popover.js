@@ -19,12 +19,14 @@ export default function App() {
             margin: -5,
           }}
         >
-          <Text style={styles.btnObtenBoletos}>
-            <Icon
-              name="ticket"
-              style={{ fontWeight: "bold", color: "#F1C40F", fontSize: 60 }}
-            />
-          </Text>
+          <View style={styles.btnObtenBoletos} >
+            <View style={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
+              <Icon
+                name="ticket"
+                style={{ fontWeight: "bold", color: "#F1C40F", fontSize: 45, }}
+              />
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
       <Popover
@@ -96,16 +98,12 @@ const styles = StyleSheet.create({
     color: "darkgreen",
   },
   btnObtenBoletos: {
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#F1C40F",
     backgroundColor: "#212F3D",
     borderRadius: 20,
-    height: 60,
-    width: 100,
+    height: 50,
     borderColor: "silver",
     borderWidth: 3,
+    width: '100%'
   },
   text: {
     paddingLeft: 25,

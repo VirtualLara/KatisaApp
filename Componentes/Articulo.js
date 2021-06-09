@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 18,
         backgroundColor: '#D6EAF8'
     },
     text: {
-        fontSize: 16,
+        fontSize: 15,
     }
 })

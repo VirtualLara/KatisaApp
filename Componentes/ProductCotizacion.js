@@ -35,19 +35,22 @@ export default function ProductCotizacion(props) {
                 </View>
 
                 <View style={styles.dataContent} >
-                    <Text style={styles.title} >Clave: | Descripción:</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.text} >{product.clave}</Text>
-                        <Text style={{ fontWeight: 'bold', color: 'black' }} > / </Text>
-                        <Text style={styles.text} >{product.descripcion}</Text>
-                    </View>
-                    <Text style={styles.text} >{product.watts}W  {product.temperatura}K</Text>
 
-                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around' }} >
+                    <View style={{ height: '50%' }} >
+                        <Text style={styles.title} >Clave: | Descripción:</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={styles.text} >{product.clave}</Text>
+                            <Text style={{ fontWeight: 'bold', color: 'black' }} > / </Text>
+                            <Text style={styles.text} >{product.descripcion}</Text>
+                        </View>
+                        <Text style={styles.text} >{product.watts}W  {product.temperatura}K</Text>
+                    </View>
+
+                    <View style={{ height: '50%', flexDirection: 'row', width: '100%', justifyContent: 'space-around', alignItems: 'center' }} >
 
                         <View style={styles.contentBtnBajar}>
                             <TouchableOpacity style={{ width: '100%' }} onPress={decrementQuantity} >
-                                <Text style={styles.btnBajar} > - </Text>
+                                <Text style={styles.btnSubir} > - </Text>
                             </TouchableOpacity>
                         </View>
 
@@ -111,12 +114,13 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        height: 130,
+        height: 150,
         flexDirection: 'row',
         backgroundColor: '#F4F6F6',
     },
     contentBtnBajar: {
-        width: '15%',
+        width: '20%',
+        height: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#7FB3D5'
@@ -128,6 +132,7 @@ const styles = StyleSheet.create({
     },
     contentBtnSubir: {
         width: '20%',
+        height: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#7FB3D5'
@@ -139,6 +144,7 @@ const styles = StyleSheet.create({
     },
     contentBtnEliminar: {
         width: '20%',
+        height: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#A93226'

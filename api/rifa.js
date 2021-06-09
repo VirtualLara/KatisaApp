@@ -1,6 +1,6 @@
 import { API_URL } from '../utils/constants';
 
-export async function getrifaApi(termina) {
+export async function getrifaApi() {
 
     try {
         var date = new Date(), y = date.getFullYear(), m = date.getMonth();
@@ -28,3 +28,17 @@ let mes = fecha.getMonth() + 1
 let diaActual = fecha.getDate()
 let ultimodia = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0).getDate()
 const ultimodia = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() */
+
+
+export async function getOfertasApi() {
+
+    try {
+        const url = `${API_URL}/ofertas`;
+        const response = await fetch(url);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
