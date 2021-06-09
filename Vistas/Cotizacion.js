@@ -8,11 +8,10 @@ import { size, map } from 'lodash';
 
 import StatusBarMy from '../Componentes/StatusBarMy';
 import { getProductCotizacionApi } from '../api/cotizacion';
-import { getCitysApi, getStoresXalapaApi, getStoresVeracruzApi, getStoresCordobaApi } from '../api/Sucursales';
+import { getCitysApi, getStoresXalapaApi, getStoresVeracruzApi, getStoresCordobaApi, getInfoSucApi } from '../api/Sucursales';
 import CotizacionList from '../Componentes/CotizacionList';
 import { Button, Checkbox, } from 'react-native-paper';
 import { vaciarCotizacion } from '../api/cotizacion';
-import { color } from 'react-native-reanimated';
 
 export default function Cotizacion() {
 
@@ -23,12 +22,13 @@ export default function Cotizacion() {
 
     const [checked, setChecked] = useState('');
     const [selected, setSelected] = useState('');
-    const [tienda, setTienda] = useState('')
+    const [tiendaSelected, setTiendaSelected] = useState('')
 
     const [citys, setCitys] = useState(null);
     const [xalapaArray, setXalapaArray] = useState(null);
     const [veracruzArray, setVeracruzArray] = useState(null);
     const [cordobaArray, setcordobaArray] = useState(null);
+    const [infoTda, setInfoTda] = useState(null);
 
     const loadCotizacion = async () => {
         setCotizacion(null)
@@ -47,52 +47,67 @@ export default function Cotizacion() {
         return string
     }
 
-    const sendMail = () => {
-        const to = ['virtual060591lara@gmail.com'] // string or array of email addresses
-        email(to, {
-            // Optional additional arguments
-            cc: ['virtual_lara@hotmail.com'], // string or array of email addresses
-            bcc: 'virtual_lara@hotmail.com', // string or array of email addresses
-            subject: 'Consulta desde AppMovil',
-            body: 'Hola, me pongo en contacto con ustedes desde su AppMovil, para solicitar me cotice lo siguiente: ' +
-                `${'\n'}` +
-                `${'\n'}` +
-                ArrayCovertToString() +
-                `${'\n'}` +
-                `${'\n'}` +
-                'Quedo pendiente de su pronta respuesta.'
+    const infoTdaFunction = async () => {
+        setInfoTda(null);
+        const responseInfoTda = await getInfoSucApi(tiendaSelected);
+        setInfoTda(responseInfoTda);
+    }
 
-            //`${products[0].quantity} - ${products[0].clave} - ${products[0].descripcion}`
-        }).catch(console.error)
-        //vaciarCotizacion()
-        //navigation.navigate('Inicio')
+    const reloadInfoTdaFunction = async (opc) => {
+        setSelected(opc)
+        if (opc === 'Xalapa') {
+            setInfoTda(null);
+            const responseInfoTda = await getInfoSucApi('21 de Marzo');
+            setInfoTda(responseInfoTda);
+        } else if (opc === 'Veracruz') {
+            setInfoTda(null);
+            const responseInfoTda = await getInfoSucApi('Allende');
+            setInfoTda(responseInfoTda);
+        } else {
+            setInfoTda(null);
+            const responseInfoTda = await getInfoSucApi('Cordoba');
+            setInfoTda(responseInfoTda);
+        }
     }
 
     const llenarSucursales = (val) => {
         switch (val) {
             case 'Xalapa': {
                 return (
-                    <Picker>
-                        {map(xalapaArray, (sucursal) => (
-                            <Picker.Item label={sucursal.namesuc} value={sucursal.namesuc} key={sucursal._id} />,
-                            console.log(sucursal.namesuc)
-                        ))}
+                    <Picker selectedValue={tiendaSelected} onValueChange={(text) => setTiendaSelected(text)} >
+                        {
+                            map(xalapaArray, (suc) => (
+                                <Picker.Item label={suc.namesuc} value={suc.namesuc} key={suc._id} />
+                            ))
+                        }
                     </Picker>
                 )
                 break;
             }
             case 'Veracruz': {
-                map(veracruzArray, (sucursal) => (
-                    <Picker.Item label={sucursal.namesuc} value={sucursal.namesuc} key={sucursal._id} />,
-                    console.log(sucursal.namesuc)
-                ))
+                return (
+                    <>
+                        <Picker selectedValue={tiendaSelected} onValueChange={(text) => setTiendaSelected(text)} >
+                            {
+                                map(veracruzArray, (suc) => (
+                                    <Picker.Item label={suc.namesuc} value={suc.namesuc} key={suc._id} />
+                                ))
+                            }
+                        </Picker>
+                    </>
+                )
                 break;
             }
             case 'Cordoba': {
-                map(cordobaArray, (sucursal) => (
-                    <Picker.Item label={sucursal.namesuc} value={sucursal.namesuc} key={sucursal._id} />,
-                    console.log(sucursal.namesuc)
-                ))
+                return (
+                    <Picker selectedValue={tiendaSelected} onValueChange={(text) => setTiendaSelected(text)} >
+                        {
+                            map(cordobaArray, (suc) => (
+                                <Picker.Item label={suc.namesuc} value={suc.namesuc} key={suc._id} />
+                            ))
+                        }
+                    </Picker>
+                )
                 break;
             }
             default:
@@ -119,15 +134,16 @@ export default function Cotizacion() {
     )
 
     useEffect(() => {
+        infoTdaFunction()
         if (reloadCotizacion) {
             loadCotizacion();
             setReloadCotizacion(false);
         }
-    }, [reloadCotizacion])
+    }, [reloadCotizacion, tiendaSelected])
 
     if (size(cotizacion) > 0) {
         return (
-            <View>
+            <View style={{ display: 'flex', flex: 1 }} >
 
                 <Header hasTabs style={styles.headerPos}>
                     <StatusBarMy backgroundColor="#29B6F6" />
@@ -152,46 +168,77 @@ export default function Cotizacion() {
                         setProducts={setProducts}
                         setReloadCotizacion={setReloadCotizacion}
                     />
+                </ScrollView>
 
-
-                    <View>
-                        <Text>{'\n'}</Text>
+                <View >
+                    <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }} >
+                        <Button mode='contained' onPress={() => { navigation.navigate('Catalogo') }}
+                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#00bb2d', width: '90%' }} >
+                            <Text style={{ fontSize: 20 }} > Añadir más artículos </Text>
+                            <Icon active name="plus" style={{ color: 'white', fontSize: 20 }} />
+                        </Button>
                     </View>
 
-                    <View>
-                        <Text style={{ fontSize: 25, fontWeight: 'bold', }}  > 1 - Selecciona una ciudad: </Text>
-                        <Picker selectedValue={selected} onValueChange={(text) => setSelected(text)} >
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', }}  > 1 - Elige donde cotizar: </Text>
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '100%' }} >
+                        <View style={{ width: '40%', }} >
+                            <Picker selectedValue={selected} onValueChange={(text) => reloadInfoTdaFunction(text)}>
+                                {
+                                    map(citys, (ciudad) => (
+                                        <Picker.Item label={ciudad.nombreciudad} value={ciudad.nombreciudad} key={ciudad._id} />
+                                    ))
+                                }
+                            </Picker>
+                        </View>
+
+                        <View style={{ width: '60%', }} >
                             {
-                                map(citys, (ciudad) => (
-                                    <Picker.Item label={ciudad.nombreciudad} value={ciudad.nombreciudad} />
-                                ))
+                                selected !== ''
+                                    ? llenarSucursales(selected)
+                                    : llenarSucursales('Xalapa')
                             }
-                        </Picker>
-
-                        <Text style={{ fontSize: 25, fontWeight: 'bold', }}  > 2 - Selecciona una sucursal: </Text>
-                        {selected !== ''
-                            ? llenarSucursales(selected)
-                            : llenarSucursales('Xalapa')}
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <Checkbox
-                                status={checked ? 'checked' : 'unchecked'}
-                                onPress={() => {
-                                    setChecked(!checked);
-                                }}
-                                color={'#29b6f6'}
-                                fontSize={50}
-                            />
-                            <Text style={{ fontSize: 25, fontWeight: 'bold', }}  > 3 - Selecciona un medio: </Text>
                         </View>
                     </View>
 
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', }}  > 2 - Habilita para enviar: </Text>
+                        <Checkbox
+                            status={checked ? 'checked' : 'unchecked'}
+                            onPress={() => {
+                                setChecked(!checked);
+                            }}
+                            color={'#29b6f6'}
+                            fontSize={50}
+                        />
+                    </View>
+
                     {
-                        checked
-                            ? <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                <View style={{ width: '40%', justifyContent: 'center', alignItems: 'center' }} >
+                        checked && infoTda
+                            ? <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                <View style={{ width: '40%', justifyContent: 'center', alignItems: 'center', }} >
                                     <Button transparent
-                                        onPress={sendMail}
+                                        onPress={() => {
+                                            const to = [`${infoTda[0].correosuc}`] // string or array of email addresses
+                                            //const to = ['katisa760917@gmail.com'] // string or array of email addresses
+                                            email(to, {
+                                                // Optional additional arguments
+                                                cc: ['katisailuminacionled@gmail.com'], // string or array of email addresses
+                                                bcc: 'katisailuminacionled@gmail.com', // string or array of email addresses
+                                                subject: 'Consulta desde AppMovil',
+                                                body: 'Hola, me pongo en contacto con ustedes desde su AppMovil, para solicitar me cotice lo siguiente: ' +
+                                                    `${'\n'}` +
+                                                    `${'\n'}` +
+                                                    ArrayCovertToString() +
+                                                    `${'\n'}` +
+                                                    `${'\n'}` +
+                                                    'Quedo pendiente de su pronta respuesta.'
+
+                                                //`${products[0].quantity} - ${products[0].clave} - ${products[0].descripcion}`
+                                            }).catch(console.error)
+                                            vaciarCotizacion()
+                                            navigation.navigate('Inicio')
+                                        }}
                                         style={{ height: 60, width: '95%', justifyContent: 'center', alignItems: 'center' }} >
                                         <Icon active name="envelope" style={{ color: '#db4a39', fontSize: 50 }} />
                                     </Button>
@@ -208,7 +255,9 @@ export default function Cotizacion() {
                                             `${'\n'}` +
                                             'Quedo pendiente de su respuesta, Saludos.' +
                                             '&phone=52' +
-                                            '2831105687')
+                                            `${infoTda[0].celularsuc}`)
+                                        vaciarCotizacion()
+                                        navigation.navigate('Inicio')
                                     }}
                                         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }} >
                                         <Icon active name="whatsapp" style={{ color: '#00bb2d', fontSize: 50 }} />
@@ -216,11 +265,11 @@ export default function Cotizacion() {
                                 </View>
                             </View>
                             : <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} >
-                                <Text> Selecciona solicitar informes... </Text>
+                                <Text> Habilita para solicitar informes... </Text>
                             </View>
                     }
 
-                </ScrollView>
+                </View>
 
             </View >
         )

@@ -8,12 +8,16 @@ export default function BtnCotizar(props) {
     const { product, cantidad } = props;
 
     const agregarProductoCotizar = async () => {
-        const response = await addProductCotizacionApi(product._id, cantidad);
 
-        if (response) {
-            Alert.alert('Añadido exitoso...')
+        if (cantidad > 0) {
+            const response = await addProductCotizacionApi(product._id, cantidad);
+            if (response) {
+                Alert.alert('Añadido exitoso...')
+            } else {
+                Alert.alert('Error... ')
+            }
         } else {
-            Alert.alert('Error... ')
+            Alert.alert('La cantidad debe ser mayor a 0.')
         }
     }
 

@@ -37,7 +37,7 @@ export default function Search(props) {
         onSubmitEditing={onSearch} />
 
       <View style={styles.viewBtn}>
-        <Button info badge style={styles.btn}>
+        <Button info badge style={styles.btn} onPress={() => { navigation.navigate('Cotizacion') }} >
           <Badge warning>
             <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
               {cantidad}
