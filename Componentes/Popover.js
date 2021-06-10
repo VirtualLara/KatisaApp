@@ -40,7 +40,7 @@ export default function App() {
             <Text style={styles.title}>Paso1:</Text>
           </View>
           <Text style={styles.text}>
-            Compra en cualquiera de nuestras sucursales.
+            Visita cualquiera de nuestras sucursales.
           </Text>
         </View>
         <View>

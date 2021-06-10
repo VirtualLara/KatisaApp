@@ -114,14 +114,17 @@ export default function Inicio(props) {
                 </View>
 
                 <View style={styles.contentBotonBoletos} >
-                  <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} ><Popover /></View>
+                  <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} >
+                    <Popover />
+                  </View>
                 </View>
               </View>
 
             </View>
 
           </View>
-          : <View style={{ height: '100%', flex: 1 }}  >
+          :
+          <View style={{ height: '100%', flex: 1 }}  >
 
             <View style={{ height: '35%', }} >
               <BannersComponent />
@@ -134,7 +137,7 @@ export default function Inicio(props) {
               </View>
 
               <View style={{ height: '30%', flexDirection: 'row' }} >
-                <View style={{ width: '40%', height: '100%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '40%', height: '100%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -154,7 +157,7 @@ export default function Inicio(props) {
                   />
                 </View>
 
-                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -176,7 +179,7 @@ export default function Inicio(props) {
               </View>
 
               <View style={{ height: '30%', flexDirection: 'row', }} >
-                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '60%', borderColor: 'blue', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -196,7 +199,7 @@ export default function Inicio(props) {
                   />
                 </View>
 
-                <View style={{ width: '40%', height: '100%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '40%', height: '100%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -219,7 +222,7 @@ export default function Inicio(props) {
 
               <View style={{ height: '25%', flexDirection: 'row' }} >
 
-                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '25%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -239,7 +242,7 @@ export default function Inicio(props) {
                   />
                 </View>
 
-                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '25%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -259,7 +262,7 @@ export default function Inicio(props) {
                   />
                 </View>
 
-                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '25%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
@@ -279,7 +282,7 @@ export default function Inicio(props) {
                   />
                 </View>
 
-                <View style={{ width: '25%', borderWidth: 3, borderColor: 'white' }} >
+                <View style={{ width: '25%', borderWidth: 2, borderColor: 'black' }} >
                   <ZoomImage
                     resizeMode={'cover'}
                     source={{
