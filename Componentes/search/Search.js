@@ -29,6 +29,18 @@ export default function Search(props) {
   return (
 
     <View style={styles.contentSearch} >
+
+      <View style={styles.viewBtnCotizar}>
+        <Button info badge style={styles.btnCotizar} onPress={() => { navigation.navigate('Cotizacion') }} >
+          {/* <Badge warning>
+            <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
+              {cantidad}
+            </Text>
+          </Badge> */}
+          <Icon name="list-alt" size={30} color="white" />
+        </Button>
+      </View>
+
       <Searchbar style={styles.searchStyle}
         placeholder='Escriba para filtrar'
         value={searchQuery}
@@ -36,14 +48,14 @@ export default function Search(props) {
         onChangeText={onChangeSearch}
         onSubmitEditing={onSearch} />
 
-      <View style={styles.viewBtn}>
-        <Button info badge style={styles.btn} onPress={() => { navigation.navigate('Cotizacion') }} >
-          <Badge warning>
+      <View style={styles.viewBtnComprar}>
+        <Button info badge style={styles.btnComprar} onPress={() => { navigation.navigate('Carrito') }} >
+          {/* <Badge warning>
             <Text style={{ fontWeight: "bold", fontSize: 14, color: "white" }}>
               {cantidad}
             </Text>
-          </Badge>
-          <Icon name="cart-arrow-down" size={30} color="white" />
+          </Badge> */}
+          <Icon name="cart-plus" size={30} color="white" />
         </Button>
       </View>
 
@@ -63,17 +75,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#29b6f6",
   },
   searchStyle: {
-    width: "70%",
+    width: "69%",
     height: 50,
   },
-  viewBtn: {
-    width: "25%",
+  viewBtnCotizar: {
+    width: "13%",
     height: 50,
   },
-  btn: {
+  btnCotizar: {
     width: "100%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#2E86C1'
+  },
+  viewBtnComprar: {
+    width: "13%",
+    height: 50,
+  },
+  btnComprar: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: '#2E86C1'
   },
 });

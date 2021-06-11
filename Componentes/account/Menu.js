@@ -58,22 +58,28 @@ export default function Menu() {
                     left={(props) => <List.Icon{...props} icon='key' />}
                     onPress={() => navigation.navigate('CambiarContraseña')}
                 />
-                {/*  <List.Item
+                <List.Item
                     title='Mis Direcciones'
                     description='Administra tus direcciones de envío'
                     left={(props) => <List.Icon{...props} icon='map' />}
                     onPress={() => console.log('Cambiar direcciones')}
-                /> */}
+                />
             </List.Section>
 
             <List.Section>
                 <List.Subheader>App</List.Subheader>
-                {/*  <List.Item
-                    title='Cotizaciones'
+                <List.Item
+                    title='Mis Compras'
+                    description='Listado de tus Compras'
+                    left={(props) => <List.Icon{...props} icon='cart-plus' />}
+                    onPress={() => console.log('Compras')}
+                />
+                <List.Item
+                    title='Mis Cotizaciones'
                     description='Listado de tus cotizaciones'
                     left={(props) => <List.Icon{...props} icon='clipboard-list' />}
                     onPress={() => console.log('Cotizaciones')}
-                /> */}
+                />
                 <List.Item
                     title='Lista de Deseos'
                     description='Listado de artículos que te gustaron'

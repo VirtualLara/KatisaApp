@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { size } from 'lodash';
 
@@ -44,15 +45,13 @@ export default function Favorites() {
                             />
                             <Text style={styles.text}>
                                 Mis Favoritos
-                        </Text>
+                            </Text>
                             <Icon name="heart" size={40} color="white" />
                         </View>
                     </View>
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-
                         <FavoritesList myfavorites={myfavorites} setReload={setReload} />
-
                     </View>
                 </>
             )
@@ -67,7 +66,7 @@ export default function Favorites() {
                             />
                             <Text style={styles.text}>
                                 Mis Favoritos
-                        </Text>
+                            </Text>
                             <Icon name="heart" size={40} color="white" />
                         </View>
                     </View>
@@ -75,7 +74,15 @@ export default function Favorites() {
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
                         <Image source={require('../Recursos/Imagenes/logored.png')} style={{ width: 200, height: 200 }} />
                         <Text> {'\n'} </Text>
-                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#29b6f6' }} > Aún no tienes favoritos...</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold' }} > No tienes lista de favoritos...  </Text>
+                        <Text> {'\n'} </Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }} >
+                            <Button mode='contained' onPress={() => { navigation.navigate('Catalogo') }}
+                                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#00bb2d', width: '90%' }} >
+                                <Text style={{ fontSize: 20, fontWeight: 'bold' }} > AGREGAR fAVORITOS  </Text>
+                                <Icon active name="plus" style={{ color: 'white', fontSize: 20 }} />
+                            </Button>
+                        </View>
                     </View>
                 </>
             )
@@ -91,7 +98,7 @@ export default function Favorites() {
                         />
                         <Text style={styles.text}>
                             Mis Favoritos
-                    </Text>
+                        </Text>
                         <Icon name="heart" size={40} color="white" />
                     </View>
                 </View>

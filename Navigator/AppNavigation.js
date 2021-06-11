@@ -7,6 +7,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Inicio from '../Vistas/Inicio';
 import Favorites from '../Vistas/Favorites';
 import Cotizacion from '../Vistas/Cotizacion';
+import Carrito from '../Vistas/Carrito';
 import AccountStack from '../Navigator/AccountStack';
 
 export default function AppNavigation() {
@@ -15,36 +16,52 @@ export default function AppNavigation() {
 
     return (
         <Tab.Navigator activeColor="#fff" barStyle={styles.navigationStyle}
+            initialRouteName='Inicio'
             screenOptions={({ route }) => ({
                 tabBarIcon: (routeStatus) => {
                     return setIcon(route, routeStatus);
                 }
             })}>
             <Tab.Screen
-                name='Inicio'
-                component={Inicio}
-                options={{
-                    title: 'INICIO',
-                }}
-            />
-            <Tab.Screen
                 name='Favorites'
                 component={Favorites}
                 options={{
-                    title: 'FAVORITOS'
-                }} />
+                    title: 'FAVORITOS',
+                    tabBarColor: '#3498DB'
+                }}
+            />
             <Tab.Screen
                 name='Cotizacion'
                 component={Cotizacion}
                 options={{
-                    title: 'COTIZACION'
-                }} />
+                    title: 'COTIZACION',
+                    tabBarColor: '#2E86C1'
+                }}
+            />
+            <Tab.Screen
+                name='Inicio'
+                component={Inicio}
+                options={{
+                    title: 'INICIO',
+                    tabBarColor: '#29b6f6',
+                }}
+            />
+            <Tab.Screen
+                name='Carrito'
+                component={Carrito}
+                options={{
+                    title: 'CARRITO',
+                    tabBarColor: '#2874A6'
+                }}
+            />
             <Tab.Screen
                 name='Mi Perfil'
                 component={AccountStack}
                 options={{
-                    title: 'MI PERFIL'
-                }} />
+                    title: 'MI PERFIL',
+                    tabBarColor: '#1B4F72'
+                }}
+            />
         </Tab.Navigator>
     )
 }
@@ -58,6 +75,9 @@ function setIcon(route, routeStatus) {
             break;
         case 'Favorites':
             iconName = "heart"
+            break;
+        case 'Carrito':
+            iconName = "cart-plus"
             break;
         case 'Cotizacion':
             iconName = "list"

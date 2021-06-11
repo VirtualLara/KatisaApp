@@ -1,24 +1,28 @@
 import React from 'react';
 import { Text, Alert, View, StyleSheet } from 'react-native';
 import { Button } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { addProductCotizacionApi } from '../api/cotizacion';
 
 export default function BtnCotizar(props) {
 
     const { product, cantidad } = props;
+    const navigation = useNavigation();
 
     const agregarProductoCotizar = async () => {
 
         if (cantidad > 0) {
             const response = await addProductCotizacionApi(product._id, cantidad);
             if (response) {
-                Alert.alert('Añadido exitoso...')
+                Alert.alert('Agregado a lista para cotizar...')
+                navigation.goBack()
             } else {
                 Alert.alert('Error... ')
             }
         } else {
             Alert.alert('La cantidad debe ser mayor a 0.')
         }
+
     }
 
 

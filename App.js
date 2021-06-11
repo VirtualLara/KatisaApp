@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import Asset from "expo-asset";
+import React from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
-import Root from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
 import VerifyInitialApp from "./VerifyInitialApp";

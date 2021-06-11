@@ -308,8 +308,6 @@ export default function Inicio(props) {
           </View>
         }
 
-
-
       </View>
     )
 

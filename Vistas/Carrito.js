@@ -156,10 +156,10 @@ export default function Cotizacion() {
                     <Text> {"\n"} </Text>
                     <View styles={styles.header}>
                         <Text style={styles.textHeader}>
-                            Solicitar Cotización
+                            Carrito de Compras
                         </Text>
                     </View>
-                    <Icon name="list-alt" size={40} color="white" />
+                    <Icon name="cart-plus" size={40} color="white" />
                 </Header>
 
                 <ScrollView>
@@ -288,21 +288,21 @@ export default function Cotizacion() {
                     <Text> {"\n"} </Text>
                     <View styles={styles.header}>
                         <Text style={styles.textHeader}>
-                            Solicitar Cotización
+                            Carrito de Compras
                         </Text>
                     </View>
-                    <Icon name="list-alt" size={40} color="white" />
+                    <Icon name="cart-plus" size={40} color="white" />
                 </Header>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
-                    <Image source={require('../Recursos/Imagenes/checklist.png')} style={{ width: 200, height: 200 }} />
+                    <Image source={require('../Recursos/Imagenes/carrito.png')} style={{ width: 200, height: 200 }} />
                     <Text> {'\n'} </Text>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Lista vacia para cotizar...   </Text>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Carrito vacio...   </Text>
                     <Text> {'\n'} </Text>
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }} >
                         <Button mode='contained' onPress={() => { navigation.navigate('Catalogo') }}
                             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#00bb2d', width: '90%' }} >
-                            <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Agregar ARTICULOS   </Text>
+                            <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Agregar articulos   </Text>
                             <Icon active name="plus" style={{ color: 'white', fontSize: 20 }} />
                         </Button>
                     </View>
