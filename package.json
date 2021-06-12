@@ -28,6 +28,7 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-html-to-pdf": "^0.9.1",
     "react-native-image-slider-show": "^1.0.3",
+    "react-native-keyboard-aware-scroll-view": "^0.9.4",
     "react-native-mssql": "^0.1.4",
     "react-native-paper": "^4.7.2",
     "react-native-picker-select": "^8.0.4",

@@ -6,6 +6,8 @@ import CambiarNombre from '../Vistas/account/CambiarNombre';
 import CambiarEmail from '../Vistas/account/CambiarEmail';
 import CambiarUsuario from '../Vistas/account/CambiarUsuario';
 import CambiarContraseña from '../Vistas/account/CambiarContraseña';
+import Direcciones from '../Vistas/account/Direcciones';
+import AgregarDireccion from '../Vistas/account/AgregarDireccion';
 
 export default function AccountStack() {
 
@@ -42,6 +44,16 @@ export default function AccountStack() {
                 name='CambiarContraseña'
                 component={CambiarContraseña}
                 options={{ title: 'Cambiar contraseña' }}
+            />
+            <Stack.Screen
+                name='Direcciones'
+                component={Direcciones}
+                options={{ title: 'Mis Direccion de Envío' }}
+            />
+            <Stack.Screen
+                name='AgregarDireccion'
+                component={AgregarDireccion}
+                options={{ title: 'Agregar Dirección' }}
             />
         </Stack.Navigator>
     )

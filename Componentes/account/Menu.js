@@ -62,7 +62,7 @@ export default function Menu() {
                     title='Mis Direcciones'
                     description='Administra tus direcciones de envío'
                     left={(props) => <List.Icon{...props} icon='map' />}
-                    onPress={() => console.log('Cambiar direcciones')}
+                    onPress={() => navigation.navigate('Direcciones')}
                 />
             </List.Section>
 
