@@ -37,3 +37,39 @@ export async function addNewDireccionApi(auth, direccion) {
         return null;
     }
 }
+
+export async function deleteDireccionApi(auth, idDireccion) {
+    try {
+        const url = `${API_URL}/direcciones/${idDireccion}`;
+        params = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.token}`,
+            }
+        }
+        const response = await fetch(url, params);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export async function getDireccionApi(auth, idDireccion) {
+    try {
+        const url = `${API_URL}/direcciones/${idDireccion}`
+        params = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.token}`
+            }
+        }
+        const response = await fetch(url, params);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error)
+    }
+}

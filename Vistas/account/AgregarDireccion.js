@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 import { Button, TextInput, } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -6,15 +6,35 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { addNewDireccionApi } from '../../api/direcciones';
+import { addNewDireccionApi, getDireccionApi } from '../../api/direcciones';
 import useAuth from '../../hooks/UseAuth';
 
-export default function AgregarDireccion() {
+export default function AgregarDireccion(props) {
 
+    const { route: { params } } = props;
     const { auth } = useAuth();
     const [cargando, setCargando] = useState(false);
     const navigation = useNavigation();
 
+    useEffect(() => {
+        (async () => {
+            if (params?.idDireccion) {
+                const response = await getDireccionApi(auth, params.idDireccion)
+                await formik.setFieldValue('_id', response._id);
+                await formik.setFieldValue('titulo', response.titulo);
+                await formik.setFieldValue('nombreapellido', response.nombreapellido);
+                await formik.setFieldValue('callenumero', response.callenumero);
+                await formik.setFieldValue('colonia', response.colonia);
+                await formik.setFieldValue('codigopostal', parseInt(response.codigopostal, 10));
+                await formik.setFieldValue('ciudad', response.ciudad);
+                await formik.setFieldValue('localidadmunicipio', response.localidadmunicipio);
+                await formik.setFieldValue('estado', response.estado);
+                await formik.setFieldValue('telefono', parseInt(response.telefono, 10));
+                await formik.setFieldValue('celular', parseInt(response.celular, 10));
+                await formik.setFieldValue('referenciasdomicilio', response.referenciasdomicilio);
+            }
+        })()
+    }, [params])
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -35,7 +55,8 @@ export default function AgregarDireccion() {
         <View style={styles.content}  >
             <KeyboardAwareScrollView >
 
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }} >Crear Nuevo Domiclio</Text>
+                <Text style={{ fontSize: 18, fontWeight: 'bold' }} >Nuevo Domicilio </Text>
+                <Text style={{ fontSize: 14, fontWeight: 'normal' }} >Todos los campos son obligatorios... </Text>
                 <View >
                     <TextInput style={styles.textInputStyle}
                         onChangeText={(text) => formik.setFieldValue('titulo', text)}
