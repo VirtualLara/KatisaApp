@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { Button, TextInput, } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { addNewDireccionApi, getDireccionApi } from '../../api/direcciones';
+import { addNewDireccionApi, getDireccionApi, updateDireccionApi } from '../../api/direcciones';
 import useAuth from '../../hooks/UseAuth';
 
 export default function AgregarDireccion(props) {
@@ -14,24 +14,32 @@ export default function AgregarDireccion(props) {
     const { route: { params } } = props;
     const { auth } = useAuth();
     const [cargando, setCargando] = useState(false);
+    const [cargaInfo, setCargainfo] = useState(false);
+    const [condicion, setCondicion] = useState(false)
+    const [newDireccion, setNewDireccion] = useState(true)
     const navigation = useNavigation();
 
     useEffect(() => {
         (async () => {
             if (params?.idDireccion) {
+                setNewDireccion(false)
+                setCargainfo(true);
+                setCondicion(true)
+                navigation.setOptions({ title: 'Actualizar Dirección' })
                 const response = await getDireccionApi(auth, params.idDireccion)
                 await formik.setFieldValue('_id', response._id);
                 await formik.setFieldValue('titulo', response.titulo);
                 await formik.setFieldValue('nombreapellido', response.nombreapellido);
                 await formik.setFieldValue('callenumero', response.callenumero);
                 await formik.setFieldValue('colonia', response.colonia);
-                await formik.setFieldValue('codigopostal', parseInt(response.codigopostal, 10));
+                await formik.setFieldValue('codigopostal', (response.codigopostal).toString());
                 await formik.setFieldValue('ciudad', response.ciudad);
                 await formik.setFieldValue('localidadmunicipio', response.localidadmunicipio);
                 await formik.setFieldValue('estado', response.estado);
-                await formik.setFieldValue('telefono', parseInt(response.telefono, 10));
-                await formik.setFieldValue('celular', parseInt(response.celular, 10));
+                await formik.setFieldValue('telefono', (response.telefono).toString());
+                await formik.setFieldValue('celular', (response.celular).toString());
                 await formik.setFieldValue('referenciasdomicilio', response.referenciasdomicilio);
+                setCargainfo(false);
             }
         })()
     }, [params])
@@ -42,7 +50,8 @@ export default function AgregarDireccion(props) {
         onSubmit: async (formData) => {
             setCargando(true);
             try {
-                await addNewDireccionApi(auth, formData)
+                if (newDireccion) await addNewDireccionApi(auth, formData)
+                else await updateDireccionApi(auth, formData)
                 navigation.goBack()
             } catch (error) {
                 console.log(error)
@@ -51,73 +60,82 @@ export default function AgregarDireccion(props) {
         }
     })
 
-    return (
-        <View style={styles.content}  >
-            <KeyboardAwareScrollView >
+    if (!cargaInfo) {
+        return (
+            <View style={styles.content}  >
+                <KeyboardAwareScrollView >
 
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }} >Nuevo Domicilio </Text>
-                <Text style={{ fontSize: 14, fontWeight: 'normal' }} >Todos los campos son obligatorios... </Text>
-                <View >
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('titulo', text)}
-                        value={formik.values.titulo}
-                        error={formik.errors.titulo} label='Titulo:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('nombreapellido', text)}
-                        value={formik.values.nombreapellido}
-                        error={formik.errors.nombreapellido} label='Recibe:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('callenumero', text)}
-                        value={formik.values.callenumero}
-                        error={formik.errors.callenumero} label='Calle y Número:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('colonia', text)}
-                        value={formik.values.colonia}
-                        error={formik.errors.colonia} label='Colonia:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('codigopostal', text)}
-                        value={formik.values.codigopostal}
-                        error={formik.errors.codigopostal} label='Código Postal:' keyboardType='number-pad' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('ciudad', text)}
-                        value={formik.values.ciudad}
-                        error={formik.errors.ciudad} label='Ciudad:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('localidadmunicipio', text)}
-                        value={formik.values.localidadmunicipio}
-                        error={formik.errors.localidadmunicipio} label='Localidad o Município:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('estado', text)}
-                        value={formik.values.estado}
-                        error={formik.errors.estado} label='Estado:' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('telefono', text)}
-                        value={formik.values.telefono}
-                        error={formik.errors.telefono} label='Teléfono:' keyboardType='number-pad' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('celular', text)}
-                        value={formik.values.celular}
-                        error={formik.errors.celular} label='Celular:' keyboardType='number-pad' />
-                    <TextInput style={styles.textInputStyle}
-                        onChangeText={(text) => formik.setFieldValue('referenciasdomicilio', text)}
-                        value={formik.values.referenciasdomicilio}
-                        error={formik.errors.referenciasdomicilio} label='Referencias de Ubicación:' />
-                </View>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }} >{condicion ? 'Actualizar Domicilio' : 'Nuevo Domicilio'} </Text>
+                    <Text style={{ fontSize: 14, fontWeight: 'normal' }} >Todos los campos son obligatorios... </Text>
+                    <View >
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('titulo', text)}
+                            value={formik.values.titulo}
+                            error={formik.errors.titulo} label='Titulo:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('nombreapellido', text)}
+                            value={formik.values.nombreapellido}
+                            error={formik.errors.nombreapellido} label='Recibe:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('callenumero', text)}
+                            value={formik.values.callenumero}
+                            error={formik.errors.callenumero} label='Calle y Número:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('colonia', text)}
+                            value={formik.values.colonia}
+                            error={formik.errors.colonia} label='Colonia:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('codigopostal', text)}
+                            value={formik.values.codigopostal}
+                            error={formik.errors.codigopostal} label='Código Postal:' keyboardType='number-pad' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('ciudad', text)}
+                            value={formik.values.ciudad}
+                            error={formik.errors.ciudad} label='Ciudad:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('localidadmunicipio', text)}
+                            value={formik.values.localidadmunicipio}
+                            error={formik.errors.localidadmunicipio} label='Localidad o Município:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('estado', text)}
+                            value={formik.values.estado}
+                            error={formik.errors.estado} label='Estado:' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('telefono', text)}
+                            value={formik.values.telefono}
+                            error={formik.errors.telefono} label='Teléfono:' keyboardType='number-pad' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('celular', text)}
+                            value={formik.values.celular}
+                            error={formik.errors.celular} label='Celular:' keyboardType='number-pad' />
+                        <TextInput style={styles.textInputStyle}
+                            onChangeText={(text) => formik.setFieldValue('referenciasdomicilio', text)}
+                            value={formik.values.referenciasdomicilio}
+                            error={formik.errors.referenciasdomicilio} label='Referencias de Ubicación:' />
+                    </View>
 
-                <View style={styles.contentBtnGuardar}>
-                    <Button
-                        mode='contained'
-                        style={styles.btnGuardar}
-                        onPress={formik.handleSubmit}
-                        loading={cargando}
-                    >
-                        <Text style={styles.textBtn} >Guardar Dirección</Text>
-                    </Button>
-                </View>
+                    <View style={styles.contentBtnGuardar}>
+                        <Button
+                            mode='contained'
+                            style={styles.btnGuardar}
+                            onPress={formik.handleSubmit}
+                            loading={cargando}
+                        >
+                            <Text style={styles.textBtn} >{condicion ? 'Guardar cambios' : 'Guardar Dirección'}</Text>
+                        </Button>
+                    </View>
 
-            </KeyboardAwareScrollView>
-        </View>
-    )
+                </KeyboardAwareScrollView>
+            </View>
+        )
+    } else {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator color='#29b6f6' size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+            </View>
+        )
+    }
 }
 
 function initialValues() {

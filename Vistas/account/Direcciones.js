@@ -7,7 +7,6 @@ import { size, map } from 'lodash';
 import { getDireccionesApi } from '../../api/direcciones';
 import useAuth from '../../hooks/UseAuth';
 import DireccionCard from '../../Componentes/DireccionCard';
-import { render } from 'react-dom';
 
 export default function Direcciones() {
 
@@ -32,7 +31,7 @@ export default function Direcciones() {
 
             <ScrollView style={styles.container} >
 
-                <Text style={styles.title} >Mi lista de direcciones</Text>
+                <Text style={styles.title} >Mis direcciones</Text>
 
                 <TouchableOpacity onPress={() => { navigation.navigate('AgregarDireccion') }} >
                     <View style={styles.addDireccion} >
@@ -47,7 +46,6 @@ export default function Direcciones() {
                     <Text style={styles.primerdireccionText} > Crea tu primera dirección... </Text>
                 ) : (
                     <>
-                        <Text style={styles.primerdireccionText} > Mis direcciones... </Text>
                         {map(direcciones, (direccion) => (
                             <DireccionCard
                                 key={direccion._id}

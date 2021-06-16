@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, ScrollView, ActivityIndicator, Image } from "react-native";
+import { StyleSheet, ScrollView, ActivityIndicator, } from "react-native";
 import { View, Header, Button, Text, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { size } from 'lodash';

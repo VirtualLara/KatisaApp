@@ -10,6 +10,7 @@ import { getProductApi } from '../api/products';
 
 import Favoritos from '../Componentes/FavoritesComponent';
 import BtnCotizar from '../Componentes/BtnCotizar';
+import BtnPagar from '../Componentes/BtnPagar';
 
 export default function ArticuloDetalles(props) {
 
@@ -121,13 +122,31 @@ export default function ArticuloDetalles(props) {
                         </Form>
                     </View>
 
-                    <View style={styles.contentBtn} >
-                        <BtnCotizar product={product} cantidad={cantidad} />
-                    </View>
+                    {product.pagar === true ?
+                        <>
+                            <View style={styles.contentBtn} >
+                                <BtnCotizar product={product} cantidad={cantidad} />
+                            </View>
 
-                    <View style={styles.contentHeart} >
-                        <Favoritos product={product} />
-                    </View>
+                            <View style={styles.contentBtn} >
+                                <BtnPagar product={product} cantidad={cantidad} />
+                            </View>
+
+                            <View style={styles.contentHeart} >
+                                <Favoritos product={product} />
+                            </View>
+                        </>
+                        :
+                        <>
+                            <View style={styles.contentBtn} >
+                                <BtnCotizar product={product} cantidad={cantidad} />
+                            </View>
+
+                            <View style={styles.contentHeart} >
+                                <Favoritos product={product} />
+                            </View>
+                        </>
+                    }
 
                 </View>
 
@@ -220,6 +239,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     contentBtn: {
+        marginTop: -10,
         width: '100%',
         height: "25%",
         justifyContent: 'center',
@@ -227,7 +247,7 @@ const styles = StyleSheet.create({
     },
     contentHeart: {
         width: '100%',
-        height: "50%",
+        height: "25%",
         justifyContent: 'center',
         alignItems: 'center',
     },

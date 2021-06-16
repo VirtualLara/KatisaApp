@@ -2,19 +2,19 @@ import React from 'react';
 import { Text, Alert, View, StyleSheet } from 'react-native';
 import { Button } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import { addProductCotizacionApi } from '../api/cotizacion';
+import { addProductCarrito } from '../api/carrito';
 
-export default function BtnCotizar(props) {
+export default function BtnPagar(props) {
 
     const { product, cantidad } = props;
     const navigation = useNavigation();
 
-    const agregarProductoCotizar = async () => {
+    const agregarProductoCarrito = async () => {
 
         if (cantidad > 0) {
-            const response = await addProductCotizacionApi(product._id, cantidad);
+            const response = await addProductCarrito(product._id, cantidad);
             if (response) {
-                Alert.alert('Agregado a lista para cotizar...')
+                Alert.alert('Agregado al carrito...')
                 navigation.goBack()
             } else {
                 Alert.alert('Error... ')
@@ -29,9 +29,9 @@ export default function BtnCotizar(props) {
     return (
         <View style={styles.content} >
             <View style={styles.contentBtn}>
-                <Button info style={styles.btn} onPress={agregarProductoCotizar}>
+                <Button success style={styles.btn} onPress={agregarProductoCarrito}>
                     <Text style={styles.textBtn}>
-                        COTIZAR
+                        AGREGAR A CARRITO
                     </Text>
 
                 </Button>

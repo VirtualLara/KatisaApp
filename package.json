@@ -41,6 +41,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
     "react-native-zoom-image": "^0.1.2",
+    "react-number-format": "^4.6.3",
     "rest-mssql-nodejs": "^1.0.10",
     "sendmail": "^1.6.1",
     "tedious": "^11.0.7",

@@ -73,3 +73,23 @@ export async function getDireccionApi(auth, idDireccion) {
         console.log(error)
     }
 }
+
+export async function updateDireccionApi(auth, direccion) {
+    try {
+        const url = `${API_URL}/direcciones/${direccion._id}`;
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.token}`,
+            },
+            body: JSON.stringify(direccion)
+        }
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

@@ -84,13 +84,15 @@ export default function DireccionCard(props) {
 
                 <CardItem style={{ width: '100%', flexDirection: 'row' }} >
                     <View style={{ width: '50%', justifyContent: 'center', alignItems: 'center' }} >
-                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }} onPress={() => { ActualizarDireccion(a_id) }} >
-                            <Text>Actualizar</Text>
+                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }}
+                            onPress={() => { ActualizarDireccion(a_id) }} >
+                            <Text>Editar</Text>
                         </Button>
                     </View>
 
                     <View style={{ width: '50%', justifyContent: 'center', alignItems: 'center' }} >
-                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }} onPress={() => { deleteDireccionAlert() }} >
+                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }}
+                            onPress={() => { deleteDireccionAlert() }} >
                             <Text>Eliminar</Text>
                         </Button>
                     </View>

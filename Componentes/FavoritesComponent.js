@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Alert, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Button } from 'react-native-paper';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { size } from 'lodash';
 
@@ -50,26 +51,20 @@ export default function FavoritesComponent(props) {
     return (
 
         <View style={styles.contentHeart} >
-            <View>
+            <Button onPress={favoritos ? deleteFavorite : addFavorites} >
+                <Icon
+                    active
+                    name={favoritos ? 'heart' : 'thumbs-up'}
+                    size={50}
+                    style={favoritos ? { padding: 5, color: "#E50000", } : { padding: 5, color: "#2980B9", }}
+                />
                 <Text style={favoritos
-                    ? { fontSize: 25, fontWeight: 'bold', color: "#E50000" }
-                    : { fontSize: 25, fontWeight: 'bold', color: "#2980B9" }} >
+                    ? { fontSize: 18, fontWeight: 'bold', color: "#E50000" }
+                    : { fontSize: 18, fontWeight: 'bold', color: "#2980B9" }} >
 
                     {favoritos ? 'Eliminar de Favoritos' : 'Añadir a Favoritos'}
                 </Text>
-            </View>
-            <View>
-                <View style={{ width: "50%", height: 100, justifyContent: 'center', alignItems: 'center' }}>
-                    <Icon
-                        active
-                        name={favoritos ? 'heart' : 'thumbs-up'}
-                        //name='thumbs-up'
-                        size={75}
-                        style={favoritos ? { padding: 5, color: "#E50000", } : { padding: 5, color: "#2980B9", }}
-                        onPress={favoritos ? deleteFavorite : addFavorites}
-                    />
-                </View>
-            </View>
+            </Button>
         </View>
 
 
@@ -79,10 +74,11 @@ export default function FavoritesComponent(props) {
 
 const styles = StyleSheet.create({
     contentHeart: {
+        marginTop: -10,
+        flexDirection: 'row',
         width: '100%',
         height: "35%",
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 10,
     },
 })
