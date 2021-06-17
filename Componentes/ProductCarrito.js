@@ -11,21 +11,21 @@ import { deleteProductCarritoApi, incrementQuantityApi, decrementQuantityApi } f
 
 export default function ProductCarrito(props) {
 
-    const { product, setReloadCotizacion } = props;
+    const { product, setReloadCarrito } = props;
 
     const deleteProduct = async () => {
         const response = await deleteProductCarritoApi(product._id)
-        if (response) setReloadCotizacion(true);
+        if (response) setReloadCarrito(true);
     }
 
     const IncrementQuantity = async () => {
         const response = await incrementQuantityApi(product._id)
-        if (response !== null) setReloadCotizacion(true);
+        if (response !== null) setReloadCarrito(true);
     }
 
     const decrementQuantity = async () => {
         const response = await decrementQuantityApi(product._id);
-        if (response) setReloadCotizacion(true)
+        if (response) setReloadCarrito(true)
     }
 
     function currencyFormat(num) {
