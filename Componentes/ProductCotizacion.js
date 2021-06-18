@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import { Card, } from 'native-base';
 import { TextInput } from "react-native-paper";
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
 
 import { API_URL } from '../utils/constants';
 
@@ -31,7 +33,19 @@ export default function ProductCotizacion(props) {
         <View>
             <Card style={styles.container}>
                 <View style={styles.imgContent} >
-                    <Image source={{ uri: `${API_URL}${product.foto.url}` }} style={styles.img} />
+                    <ZoomImage
+                        resizeMode={'cover'}
+                        source={{ uri: `${API_URL}${product.foto.url}` }} style={styles.img}
+                        imgStyle={{
+                            height: '100%',
+                            width: '100%'
+                        }}
+                        style={styles.img}
+                        duration={2000}
+                        enableScaling={false}
+                        easingFunc={Easing.ease}
+                    />
+                    {/*  <Image source={{ uri: `${API_URL}${product.foto.url}` }} style={styles.img} /> */}
                 </View>
 
                 <View style={styles.dataContent} >
@@ -99,6 +113,14 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '90%',
         resizeMode: 'contain',
+    },
+    img: {
+        width: '95%',
+        height: '95%',
+        resizeMode: 'contain',
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'gray'
     },
     dataContent: {
         width: '60%',

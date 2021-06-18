@@ -26,40 +26,44 @@ export default function FormularioPago(props) {
         <View style={styles.content} >
             <Text style={styles.title} >Forma de pago</Text>
 
-            <TextInput label='Nombre de la tarjeta' style={styles.input}
-                onChangeText={(text) => formik.setFieldValue('name', text)}
-                value={formik.values.name}
-                error={formik.errors.name} />
+            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', }} >
+                <View style={styles.contentCard} >
+                    <TextInput label='Nombre de la tarjeta' style={styles.input} onChangeText={(text) => formik.setFieldValue('name', text)}
+                        value={formik.values.name}
+                        error={formik.errors.name} />
 
-            <TextInput label='Numero de la tarjeta' style={styles.input}
-                keyboardType='numeric'
-                onChangeText={(text) => formik.setFieldValue('number', text)}
-                value={formik.values.number}
-                error={formik.errors.number} />
-
-            <View style={styles.containerInputs} >
-                <View style={styles.containerFecha} >
-                    <TextInput label='Mes' style={styles.inputDate}
+                    <TextInput label='Numero de la tarjeta' style={styles.input}
                         keyboardType='numeric'
-                        onChangeText={(text) => formik.setFieldValue('expo_month', text)}
-                        value={formik.values.expo_month}
-                        error={formik.errors.expo_month} />
+                        onChangeText={(text) => formik.setFieldValue('number', text)}
+                        value={formik.values.number}
+                        error={formik.errors.number} />
 
-                    <TextInput label='Año' style={styles.inputDate}
-                        keyboardType='numeric'
-                        onChangeText={(text) => formik.setFieldValue('exp_year', text)}
-                        value={formik.values.exp_year}
-                        error={formik.errors.exp_year} />
+                    <View style={styles.containerInputs} >
+                        <View style={styles.containerFecha} >
+                            <TextInput label='Mes (MM)' style={styles.inputDate}
+                                keyboardType='numeric'
+                                onChangeText={(text) => formik.setFieldValue('expo_month', text)}
+                                value={formik.values.expo_month}
+                                error={formik.errors.expo_month} />
+
+                            <TextInput label='Año (YY)' style={styles.inputDate}
+                                keyboardType='numeric'
+                                onChangeText={(text) => formik.setFieldValue('exp_year', text)}
+                                value={formik.values.exp_year}
+                                error={formik.errors.exp_year} />
+                        </View>
+                        <TextInput label='CW/CVC' style={styles.inputCvc}
+                            keyboardType='numeric'
+                            onChangeText={(text) => formik.setFieldValue('cvc', text)}
+                            value={formik.values.cvc}
+                            error={formik.errors.cvc} />
+                    </View>
+
+
                 </View>
-                <TextInput label='CW/CVC' style={styles.inputCvc}
-                    keyboardType='numeric'
-                    onChangeText={(text) => formik.setFieldValue('cvc', text)}
-                    value={formik.values.cvc}
-                    error={formik.errors.cvc} />
-            </View>
 
-            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} >
-                <View style={{ width: '90%' }} >
+
+                <View style={{ width: '90%', marginTop: 10, }} >
                     <Button mode='contained' contentStyle={styles.btnContent} labelStyle={styles.btnText}
                         onPress={formik.handleSubmit} >
                         Pagar (
@@ -95,8 +99,17 @@ function validationSchema() {
 
 const styles = StyleSheet.create({
     content: {
-        marginTop: 40,
-        marginBottom: 30,
+        marginTop: 10,
+    },
+    contentCard: {
+        width: '95%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        borderWidth: .5,
+        borderColor: 'purple',
+        backgroundColor: '#283747',
+        padding: 5,
     },
     title: {
         paddingBottom: 10,
@@ -106,14 +119,14 @@ const styles = StyleSheet.create({
     input: {
         width: '95%',
         margin: 5,
+        height: 55,
     },
     containerInputs: {
         flexDirection: 'row',
-        width: '85%',
+        width: '95%',
         margin: 5,
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
     },
     containerFecha: {
         flexDirection: 'row',
@@ -123,16 +136,18 @@ const styles = StyleSheet.create({
     inputDate: {
         width: 100,
         marginRight: 10,
+        height: 55,
     },
     inputCvc: {
-        width: '40%'
+        width: '30%',
+        height: 55,
     },
     btnContent: {
         paddingVertical: 4,
         //backgroundColor: '#00bb2d',
         backgroundColor: 'black',
-        borderWidth: 3,
-        borderColor: 'silver'
+        borderWidth: 2,
+        borderColor: 'silver',
     },
     btnText: {
         fontWeight: 'bold',

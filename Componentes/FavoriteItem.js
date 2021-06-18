@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, Button, Activit
 import { Card, } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
+import ZoomImage from "react-native-zoom-image";
+import { Easing } from "react-native";
 
 import { API_URL } from '../utils/constants';
 import { deleteFavoritoApi } from '../api/favoritos';
@@ -31,7 +33,19 @@ export default function FavoriteItem(props) {
         <Card style={styles.container} >
 
             <View style={styles.imgContent} >
-                <Image source={{ uri: `${API_URL}${favorito.product.foto.url}` }} style={styles.img} />
+                <ZoomImage
+                    resizeMode={'cover'}
+                    source={{ uri: `${API_URL}${favorito.product.foto.url}` }}
+                    imgStyle={{
+                        height: '100%',
+                        width: '100%'
+                    }}
+                    style={styles.img}
+                    duration={2000}
+                    enableScaling={false}
+                    easingFunc={Easing.ease}
+                />
+                {/*<Image source={{ uri: `${API_URL}${favorito.product.foto.url}` }} style={styles.img} />*/}
             </View>
 
             <View style={styles.dataContent} >
@@ -96,9 +110,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     img: {
-        width: '90%',
-        height: '90%',
+        width: '95%',
+        height: '95%',
         resizeMode: 'contain',
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'gray'
     },
     dataContent: {
         width: '60%',
