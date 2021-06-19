@@ -108,7 +108,9 @@ export default function AgregarDireccion(props) {
                             onChangeText={(text) => formik.setFieldValue('celular', text)}
                             value={formik.values.celular}
                             error={formik.errors.celular} label='Celular:' keyboardType='number-pad' />
-                        <TextInput style={styles.textInputStyle}
+                        <TextInput style={{ height: 60, marginTop: 10, height: 130, }}
+                            multiline={true}
+                            numberOfLines={15}
                             onChangeText={(text) => formik.setFieldValue('referenciasdomicilio', text)}
                             value={formik.values.referenciasdomicilio}
                             error={formik.errors.referenciasdomicilio} label='Referencias de Ubicación:' />

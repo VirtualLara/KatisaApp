@@ -1,24 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Alert } from 'react-native';
+import { TextInput, Button, } from 'react-native-paper';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+import { STRIPE_PUBLISHABLE_KEY } from '../utils/constants';
+const stripe = require('stripe-client')(STRIPE_PUBLISHABLE_KEY);
+import { pagoCarritoApi } from '../api/carrito';
+import useAuth from '../hooks/UseAuth';
 
 export default function FormularioPago(props) {
 
     const { products, direccionSeleccionada, totalPagar } = props;
+    const { auth } = useAuth();
+    const [loading, setLoading] = useState(false);
+
+    console.log('products  ' + products[0]._id)
+    console.log('direccion  ' + direccionSeleccionada[0])
 
     function currencyFormat(num) {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
-
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            console.log('pagando...')
-            console.log(formData)
+            setLoading(true)
+            const result = await stripe.createToken({ card: formData });
+            if (result?.error) {
+                setLoading(false)
+                Alert.alert('Datos incorrectos, pago no realizado.')
+            } else {
+                /* const response = await pagoCarritoApi(auth, result.id, products, direccionSeleccionada)
+                //Alert.alert('Pago realizado exitosamente. ')
+                //setLoading(false)
+                console.log(response)
+                setLoading(false) */
+                Alert.alert('ok')
+            }
         }
     })
 
@@ -28,7 +48,9 @@ export default function FormularioPago(props) {
 
             <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', }} >
                 <View style={styles.contentCard} >
-                    <TextInput label='Nombre de la tarjeta' style={styles.input} onChangeText={(text) => formik.setFieldValue('name', text)}
+
+                    <TextInput label='Nombre de la tarjeta' style={styles.input}
+                        onChangeText={(text) => formik.setFieldValue('name', text)}
                         value={formik.values.name}
                         error={formik.errors.name} />
 
@@ -42,9 +64,9 @@ export default function FormularioPago(props) {
                         <View style={styles.containerFecha} >
                             <TextInput label='Mes (MM)' style={styles.inputDate}
                                 keyboardType='numeric'
-                                onChangeText={(text) => formik.setFieldValue('expo_month', text)}
-                                value={formik.values.expo_month}
-                                error={formik.errors.expo_month} />
+                                onChangeText={(text) => formik.setFieldValue('exp_month', text)}
+                                value={formik.values.exp_month}
+                                error={formik.errors.exp_month} />
 
                             <TextInput label='Año (YY)' style={styles.inputDate}
                                 keyboardType='numeric'
@@ -65,7 +87,8 @@ export default function FormularioPago(props) {
 
                 <View style={{ width: '90%', marginTop: 10, }} >
                     <Button mode='contained' contentStyle={styles.btnContent} labelStyle={styles.btnText}
-                        onPress={formik.handleSubmit} >
+                        onPress={!loading && formik.handleSubmit}
+                        loading={loading}>
                         Pagar (
                         <Text>  </Text>
                         <Text style={{ color: 'yellow' }} >Total:  {currencyFormat(totalPagar)}</Text>)
@@ -80,7 +103,7 @@ export default function FormularioPago(props) {
 function initialValues() {
     return {
         number: '',
-        expo_month: '',
+        exp_month: '',
         exp_year: '',
         cvc: '',
         name: ''
@@ -90,7 +113,7 @@ function initialValues() {
 function validationSchema() {
     return {
         number: Yup.string().min(16, true).max(16, true).required(true),
-        expo_month: Yup.string().min(2, true).max(2, true).required(true),
+        exp_month: Yup.string().min(2, true).max(2, true).required(true),
         exp_year: Yup.string().min(2, true).max(2, true).required(true),
         cvc: Yup.string().min(3, true).max(3, true).required(true),
         name: Yup.string().min(4, true).required(true),
@@ -108,7 +131,8 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderWidth: .5,
         borderColor: 'purple',
-        backgroundColor: '#283747',
+        //backgroundColor: '#283747',
+        backgroundColor: '#2874A6',
         padding: 5,
     },
     title: {

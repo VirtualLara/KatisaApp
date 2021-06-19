@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { size, map, filter } from 'lodash';
-import { CARRITO } from '../utils/constants';
+import { API_URL, CARRITO } from '../utils/constants';
 
 export async function vaciarCarrito() {
     await AsyncStorage.removeItem(CARRITO);
@@ -101,6 +101,34 @@ export async function decrementQuantityApi(idProduct) {
         }
         return true;
     } catch (error) {
+        return null;
+    }
+}
+
+export async function pagoCarritoApi(auth, tokenStripe, products, direccion) {
+    try {
+        const direccionEnvio = direccion;
+        delete direccionEnvio.user;
+        delete direccionEnvio.createdAt;
+
+        const url = `${API_URL}/orders`;
+        const params = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Berarer ${auth.token}`
+            },
+            body: JSON.stringify({
+                tokenStripe,
+                products,
+                idUser: auth.idUser,
+                direccionEnvio,
+            })
+        }
+        const result = await fetch(url, params);
+        return result;
+    } catch (error) {
+        console.log(error);
         return null;
     }
 }

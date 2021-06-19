@@ -11,7 +11,6 @@ export default function DireccionesList(props) {
         direcciones && setDireccionSeleccionada(direcciones[0])
     }, [direcciones])
 
-
     return (
         <View>
             <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'darkgreen' }} > Mis direcciones... </Text>
@@ -46,7 +45,12 @@ export default function DireccionesList(props) {
                             <Text style={{ fontWeight: 'bold' }} >Cel.: </Text>
                             {direccion.celular}.
                         </Text>
-                        <Text>{direccion.referenciasdomicilio}.</Text>
+                        <View style={{ flexDirection: 'row', }} >
+                            <Text style={{ fontWeight: 'bold' }} >Ref.: </Text>
+                            <View style={{ width: '90%' }} >
+                                <Text>{direccion.referenciasdomicilio}.</Text>
+                            </View>
+                        </View>
                     </View>
 
                 </TouchableWithoutFeedback>
