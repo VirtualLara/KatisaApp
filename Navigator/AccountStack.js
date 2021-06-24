@@ -8,6 +8,7 @@ import CambiarUsuario from '../Vistas/account/CambiarUsuario';
 import CambiarContraseña from '../Vistas/account/CambiarContraseña';
 import Direcciones from '../Vistas/account/Direcciones';
 import AgregarDireccion from '../Vistas/account/AgregarDireccion';
+import Compras from '../Vistas/account/Compras';
 
 export default function AccountStack() {
 
@@ -54,6 +55,11 @@ export default function AccountStack() {
                 name='AgregarDireccion'
                 component={AgregarDireccion}
                 options={{ title: 'Agregar Dirección' }}
+            />
+            <Stack.Screen
+                name='Compras'
+                component={Compras}
+                options={{ title: 'Mis Compras Katisa' }}
             />
         </Stack.Navigator>
     )

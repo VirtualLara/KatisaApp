@@ -3,20 +3,20 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import { TextInput, Button, } from 'react-native-paper';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { size } from 'lodash';
+import { useNavigation } from '@react-navigation/native';
 
-import { STRIPE_PUBLISHABLE_KEY } from '../utils/constants';
-const stripe = require('stripe-client')(STRIPE_PUBLISHABLE_KEY);
-import { pagoCarritoApi } from '../api/carrito';
 import useAuth from '../hooks/UseAuth';
+const stripe = require('stripe-client')(STRIPE_PUBLISHABLE_KEY);
+import { STRIPE_PUBLISHABLE_KEY } from '../utils/constants';
+import { pagoCarritoApi, deleteCarritoApi } from '../api/carrito';
 
 export default function FormularioPago(props) {
 
+    const navigation = useNavigation();
     const { products, direccionSeleccionada, totalPagar } = props;
     const { auth } = useAuth();
     const [loading, setLoading] = useState(false);
-
-    console.log('products  ' + products[0]._id)
-    console.log('direccion  ' + direccionSeleccionada[0])
 
     function currencyFormat(num) {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -26,18 +26,27 @@ export default function FormularioPago(props) {
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            setLoading(true)
+            setLoading(true);
             const result = await stripe.createToken({ card: formData });
+
             if (result?.error) {
-                setLoading(false)
+                setLoading(false);
                 Alert.alert('Datos incorrectos, pago no realizado.')
             } else {
-                /* const response = await pagoCarritoApi(auth, result.id, products, direccionSeleccionada)
-                //Alert.alert('Pago realizado exitosamente. ')
-                //setLoading(false)
-                console.log(response)
-                setLoading(false) */
-                Alert.alert('ok')
+                const response = await pagoCarritoApi(
+                    auth,
+                    result.id,
+                    products,
+                    direccionSeleccionada
+                );
+
+                if (size(response) > 0) {
+                    await deleteCarritoApi();
+                    navigation.navigate('Compras');
+                } else {
+                    Alert.alert('Error al realizar el pedido')
+                }
+                setLoading(false)
             }
         }
     })

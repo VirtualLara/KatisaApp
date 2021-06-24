@@ -15,7 +15,9 @@ export default function DireccionesList(props) {
         <View>
             <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'darkgreen' }} > Mis direcciones... </Text>
             {map(direcciones, (direccion) => (
-                <TouchableWithoutFeedback key={direccion._id} onPress={() => setDireccionSeleccionada(direccion)} >
+                <TouchableWithoutFeedback key={direccion._id}
+                    onPress={() => setDireccionSeleccionada(direccion)}
+                >
                     <View
                         style={[
                             styles.content,

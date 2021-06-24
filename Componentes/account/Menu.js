@@ -64,22 +64,22 @@ export default function Menu() {
                     left={(props) => <List.Icon{...props} icon='map' />}
                     onPress={() => navigation.navigate('Direcciones')}
                 />
-            </List.Section>
+                {/* </List.Section>
 
-            <List.Section>
+            <List.Section> */}
                 <List.Subheader>App</List.Subheader>
                 <List.Item
                     title='Mis Compras'
                     description='Listado de tus Compras'
                     left={(props) => <List.Icon{...props} icon='cart-plus' />}
-                    onPress={() => console.log('Compras')}
+                    onPress={() => navigation.navigate('Compras')}
                 />
-                <List.Item
+                {/*  <List.Item
                     title='Mis Cotizaciones'
                     description='Listado de tus cotizaciones'
                     left={(props) => <List.Icon{...props} icon='clipboard-list' />}
                     onPress={() => console.log('Cotizaciones')}
-                />
+                /> */}
                 <List.Item
                     title='Lista de Deseos'
                     description='Listado de artículos que te gustaron'

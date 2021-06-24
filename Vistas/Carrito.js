@@ -37,6 +37,9 @@ export default function Carrito() {
     const loadDirecciones = async () => {
         const response = await getDireccionesApi(auth)
         setDirecciones(response);
+        if (direcciones) {
+            //setDireccionSeleccionada(direcciones[0])
+        }
     }
 
     useFocusEffect(

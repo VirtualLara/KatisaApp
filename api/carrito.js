@@ -107,28 +107,38 @@ export async function decrementQuantityApi(idProduct) {
 
 export async function pagoCarritoApi(auth, tokenStripe, products, direccion) {
     try {
-        const direccionEnvio = direccion;
-        delete direccionEnvio.user;
-        delete direccionEnvio.createdAt;
+        const direccionenvio = direccion;
+        delete direccionenvio.user;
+        delete direccionenvio.createdAt;
 
-        const url = `${API_URL}/orders`;
+        const url = `${API_URL}/ventas`;
         const params = {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Berarer ${auth.token}`
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${auth.token}`,
             },
             body: JSON.stringify({
                 tokenStripe,
                 products,
                 idUser: auth.idUser,
-                direccionEnvio,
+                direccionenvio,
             })
         }
-        const result = await fetch(url, params);
+        const response = await fetch(url, params);
+        const result = await response.json();
         return result;
     } catch (error) {
         console.log(error);
+        return null;
+    }
+}
+
+export async function deleteCarritoApi() {
+    try {
+        await AsyncStorage.removeItem(CARRITO);
+        return true;
+    } catch (error) {
         return null;
     }
 }
