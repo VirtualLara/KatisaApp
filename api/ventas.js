@@ -2,7 +2,7 @@ import { API_URL } from '../utils/constants';
 
 export async function getVentasApi(auth) {
     try {
-        const url = `${API_URL}/ventas?user=${auth.idUser}`;
+        const url = `${API_URL}/ventas?user=${auth.idUser}&_sort=published_at:DESC`;
         const params = {
             headers: {
                 'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ export default function Compras() {
 
     return (
         <ScrollView style={styles.container} >
-            <Text style={styles.title} >Compras realizadas</Text>
+            <Text style={styles.title} >Compras realizadas: </Text>
 
             {!ventas ? (
                 <ActivityIndicator size='large' style={styles.loading} />
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         padding: 20
     },
     title: {
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     loading: {
         marginTop: 20,
