@@ -30,9 +30,6 @@ export default function pruebas(props) {
       } catch (error) {
         setLoading(false);
         Alert.alert("Error al registrar el usuario");
-        /* Toast.show("Error al registrar el usuario", {
-          position: Toast.positions.CENTER,
-        }); */
       }
     },
   });
@@ -44,7 +41,7 @@ export default function pruebas(props) {
       <View style={styles.containerImagen}>
         <Image
           style={styles.image}
-          source={require("../Recursos/Imagenes/logo.png")}
+          source={require("../Recursos/Imagenes/logos/logo.png")}
         />
       </View>
 
@@ -87,16 +84,17 @@ export default function pruebas(props) {
             <Text style={styles.textos}>
               {" "}
               <IconGenerales name="user-alt" size={20} color="#0B2161" />{" "}
-              Usuario
+              Usuario (Número telefónico)
             </Text>
           </Item>
         </View>
         <Item>
           <TextInput
-            placeholder="Ingrese nombre de usuario"
+            placeholder="Ingrese numero telefónico"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             autoCorrect={false}
+            keyboardType='number-pad'
             style={styles.widthInput}
             onChangeText={(text) => formik.setFieldValue("username", text)}
             value={formik.values.username}

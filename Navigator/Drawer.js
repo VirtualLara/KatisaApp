@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -54,7 +54,7 @@ function Menu(props) {
       <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
         <View style={styles.containImage}>
           <Image
-            source={require("../Recursos/Imagenes/logo.png")}
+            source={require("../Recursos/Imagenes/logos/logo.png")}
             style={{ width: "95%", height: "95%", resizeMode: "contain" }}
           />
         </View>

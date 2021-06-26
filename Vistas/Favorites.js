@@ -72,7 +72,7 @@ export default function Favorites() {
                     </View>
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
-                        <Image source={require('../Recursos/Imagenes/logored.png')} style={{ width: 200, height: 200 }} />
+                        <Image source={require('../Recursos/Imagenes/heart.png')} style={{ width: 150, height: 150, resizeMode: 'contain' }} />
                         <Text> {'\n'} </Text>
                         <Text style={{ fontSize: 20, fontWeight: 'bold' }} > No tienes lista de favoritos...  </Text>
                         <Text> {'\n'} </Text>

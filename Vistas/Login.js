@@ -55,7 +55,7 @@ export default function pruebas(props) {
         <View style={styles.containerImagen}>
           <Image
             style={styles.image}
-            source={require("../Recursos/Imagenes/logorednom.png")}
+            source={require("../Recursos/Imagenes/logos/logo.png")}
           />
         </View>
 
@@ -69,7 +69,7 @@ export default function pruebas(props) {
           </View>
           <Item>
             <TextInput
-              placeholder="Ingrese correo o usuario"
+              placeholder="Ingrese correo o número celular"
               placeholderTextColor="#0B2161"
               returnKeyType="go"
               autoCorrect={false}

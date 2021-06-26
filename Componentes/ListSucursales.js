@@ -23,12 +23,12 @@ export default function ListSucursales(props) {
             case 'Xalapa': {
                 return (
                     <Container>
-                        <Tabs renderTabBar={() => <ScrollableTab />}
+                        <Tabs renderTabBar={() => <ScrollableTab backgroundColor='#29b6f6' />}
                             tabBarPosition='bottom'
                             tabBarUnderlineStyle={{ backgroundColor: 'white' }}>
                             {map(xalapaArray, (sucursal) => (
-                                <Tab heading={sucursal.namesuc}
-                                    tabStyle={{ backgroundColor: '#29B6F6' }}
+                                <Tab heading={sucursal.namesuc} key={sucursal._id}
+                                    tabStyle={{ backgroundColor: '#29B6F6', }}
                                     textStyle={{ color: 'black', fontWeight: 'bold', }}
                                     activeTabStyle={{ backgroundColor: '#0288D1', }} >
                                     <CardSucursal
@@ -42,6 +42,7 @@ export default function ListSucursales(props) {
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
                                         foto={`${API_URL}${sucursal.fotosuc.url}`}
+                                        logo={`${API_URL}${sucursal.logo.url}`}
                                     />
                                 </Tab>
                             ))}
@@ -54,11 +55,11 @@ export default function ListSucursales(props) {
             case 'Veracruz': {
                 return (
                     <Container>
-                        <Tabs renderTabBar={() => <ScrollableTab />}
+                        <Tabs renderTabBar={() => <ScrollableTab backgroundColor='#29b6f6' />}
                             tabBarPosition='bottom'
                             tabBarUnderlineStyle={{ backgroundColor: 'white' }}>
                             {map(veracruzArray, (sucursal) => (
-                                <Tab heading={sucursal.namesuc}
+                                <Tab heading={sucursal.namesuc} key={sucursal._id}
                                     tabStyle={{ backgroundColor: '#29B6F6' }}
                                     textStyle={{ color: 'black', fontWeight: 'bold', }}
                                     activeTabStyle={{ backgroundColor: '#0288D1', }} >
@@ -73,6 +74,7 @@ export default function ListSucursales(props) {
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
                                         foto={`${API_URL}${sucursal.fotosuc.url}`}
+                                        logo={`${API_URL}${sucursal.logo.url}`}
                                     />
                                 </Tab>
                             ))}
@@ -85,11 +87,11 @@ export default function ListSucursales(props) {
             case 'Cordoba': {
                 return (
                     <Container>
-                        <Tabs renderTabBar={() => <ScrollableTab style={{ backgroundColor: '#29b6f6' }} />}
+                        <Tabs renderTabBar={() => <ScrollableTab backgroundColor='#29b6f6' />}
                             tabBarPosition='bottom'
                             tabBarUnderlineStyle={{ backgroundColor: 'white' }}>
                             {map(cordobaArray, (sucursal) => (
-                                <Tab heading={sucursal.namesuc}
+                                <Tab heading={sucursal.namesuc} key={sucursal._id}
                                     tabStyle={{ backgroundColor: '#29B6F6' }}
                                     textStyle={{ color: 'black', fontWeight: 'bold', }}
                                     activeTabStyle={{ backgroundColor: '#0288D1', }} >
@@ -104,6 +106,7 @@ export default function ListSucursales(props) {
                                         correo={sucursal.correosuc}
                                         telefono={sucursal.telefonosuc}
                                         foto={`${API_URL}${sucursal.fotosuc.url}`}
+                                        logo={`${API_URL}${sucursal.logo.url}`}
                                     />
                                 </Tab>
                             ))}

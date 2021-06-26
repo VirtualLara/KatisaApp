@@ -33,17 +33,17 @@ export default function Nosotros(props) {
       <View>
         <Header hasTabs style={styles.headerPos}>
           <StatusBarMy backgroundColor="#29B6F6" />
-          <Icon
-            name="bars"
-            size={35}
-            color="#1F618D"
-            onPress={() => navigation.openDrawer()}
-          />
-          <Text> {"\n"} </Text>
-          <View styles={styles.header}>
+          <View style={styles.contentHeader} >
+            <Icon
+              name="bars"
+              size={35}
+              color="#1F618D"
+              onPress={() => navigation.openDrawer()}
+            />
             <Text style={styles.textHeader}>
-              NOSOTROS <Icon name="building" size={40} color="white" />
+              NOSOTROS
             </Text>
+            <Icon name="building" size={40} color="white" />
           </View>
         </Header>
 
@@ -81,7 +81,7 @@ export default function Nosotros(props) {
 const styles = StyleSheet.create({
   headerPos: {
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     backgroundColor: "#29B6F6",
   },
   textHeader: {
@@ -92,4 +92,11 @@ const styles = StyleSheet.create({
   parrafo: {
     textAlign: "justify",
   },
+  contentHeader: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "#29B6F6",
+    width: '100%'
+  }
 });

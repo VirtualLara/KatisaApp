@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, TextInput } from 'react-native';
 import { Card, } from 'native-base';
 
 import { API_URL } from '../utils/constants';
 
 export default function Articulo(props) {
 
-    const { imagen, nombre, clave, watts, temperatura } = props;
+    const { imagen, nombre, clave, watts, temperatura, precio, pagar } = props;
+
+    function currencyFormat(num) {
+        return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
 
     return (
         <Card style={styles.container} >
@@ -19,7 +23,12 @@ export default function Articulo(props) {
                 <Text style={styles.text} >{clave}</Text>
                 <Text style={styles.title} >Descripción:</Text>
                 <Text style={styles.text} >{nombre}</Text>
-                <Text style={styles.text} >{watts}W  {temperatura}K</Text>
+                <Text style={styles.text} >{watts}W  {temperatura}K
+                    <Text>  </Text>
+                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20 }}>
+                        {pagar === true ? currencyFormat(precio) : 'Por pedido'}
+                    </Text>
+                </Text>
             </View>
         </Card>
     )
