@@ -23,6 +23,7 @@ import Noticias from "../Vistas/Noticias";
 import AccountStack from '../Navigator/AccountStack';
 import ArticuloDetalles from '../Componentes/ArticuloDetalles';
 import Cotizacion from '../Vistas/Cotizacion';
+import AvisoPrivacidad from '../Vistas/AvisoPrivacidad';
 
 function Menu(props) {
 
@@ -99,6 +100,11 @@ function Menu(props) {
             titleName="Mi perfil"
             navigation={() => props.navigation.navigate("AccountStack")}
           />
+          <DrawerMenu
+            iconName="eye-slash"
+            titleName="Aviso de Privacidad"
+            navigation={() => props.navigation.navigate("AvisoPrivacidad")}
+          />
         </ScrollView>
       </View>
 
@@ -160,6 +166,7 @@ export default function App() {
         <Drawer.Screen name="AccountStack" component={AccountStack} />
         <Drawer.Screen name="ArticuloDetalles" component={ArticuloDetalles} />
         <Drawer.Screen name="Cotizacion" component={Cotizacion} />
+        <Drawer.Screen name="AvisoPrivacidad" component={AvisoPrivacidad} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -197,7 +204,10 @@ const styles = StyleSheet.create({
   viewDrawerMenu: {
     width: "100%",
     flexDirection: "row",
-    margin: 7,
+    marginLeft: 7,
+    marginRight: 7,
+    marginTop: 3,
+    marginBottom: 3,
     paddingHorizontal: 5,
   },
   textDrawerMenu: {

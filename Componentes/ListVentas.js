@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { map } from 'lodash';
+import { View, Text, StyleSheet, } from 'react-native';
+import { map, } from 'lodash';
 
 import VentaComponent from '../Componentes/VentaComponent';
 

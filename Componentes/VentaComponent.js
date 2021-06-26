@@ -22,7 +22,6 @@ export default function VentaComponent(props) {
                     {(venta.published_at).substr(0, 4)}
                 </Text>
             </View>
-            <Text>sfsdfdsfsdf</Text>
         </View>
     )
 }

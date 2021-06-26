@@ -21,19 +21,29 @@ export default function Compras() {
         }, [])
     )
 
-    return (
-        <ScrollView style={styles.container} >
-            <Text style={styles.title} >Compras realizadas: </Text>
+    if (ventas !== null) {
+        return (
+            <ScrollView style={styles.container} >
+                <Text style={styles.title} >Compras realizadas: </Text>
 
-            {!ventas ? (
-                <ActivityIndicator size='large' style={styles.loading} />
-            ) : size(ventas) === 0 ? (
-                <Text style={styles.noVentas} > Aun no tienes compras. </Text>
-            ) : (
-                <ListVentas ventas={ventas} />
-            )}
-        </ScrollView>
-    )
+                {!ventas ? (
+                    <ActivityIndicator size='large' style={styles.loading} />
+                ) : size(ventas) === 0 ? (
+                    <Text style={styles.noVentas} > Aun no tienes compras. </Text>
+                ) : (
+                    <ListVentas ventas={ventas} />
+                )}
+            </ScrollView>
+        )
+    } else {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator color='#29b6f6' size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+            </View>
+        )
+    }
+
 }
 
 const styles = StyleSheet.create({

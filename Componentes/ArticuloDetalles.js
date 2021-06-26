@@ -125,11 +125,11 @@ export default function ArticuloDetalles(props) {
                     {product.pagar === true ?
                         <>
                             <View style={styles.contentBtn} >
-                                <BtnCotizar product={product} cantidad={cantidad} />
+                                <BtnPagar product={product} cantidad={cantidad} />
                             </View>
 
                             <View style={styles.contentBtn} >
-                                <BtnPagar product={product} cantidad={cantidad} />
+                                <BtnCotizar product={product} cantidad={cantidad} />
                             </View>
 
                             <View style={styles.contentHeart} >

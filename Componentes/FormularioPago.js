@@ -51,6 +51,8 @@ export default function FormularioPago(props) {
         }
     })
 
+    console.log(direccionSeleccionada)
+
     return (
         <View style={styles.content} >
             <Text style={styles.title} >Forma de pago</Text>
