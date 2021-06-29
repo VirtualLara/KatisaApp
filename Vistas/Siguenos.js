@@ -24,59 +24,54 @@ export default function Siguenos(props) {
   )
 
   return (
-    <View>
-      <Header hasTabs style={styles.headerPos}>
-        <StatusBarMy backgroundColor="#29B6F6" />
-        <Icon name="bars" size={35} color="#1F618D" onPress={() => navigation.openDrawer()}
-        />
-        <Text style={styles.text}>
-          Siguenos
-        </Text>
-        <Icon name="arrow-right" size={40} color="white" />
-      </Header>
+    <View style={{ flex: 1 }} >
+      <View style={{ height: '8%', }} >
+        <Header hasTabs style={styles.headerPos}>
+          <StatusBarMy backgroundColor="#29B6F6" />
+          <Icon name="bars" size={35} color="#1F618D" onPress={() => navigation.openDrawer()}
+          />
+          <Text style={styles.text}>
+            Siguenos
+          </Text>
+          <Icon name="arrow-right" size={40} color="white" />
+        </Header>
+      </View>
 
-      <ScrollView>
-        {map(redes, (red) => (
-          <TouchableOpacity
-            key={red._id}
-            style={styles.touchable}
-            onPress={async () => {
-              await Linking.openURL(red.link);
-            }}
-          >
-            <View style={{ backgroundColor: red.colorcontenedor, width: '100%', flexDirection: 'row' }} >
-              {/* Lin para buscar fb id:  https://roadtoblogging.com/get-facebook-page-id*/}
-              < View style={styles.contentLogo} >
-                <Icon name={red.logonombre} size={50} color={red.colorlogo} />
+      <View style={{ height: '82%' }} >
+        <ScrollView>
+          {map(redes, (red) => (
+            <TouchableOpacity
+              key={red._id}
+              style={styles.touchable}
+              onPress={async () => {
+                await Linking.openURL(red.link);
+              }}
+            >
+              <View style={{ backgroundColor: red.colorcontenedor, width: '100%', flexDirection: 'row' }} >
+                {/* Lin para buscar fb id:  https://roadtoblogging.com/get-facebook-page-id*/}
+                < View style={styles.contentLogo} >
+                  <Icon name={red.logonombre} size={50} color={red.colorlogo} />
+                </View>
+                <View style={styles.contentNombreRed}      >
+                  <Text style={{ fontWeight: "bold", fontSize: 18, color: red.colortexto }}>
+                    {red.nombre}
+                  </Text>
+                </View>
               </View>
-              <View style={styles.contentNombreRed}      >
-                <Text style={{ fontWeight: "bold", fontSize: 18, color: red.colortexto }}>
-                  {red.nombre}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        ))}
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
-        <View style={styles.touchable}                >
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              flexDirection: "row",
-            }}
-          >
-            <Button backgroundColor="#29B6F6" onPress={() => navigation.openDrawer()}                        >
-              <Icon name="arrow-left" size={30} color="white" fontWeight="bold" />
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-                Regresar...
-              </Text>
-            </Button>
-          </View>
+      <View style={styles.contentRegresar}                >
+        <View style={{ alignItems: "center", justifyContent: "center", width: "100%", flexDirection: "row", }}          >
+          <Button backgroundColor="#29B6F6" onPress={() => navigation.openDrawer()}                        >
+            <Icon name="arrow-left" size={30} color="white" fontWeight="bold" />
+            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Regresar</Text>
+          </Button>
         </View>
+      </View>
 
-      </ScrollView>
 
     </View >
   )
@@ -87,8 +82,8 @@ const styles = StyleSheet.create({
   headerPos: {
     backgroundColor: "#29B6F6",
     width: '100%',
+    alignItems: 'center',
     justifyContent: 'space-evenly',
-    alignItems: 'center'
   },
   text: {
     fontSize: 40,
@@ -114,5 +109,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 80,
     width: "80%",
-  }
+  },
+  contentRegresar: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: '10%',
+  },
 });

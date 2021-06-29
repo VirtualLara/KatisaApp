@@ -50,7 +50,7 @@ export default function Catalogo() {
           <View styles={styles.header}>
             <Text style={styles.text}>
               {" "}
-              Catalogo de articulos{" "}
+              Catálogo de articulos{" "}
               <Icon name="book" size={40} color="white" />{" "}
             </Text>
           </View>

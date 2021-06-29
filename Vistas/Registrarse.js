@@ -90,7 +90,7 @@ export default function pruebas(props) {
         </View>
         <Item>
           <TextInput
-            placeholder="Ingrese numero telefónico"
+            placeholder="Ingrese número telefónico"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             autoCorrect={false}
@@ -136,7 +136,7 @@ export default function pruebas(props) {
         </View>
         <Item last>
           <TextInput
-            placeholder="Repita sus Contraseña"
+            placeholder="Repita la contraseña"
             placeholderTextColor="#0B2161"
             returnKeyType="go"
             secureTextEntry //Vuelve el input tipo password

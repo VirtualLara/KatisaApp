@@ -32,19 +32,14 @@ export default function Sucursales(props) {
         <StatusBarMy backgroundColor='#29b6f6' />
 
         <View style={styles.headerPos}>
-          <Icon
-            name="bars"
-            size={35}
-            color="#1F618D"
-            onPress={() => navigation.openDrawer()}
-          />
+          <Icon name="bars" size={35} color="#1F618D" onPress={() => navigation.openDrawer()} />
           <Text style={styles.text}>
-            Ubicanos
-            </Text>
+            Nuestras sucursales
+          </Text>
           <Icon name="map-marker-alt" size={40} color="white" />
         </View>
 
-        { citys && <ListCiudades citys={citys} />}
+        {citys && <ListCiudades citys={citys} />}
 
       </Container>
 
@@ -72,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#29B6F6",
   },
   text: {
-    fontSize: 35,
+    fontSize: 25,
     fontWeight: "bold",
     color: "white",
   },

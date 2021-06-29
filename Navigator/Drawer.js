@@ -51,19 +51,21 @@ function Menu(props) {
     <View>
       <BarMy backgroundColor="#29B6F6" />
 
-      <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
-        <View style={styles.containImage}>
-          <Image
-            source={require("../Recursos/Imagenes/logos/logo.png")}
-            style={{ width: "95%", height: "95%", resizeMode: "contain" }}
-          />
-        </View>
-        <View style={styles.containTextImagen}>
-          <Text style={styles.textImagen}> Los expertos en iluminación </Text>
-        </View>
-      </TouchableOpacity>
+      <View style={{ height: '25%', }} >
+        <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
+          <View style={styles.containImage}>
+            <Image
+              source={require("../Recursos/Imagenes/logos/logo.png")}
+              style={{ width: "95%", height: "95%", resizeMode: "contain" }}
+            />
+          </View>
+          <View style={styles.containTextImagen}>
+            <Text style={styles.textImagen}> Los expertos en iluminación </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
-      <View style={{ width: "100%", height: 450 }}>
+      <View style={{ width: "100%", height: '67%' }}>
         <ScrollView>
           <DrawerMenu
             iconName="home"
@@ -108,27 +110,16 @@ function Menu(props) {
         </ScrollView>
       </View>
 
-      <View>
+      <View style={{ height: '8%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#29b6f6' }} >
         <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
+          style={{ flexDirection: "row", alignItems: "center", }}
           onPress={logoutAccount}
         >
-          <Icon
-            style={{
-              fontSize: 35,
-              fontWeight: "bold",
-              margin: 5,
-              padding: 5,
-              color: "#1F618D",
-            }}
-            name="window-close"
-          />
+          <Icon style={styles.iconStyle} name="window-close" />
           <Text style={styles.textCerrarSesion}> Cerrar sesion... </Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 }
@@ -175,17 +166,21 @@ export default function App() {
 const styles = StyleSheet.create({
   containImage: {
     width: "100%",
-    height: 150,
+    height: '80%',
     alignItems: "center",
     justifyContent: "center",
   },
   containTextImagen: {
     width: "100%",
-    height: 50,
+    height: '20%',
     alignItems: "center",
     justifyContent: "center",
   },
-  textImagen: { color: "#039BE5", fontWeight: "bold", fontSize: 20 },
+  textImagen: {
+    color: "#039BE5",
+    fontWeight: "bold",
+    fontSize: 20
+  },
   contenedor: {
     flex: 0.3,
     width: "77%",
@@ -217,12 +212,21 @@ const styles = StyleSheet.create({
     padding: 5,
     color: "#039BE5",
   },
-  textCerrarSesion: {
-    fontSize: 22,
+  iconStyle: {
+    fontSize: 40,
     fontWeight: "bold",
     margin: 5,
     padding: 5,
-    color: "#1F618D",
+    //color: "#1F618D",
+    color: "white",
+  },
+  textCerrarSesion: {
+    fontSize: 25,
+    fontWeight: "bold",
+    margin: 5,
+    padding: 5,
+    //color: "#1F618D",
+    color: 'white'
   },
   iconDrawerMenu: {
     fontSize: 22,
