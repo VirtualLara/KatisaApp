@@ -55,10 +55,12 @@ export default function CambiarEmail() {
     return (
         <View style={styles.container} >
 
-            <TextInput label="username" style={styles.label}
+            <TextInput label="Número Telefónico" style={styles.label}
+                keyboardType='number-pad'
                 onChangeText={(text) => formik.setFieldValue("username", text)}
                 value={formik.values.username}
-                error={formik.errors.username} />
+                error={formik.errors.username}
+            />
 
             <Button mode="contained" style={styles.button}
                 onPress={formik.handleSubmit} loading={loading} > Guardar Cambios </Button>

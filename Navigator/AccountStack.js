@@ -39,7 +39,7 @@ export default function AccountStack() {
             <Stack.Screen
                 name='CambiarUsuario'
                 component={CambiarUsuario}
-                options={{ title: 'Cambiar Nombre de Usuario' }}
+                options={{ title: 'Cambiar teléfono de Usuario' }}
             />
             <Stack.Screen
                 name='CambiarContraseña'

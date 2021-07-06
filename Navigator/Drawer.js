@@ -55,8 +55,8 @@ function Menu(props) {
         <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
           <View style={styles.containImage}>
             <Image
-              source={require("../Recursos/Imagenes/logos/logo.png")}
-              style={{ width: "95%", height: "95%", resizeMode: "contain" }}
+              source={require("../Recursos/Imagenes/logos/logo-bazar-cuadrado.png")}
+              style={{ width: "95%", height: "95%", resizeMode: "cover" }}
             />
           </View>
           <View style={styles.containTextImagen}>

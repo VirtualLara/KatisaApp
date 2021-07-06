@@ -40,7 +40,6 @@ export default function CardInfoNosotros(props) {
                       style={{ height: 200, width: 200, flex: 1 }}
                     /> */}
           <Text style={styles.parrafo}> {parrafo1} </Text>
-          <Text> {"\n"} </Text>
           <Text style={styles.parrafo}> {parrafo2} </Text>
           <Text style={styles.parrafo}> {parrafo3} </Text>
           <Text style={styles.parrafo}> {parrafo4} </Text>

@@ -47,8 +47,8 @@ export default function Menu() {
                     onPress={() => navigation.navigate('CambiarEmail')}
                 />
                 <List.Item
-                    title='Cambiar Nombre de Usuario'
-                    description='Cambiar el nombre de usuario de tu cuenta'
+                    title='Cambiar Teléfono de Usuario'
+                    description='Cambiar el número telefónico'
                     left={(props) => <List.Icon{...props} icon='sim' />}
                     onPress={() => navigation.navigate('CambiarUsuario')}
                 />

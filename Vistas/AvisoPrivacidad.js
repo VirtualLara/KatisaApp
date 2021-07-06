@@ -69,11 +69,13 @@ export default function AvisoPrivacidad() {
                 <List.Subheader style={styles.titleAcordeon} >Políticas de Compra</List.Subheader>
                 {map(politicas, (politica) => (
                     <List.Accordion title={politica.titulo} key={politica._id}>
-                        <Text style={styles.parrafo} >{politica.parrafo1} {'\n'}</Text>
-                        <Text style={styles.parrafo} >{politica.parrafo2} {'\n'}</Text>
-                        <Text style={styles.parrafo} >{politica.parrafo3} {'\n'}</Text>
-                        <Text style={styles.parrafo} >{politica.parrafo4} {'\n'}</Text>
-                        <Text style={styles.parrafo} >{politica.parrafo5} {'\n'}</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                            <Text style={styles.parrafo} >{politica.parrafo1} {'\n'}</Text>
+                            <Text style={styles.parrafo} >{politica.parrafo2} {'\n'}</Text>
+                            <Text style={styles.parrafo} >{politica.parrafo3} {'\n'}</Text>
+                            <Text style={styles.parrafo} >{politica.parrafo4} {'\n'}</Text>
+                            <Text style={styles.parrafo} >{politica.parrafo5} {'\n'}</Text>
+                        </View>
                     </List.Accordion>
                 ))}
             </ScrollView>
