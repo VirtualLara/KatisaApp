@@ -42,16 +42,33 @@ export default function FormularioPago(props) {
 
                 if (size(response) > 0) {
                     await deleteCarritoApi();
-                    navigation.navigate('Compras');
+                    Alert.alert('Pago exitoso y aprobado',
+                        'En breve nos ponemos en contacto con usted para coordinar su envío. Redireccionando a sus pedidos realizados.',
+                        [
+                            {
+                                style: 'default',
+                                text: 'Entendido',
+                                onPress: navigation.navigate('AccountStack', { screen: 'Compras' })
+                            }
+                        ]
+                    )
+
                 } else {
-                    Alert.alert('Error al realizar el pedido')
+                    Alert.alert('Error',
+                        'Ha fallado el proceso de pago. Favor de reintentar',
+                        [
+                            {
+                                style: 'default',
+                                text: 'Entendido',
+                                onPress: navigation.navigate('AccountStack', { screen: 'Compras' })
+                            }
+                        ]
+                    )
                 }
                 setLoading(false)
             }
         }
     })
-
-    console.log(direccionSeleccionada)
 
     return (
         <View style={styles.content} >
@@ -102,7 +119,7 @@ export default function FormularioPago(props) {
                         loading={loading}>
                         Pagar (
                         <Text>  </Text>
-                        <Text style={{ color: 'yellow' }} >Total:  {currencyFormat(totalPagar)}</Text>)
+                        <Text style={{ color: '#fff' }} >Total:  {currencyFormat(totalPagar)}</Text>)
                     </Button>
                 </View>
             </View>
@@ -180,12 +197,13 @@ const styles = StyleSheet.create({
     btnContent: {
         paddingVertical: 4,
         //backgroundColor: '#00bb2d',
-        backgroundColor: 'black',
+        backgroundColor: '#29b6f6',
         borderWidth: 2,
-        borderColor: 'silver',
+        borderColor: '#2874A6',
+        height: 70,
     },
     btnText: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 20,
     }
 })

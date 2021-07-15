@@ -6,8 +6,6 @@ export default function VentaComponent(props) {
 
     const { venta } = props;
 
-    console.log(venta)
-
     return (
         <View style={styles.container} >
             <View style={styles.containerImages} >

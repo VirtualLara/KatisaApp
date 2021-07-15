@@ -18,7 +18,6 @@ export default function Siguenos(props) {
       (async () => {
         const response = await getRedesApi();
         setRedes(response)
-        console.log(response)
       })()
     }, [])
   )

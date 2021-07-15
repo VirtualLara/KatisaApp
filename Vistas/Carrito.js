@@ -48,6 +48,10 @@ export default function Carrito() {
             setDirecciones(null)
             setDireccionSeleccionada(null)
 
+            setCheckedItems(true);
+            setChecked(false);
+            setCheckCard(false);
+
             loadCarrito();
             loadDirecciones();
         }, [],

@@ -26,7 +26,6 @@ export default function SearchView(props) {
             const response = await searchProducstApi(params.search);
             setProducts(response);
             setData(true);
-            console.log(data)
         })()
     }, [params.search])
 
@@ -54,7 +53,7 @@ export default function SearchView(props) {
                         <View style={styles.contenttextFin} >
                             <Text style={styles.textFin}>
                                 No hay mas artículos para mostrar...
-                             </Text>
+                            </Text>
                         </View>
                     </ScrollView>
                 </View>
