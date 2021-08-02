@@ -7,6 +7,7 @@ import ZoomImage from "react-native-zoom-image";
 import { Easing } from "react-native";
 
 import { API_URL } from '../utils/constants';
+import { colorMarca } from '../utils/colores';
 import { deleteFavoritoApi } from '../api/favoritos';
 import UseAuth from '../hooks/UseAuth';
 
@@ -84,7 +85,7 @@ export default function FavoriteItem(props) {
 
             {loading && (
                 <View style={styles.indicator}>
-                    <ActivityIndicator size={50} color='#29b6f6' />
+                    <ActivityIndicator size={50} color={colorMarca} />
                     <Text style={{ fontWeight: 'bold', fontSize: 20 }} > Eliminando... </Text>
                 </View>
 

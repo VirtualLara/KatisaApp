@@ -7,6 +7,7 @@ import { map } from 'lodash';
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 import CardInfoNosotros from "../Componentes/CardInfoNosotros";
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 import { getNosotrosApi } from '../api/Nosotros';
 
@@ -32,12 +33,12 @@ export default function Nosotros(props) {
     return (
       <View>
         <Header hasTabs style={styles.headerPos}>
-          <StatusBarMy backgroundColor="#29B6F6" />
+          <StatusBarMy backgroundColor={colorMarca} />
           <View style={styles.contentHeader} >
             <Icon
               name="bars"
               size={35}
-              color="#1F618D"
+              color={iconDrawerMenu}
               onPress={() => navigation.openDrawer()}
             />
             <Text style={styles.textHeader}>
@@ -69,8 +70,8 @@ export default function Nosotros(props) {
   } else {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+        <ActivityIndicator color={colorMarca} size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
       </View>
     )
   }
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   headerPos: {
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   textHeader: {
     fontSize: 30,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
     width: '100%'
   }
 });

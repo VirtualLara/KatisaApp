@@ -3,6 +3,8 @@ import { TouchableOpacity, Text, View, Image, StyleSheet } from "react-native";
 import Popover from "react-native-popover-view";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import { colorMarca } from '../utils/colores';
+
 export default function App() {
   const [showPopover, setShowPopover] = useState(false);
 
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#29b6f6",
+    color: colorMarca,
   },
   title: {
     paddingLeft: 10,
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
   textFacil: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#29b6f6",
+    color: colorMarca,
     textAlign: "center",
   },
   textSuerte: {

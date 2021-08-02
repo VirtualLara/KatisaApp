@@ -5,9 +5,9 @@ import { Container, Header, } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { getCitysApi } from '../api/Sucursales';
-
 import StatusBarMy from '../Componentes/StatusBarMy';
 import ListCiudades from '../Componentes/ListCiudades';
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 export default function Sucursales(props) {
 
@@ -29,10 +29,10 @@ export default function Sucursales(props) {
     return (
       <Container >
 
-        <StatusBarMy backgroundColor='#29b6f6' />
+        <StatusBarMy backgroundColor={colorMarca} />
 
         <View style={styles.headerPos}>
-          <Icon name="bars" size={35} color="#1F618D" onPress={() => navigation.openDrawer()} />
+          <Icon name="bars" size={35} color={iconDrawerMenu} onPress={() => navigation.openDrawer()} />
           <Text style={styles.text}>
             Nuestras sucursales
           </Text>
@@ -48,8 +48,8 @@ export default function Sucursales(props) {
   } else {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+        <ActivityIndicator color={colorMarca} size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
       </View>
     )
   }
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   text: {
     fontSize: 25,

@@ -5,6 +5,7 @@ import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 import { deleteDireccionApi } from '../api/direcciones';
+import { colorMarca } from '../utils/colores';
 
 
 export default function DireccionCard(props) {
@@ -84,14 +85,14 @@ export default function DireccionCard(props) {
 
                 <CardItem style={{ width: '100%', flexDirection: 'row' }} >
                     <View style={{ width: '50%', justifyContent: 'center', alignItems: 'center' }} >
-                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }}
+                        <Button mode='contained' style={{ width: '90%', backgroundColor: colorMarca }}
                             onPress={() => { ActualizarDireccion(a_id) }} >
                             <Text>Editar</Text>
                         </Button>
                     </View>
 
                     <View style={{ width: '50%', justifyContent: 'center', alignItems: 'center' }} >
-                        <Button mode='contained' style={{ width: '90%', backgroundColor: '#29B6F6' }}
+                        <Button mode='contained' style={{ width: '90%', backgroundColor: colorMarca }}
                             onPress={() => { deleteDireccionAlert() }} >
                             <Text>Eliminar</Text>
                         </Button>

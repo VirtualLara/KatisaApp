@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 import { getRedesApi } from '../api/redes';
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 export default function Siguenos(props) {
 
@@ -26,8 +27,8 @@ export default function Siguenos(props) {
     <View style={{ flex: 1 }} >
       <View style={{ height: '8%', }} >
         <Header hasTabs style={styles.headerPos}>
-          <StatusBarMy backgroundColor="#29B6F6" />
-          <Icon name="bars" size={35} color="#1F618D" onPress={() => navigation.openDrawer()}
+          <StatusBarMy backgroundColor={colorMarca} />
+          <Icon name="bars" size={35} color={iconDrawerMenu} onPress={() => navigation.openDrawer()}
           />
           <Text style={styles.text}>
             Siguenos
@@ -64,7 +65,7 @@ export default function Siguenos(props) {
 
       <View style={styles.contentRegresar}                >
         <View style={{ alignItems: "center", justifyContent: "center", width: "100%", flexDirection: "row", }}          >
-          <Button backgroundColor="#29B6F6" onPress={() => navigation.openDrawer()}                        >
+          <Button backgroundColor={colorMarca} onPress={() => navigation.openDrawer()}                        >
             <Icon name="arrow-left" size={30} color="white" fontWeight="bold" />
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>Regresar</Text>
           </Button>
@@ -79,7 +80,7 @@ export default function Siguenos(props) {
 
 const styles = StyleSheet.create({
   headerPos: {
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-evenly',

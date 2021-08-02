@@ -6,6 +6,7 @@ import { getStoresXalapaApi, getStoresVeracruzApi, getStoresCordobaApi } from '.
 
 import ListSucursales from '../Componentes/ListSucursales';
 import { color } from 'react-native-reanimated';
+import { colorMarca } from '../utils/colores';
 
 export default function Sucursal(props) {
 
@@ -34,7 +35,7 @@ export default function Sucursal(props) {
     return (
       <View style={{ flex: 1 }}>
 
-        { xalapaArray, veracruzArray, cordobaArray && <ListSucursales
+        {xalapaArray, veracruzArray, cordobaArray && <ListSucursales
           xalapaArray={xalapaArray}
           veracruzArray={veracruzArray}
           cordobaArray={cordobaArray}
@@ -46,8 +47,8 @@ export default function Sucursal(props) {
   } else {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+        <ActivityIndicator color={colorMarca} size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
       </View>
     )
 

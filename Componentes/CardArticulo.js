@@ -77,7 +77,7 @@ export default class CardArticulo extends Component {
             </View>
 
             <View style={styles.containerPropiedades}>
-              <Text style={styles.textNombrePropiedad}> Lumen: </Text>
+              <Text style={styles.textNombrePropiedad}> Lúmenes: </Text>
               <Text style={styles.textPropiedad}> {this.props.lumen}LM </Text>
             </View>
 

@@ -14,6 +14,7 @@ import {
 
 import { getNoticiasApi } from '../api/Noticias';
 import { API_URL } from '../utils/constants';
+import { colorMarca, iconDrawerMenu, contenedorBotonesNoticias } from '../utils/colores';
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
@@ -40,7 +41,7 @@ export default function Noticias(props) {
     return (
 
       <View style={{ flex: 1 }}>
-        <StatusBarMy backgroundColor="#29b6f6" />
+        <StatusBarMy backgroundColor={colorMarca} />
 
         <View style={styles.header}>
           <Icon
@@ -49,7 +50,7 @@ export default function Noticias(props) {
               fontWeight: "bold",
               color: "#fff",
               fontSize: 50,
-              color: "#1F618D",
+              color: iconDrawerMenu,
             }}
             onPress={() => navigation.openDrawer()}
           />
@@ -159,7 +160,7 @@ export default function Noticias(props) {
   } else {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBarMy backgroundColor="#29b6f6" />
+        <StatusBarMy backgroundColor={colorMarca} />
 
         <View style={styles.header}>
           <Icon
@@ -168,7 +169,7 @@ export default function Noticias(props) {
               fontWeight: "bold",
               color: "#fff",
               fontSize: 50,
-              color: "#1F618D",
+              color: iconDrawerMenu,
             }}
             onPress={() => navigation.openDrawer()}
           />
@@ -183,8 +184,8 @@ export default function Noticias(props) {
         </View>
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator color='#29b6f6' size={75} />
-          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+          <ActivityIndicator color={colorMarca} size={75} />
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
         </View>
 
       </View>
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
     height: "8%",
   },
   textHeader: {
@@ -230,10 +231,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "#34495E",
+    backgroundColor: contenedorBotonesNoticias,
   },
   buttonArrow: {
-    backgroundColor: "#29b6f6",
+    backgroundColor: colorMarca,
   },
   textButtonArrow: {
     fontSize: 18,

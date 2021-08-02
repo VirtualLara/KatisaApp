@@ -9,7 +9,7 @@ import IconCell from "react-native-vector-icons/MaterialCommunityIcons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { registerApi } from "../api/user";
-import Toast from "react-native-root-toast";
+import { colorMarca } from '../utils/colores';
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
@@ -36,7 +36,7 @@ export default function pruebas(props) {
 
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
-      <StatusBarMy backgroundColor="#29b6f6" />
+      <StatusBarMy backgroundColor={colorMarca} />
 
       <View style={styles.containerImagen}>
         <Image
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   header: {
-    backgroundColor: "#29b6f6",
+    backgroundColor: colorMarca,
   },
   titulos: {
     justifyContent: "center",

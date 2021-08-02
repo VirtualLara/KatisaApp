@@ -6,6 +6,7 @@ import { size } from 'lodash';
 
 import { getVentasApi } from '../../api/ventas';
 import ListVentas from '../../Componentes/ListVentas';
+import { colorMarca } from '../../utils/colores';
 
 export default function Compras() {
 
@@ -31,15 +32,15 @@ export default function Compras() {
                 ) : size(ventas) === 0 ? (
                     <Text style={styles.noVentas} > Aun no tienes compras. </Text>
                 ) : (
-                    <ListVentas ventas={ventas} />
+                    <ListVentas ventas={ventas} auth={auth} />
                 )}
             </ScrollView>
         )
     } else {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
     }

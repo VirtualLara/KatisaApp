@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Header, Button, Badge } from "native-base";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { View, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
+
+import { colorMarca } from '../../utils/colores';
 
 export default function SearchSinCart(props) {
     const { cantidad } = props;
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         height: 60,
-        backgroundColor: "#29b6f6",
+        backgroundColor: colorMarca,
     },
     searchStyle: {
         width: "80%",

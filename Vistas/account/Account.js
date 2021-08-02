@@ -11,6 +11,7 @@ import Loading from '../../Componentes/Loading';
 import StatusBarMy from '../../Componentes/StatusBarMy';
 import UserInfo from '../../Componentes/account/UserInfo';
 import Menu from '../../Componentes/account/Menu';
+import { colorMarca, iconDrawerMenu } from '../../utils/colores';
 
 
 export default function Account(props) {
@@ -37,9 +38,9 @@ export default function Account(props) {
 
 
       <Header hasTabs style={styles.headerPos}>
-        <StatusBarMy backgroundColor="#29B6F6" />
+        <StatusBarMy backgroundColor={colorMarca} />
         <View style={styles.headerContent} >
-          <Icon name="bars" size={35} color="#1F618D" onPress={() => openMyDrawer.navigation.openDrawer()} />
+          <Icon name="bars" size={35} color={iconDrawerMenu} onPress={() => openMyDrawer.navigation.openDrawer()} />
           <Text style={styles.text}> Mi perfil </Text>
           <Icon name="user" size={40} color="white" />
         </View>
@@ -47,7 +48,7 @@ export default function Account(props) {
 
       {!user ? (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-          <Loading size='large' text="Cargando..." color='#29b6f6' />
+          <Loading size='large' text="Cargando..." color={colorMarca} />
         </View>
       ) : (
         <ScrollView>
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: "100%",
     alignItems: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   header: {
     flexDirection: "row",

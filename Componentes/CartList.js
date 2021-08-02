@@ -3,9 +3,8 @@ import { View, ActivityIndicator, Text } from 'react-native';
 import { map, size } from 'lodash';
 
 import ProductCarrito from './ProductCarrito';
-
 import { getProductApi } from '../api/products';
-
+import { colorMarca } from '../utils/colores';
 
 export default function CartList(props) {
 
@@ -45,8 +44,8 @@ export default function CartList(props) {
 
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
 

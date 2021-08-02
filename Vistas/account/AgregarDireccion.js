@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 
 import { addNewDireccionApi, getDireccionApi, updateDireccionApi } from '../../api/direcciones';
 import useAuth from '../../hooks/UseAuth';
+import { colorMarca } from '../../utils/colores';
 
 export default function AgregarDireccion(props) {
 
@@ -133,8 +134,8 @@ export default function AgregarDireccion(props) {
     } else {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
     }
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     btnGuardar: {
-        backgroundColor: '#29b6f6',
+        backgroundColor: colorMarca,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center'

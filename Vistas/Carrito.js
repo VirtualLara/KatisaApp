@@ -13,6 +13,7 @@ import StatusBarMy from '../Componentes/StatusBarMy';
 import CartList from '../Componentes/CartList';
 import DireccionesList from '../Componentes/DireccionesList';
 import FormularioPago from '../Componentes/FormularioPago';
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 export default function Carrito() {
 
@@ -72,8 +73,8 @@ export default function Carrito() {
     if (carrito === null) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
     } else {
@@ -82,11 +83,11 @@ export default function Carrito() {
                 <View style={{ display: 'flex', flex: 1 }} >
 
                     <Header hasTabs style={styles.headerPos}>
-                        <StatusBarMy backgroundColor="#29B6F6" />
+                        <StatusBarMy backgroundColor={colorMarca} />
                         <Icon
                             name="bars"
                             size={35}
-                            color="#1F618D"
+                            color={iconDrawerMenu}
                             onPress={() => navigation.openDrawer()}
                         />
                         <Text> {"\n"} </Text>
@@ -119,7 +120,7 @@ export default function Carrito() {
                             onPress={() => {
                                 setCheckedItems(!checkedItems);
                             }}
-                            color={'#29b6f6'}
+                            color={colorMarca}
                             fontSize={50}
                         />
                     </View>
@@ -161,7 +162,7 @@ export default function Carrito() {
                                 setChecked(!checked);
                                 setCheckedItems(!checkedItems);
                             }}
-                            color={'#29b6f6'}
+                            color={colorMarca}
                             fontSize={50}
                         />
                     </View>
@@ -192,7 +193,7 @@ export default function Carrito() {
                                 setCheckCard(!checkCard);
                                 setChecked(!checked)
                             }}
-                            color={'#29b6f6'}
+                            color={colorMarca}
                             fontSize={50}
                         />
                     </View>
@@ -217,11 +218,11 @@ export default function Carrito() {
             return (
                 <>
                     <Header hasTabs style={styles.headerPos}>
-                        <StatusBarMy backgroundColor="#29B6F6" />
+                        <StatusBarMy backgroundColor={colorMarca} />
                         <Icon
                             name="bars"
                             size={35}
-                            color="#1F618D"
+                            color={iconDrawerMenu}
                             onPress={() => navigation.openDrawer()}
                         />
                         <Text> {"\n"} </Text>
@@ -241,7 +242,7 @@ export default function Carrito() {
                         <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }} >
                             <Button mode='contained' onPress={() => { navigation.navigate('Catalogo') }}
                                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#00bb2d', width: '90%' }} >
-                                <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Agregar ARTICULOS   </Text>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold' }} >Agregar artículos</Text>
                                 <Icon active name="plus" style={{ color: 'white', fontSize: 20 }} />
                             </Button>
                         </View>
@@ -259,7 +260,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: "space-evenly",
-        backgroundColor: "#29B6F6",
+        backgroundColor: colorMarca,
     },
     textHeader: {
         fontSize: 25,

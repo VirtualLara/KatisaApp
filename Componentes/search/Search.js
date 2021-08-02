@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from '@react-navigation/native';
 
 import { Searchbar } from "react-native-paper";
+import { colorMarca, IconCotizarCarrito, IconCotizarCarritoInterior } from '../../utils/colores';
 
 export default function Search(props) {
 
@@ -37,7 +38,7 @@ export default function Search(props) {
               {cantidad}
             </Text>
           </Badge> */}
-          <Icon name="list-alt" size={30} color="white" />
+          <Icon name="list-alt" size={30} color={IconCotizarCarritoInterior} />
         </Button>
       </View>
 
@@ -55,7 +56,7 @@ export default function Search(props) {
               {cantidad}
             </Text>
           </Badge> */}
-          <Icon name="cart-plus" size={30} color="white" />
+          <Icon name="cart-plus" size={30} color={IconCotizarCarritoInterior} />
         </Button>
       </View>
 
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: 60,
-    backgroundColor: "#29b6f6",
+    backgroundColor: colorMarca,
   },
   searchStyle: {
     width: "69%",
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#2E86C1'
+    backgroundColor: IconCotizarCarrito
   },
   viewBtnComprar: {
     width: "13%",
@@ -98,6 +99,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#2E86C1'
+    backgroundColor: IconCotizarCarrito
   },
 });

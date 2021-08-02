@@ -6,6 +6,7 @@ import { map, size } from 'lodash';
 
 import Articulo from '../Componentes/Articulo';
 import { searchProducstApi } from '../api/Search';
+import { colorMarca } from '../utils/colores';
 
 export default function SearchView(props) {
 
@@ -69,8 +70,8 @@ export default function SearchView(props) {
                     </View>
 
                     <View style={styles.containerActivity} >
-                        {/* <ActivityIndicator color='#29b6f6' size={100} /> */}
-                        <Text style={{ fontSize: 25, fontWeight: 'bold', color: '#29b6f6' }} > No existen resultados...</Text>
+                        {/* <ActivityIndicator color={colorMarca} size={100} /> */}
+                        <Text style={{ fontSize: 25, fontWeight: 'bold', color: colorMarca }} > No existen resultados...</Text>
                     </View>
 
                 </View>
@@ -84,8 +85,8 @@ export default function SearchView(props) {
             <View style={styles.container}>
 
                 <View style={styles.containerActivity} >
-                    <ActivityIndicator color='#29b6f6' size={100} />
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo Información...</Text>
+                    <ActivityIndicator color={colorMarca} size={100} />
+                    <Text style={{ fontSize: 25, fontWeight: 'bold', color: colorMarca }} > Obteniendo Información...</Text>
                 </View>
 
             </View>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     textFin: {
         fontWeight: "bold",
         fontSize: 20,
-        color: "#29b6f6",
+        color: colorMarca,
         width: 'auto',
         textAlign: 'center'
     },

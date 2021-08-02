@@ -4,13 +4,12 @@ import { Container, Content, Card, Item, Header, Footer } from "native-base";
 import { TextInput, Button } from "react-native-paper";
 import { loginApi } from "../api/user";
 import useAuth from "../hooks/UseAuth";
-import Toast from "react-native-root-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconKey from "react-native-vector-icons/MaterialCommunityIcons";
 import IconWorld from "react-native-vector-icons/Fontisto";
-import IconPass from "react-native-vector-icons/EvilIcons";
+import { colorMarca } from '../utils/colores';
 
 import StatusBarMy from "../Componentes/StatusBarMy";
 
@@ -44,7 +43,7 @@ export default function pruebas(props) {
   return (
     <Container style={styles.container}>
       <Header style={styles.titulos}>
-        <StatusBarMy backgroundColor="#29B6F6" />
+        <StatusBarMy backgroundColor={colorMarca} />
         <Text style={styles.textoHeader}>
           {" "}
           <Icon name="user-circle" size={35} color="white" /> Inicio de Sesión{" "}
@@ -142,7 +141,7 @@ export default function pruebas(props) {
         </View>
       </Content>
 
-      {/* <Footer style={{ backgroundColor: "#29B6F6" }}>
+      {/* <Footer style={{ backgroundColor: {colorMarca} }}>
         <View style={styles.viewForm}>
           <Button
             style={styles.botonOlvidaste}
@@ -172,7 +171,7 @@ const styles = StyleSheet.create({
   titulos: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   textoHeader: {
     fontSize: 25,

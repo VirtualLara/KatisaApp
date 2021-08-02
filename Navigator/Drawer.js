@@ -24,6 +24,7 @@ import AccountStack from '../Navigator/AccountStack';
 import ArticuloDetalles from '../Componentes/ArticuloDetalles';
 import Cotizacion from '../Vistas/Cotizacion';
 import AvisoPrivacidad from '../Vistas/AvisoPrivacidad';
+import { colorMarca, textoMenuDrawer, iconDrawer, drawerCerrarSesion } from '../utils/colores';
 
 function Menu(props) {
 
@@ -49,7 +50,7 @@ function Menu(props) {
 
   return (
     <View>
-      <BarMy backgroundColor="#29B6F6" />
+      <BarMy backgroundColor={colorMarca} />
 
       <View style={{ height: '25%', }} >
         <TouchableOpacity onPress={() => props.navigation.navigate("Nosotros")}>
@@ -110,7 +111,7 @@ function Menu(props) {
         </ScrollView>
       </View>
 
-      <View style={{ height: '8%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#29b6f6' }} >
+      <View style={{ height: '8%', justifyContent: 'center', alignItems: 'center', backgroundColor: colorMarca }} >
         <TouchableOpacity
           style={{ flexDirection: "row", alignItems: "center", }}
           onPress={logoutAccount}
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textImagen: {
-    color: "#039BE5",
+    color: textoMenuDrawer,
     fontWeight: "bold",
     fontSize: 20
   },
@@ -210,29 +211,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     margin: 5,
     padding: 5,
-    color: "#039BE5",
+    color: textoMenuDrawer,
   },
   iconStyle: {
     fontSize: 40,
     fontWeight: "bold",
     margin: 5,
     padding: 5,
-    //color: "#1F618D",
-    color: "white",
+    color: drawerCerrarSesion,
   },
   textCerrarSesion: {
     fontSize: 25,
     fontWeight: "bold",
     margin: 5,
     padding: 5,
-    //color: "#1F618D",
-    color: 'white'
+    color: drawerCerrarSesion
   },
   iconDrawerMenu: {
     fontSize: 22,
     fontWeight: "bold",
     margin: 5,
     padding: 5,
-    color: "#039BE5",
+    color: iconDrawer,
   },
 });

@@ -8,6 +8,7 @@ import { size } from 'lodash';
 
 import StatusBarMy from '../Componentes/StatusBarMy';
 import FavoritesList from '../Componentes/FavoritesList';
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 import { getFavoritosUserApi } from '../api/favoritos';
 import useAuth from '../hooks/UseAuth';
@@ -38,9 +39,9 @@ export default function Favorites() {
             return (
                 <>
                     <View>
-                        <StatusBarMy backgroundColor="#29B6F6" />
+                        <StatusBarMy backgroundColor={colorMarca} />
                         <View style={styles.headerPos}>
-                            <Icon name="bars" size={35} color="#1F618D"
+                            <Icon name="bars" size={35} color={iconDrawerMenu}
                                 onPress={() => navigation.openDrawer()}
                             />
                             <Text style={styles.text}>
@@ -59,9 +60,9 @@ export default function Favorites() {
             return (
                 <>
                     <View>
-                        <StatusBarMy backgroundColor="#29B6F6" />
+                        <StatusBarMy backgroundColor={colorMarca} />
                         <View style={styles.headerPos}>
-                            <Icon name="bars" size={35} color="#1F618D"
+                            <Icon name="bars" size={35} color={iconDrawerMenu}
                                 onPress={() => navigation.openDrawer()}
                             />
                             <Text style={styles.text}>
@@ -91,9 +92,9 @@ export default function Favorites() {
         return (
             <>
                 <View>
-                    <StatusBarMy backgroundColor="#29B6F6" />
+                    <StatusBarMy backgroundColor={colorMarca} />
                     <View style={styles.headerPos}>
-                        <Icon name="bars" size={35} color="#1F618D"
+                        <Icon name="bars" size={35} color={iconDrawerMenu}
                             onPress={() => navigation.openDrawer()}
                         />
                         <Text style={styles.text}>
@@ -103,8 +104,8 @@ export default function Favorites() {
                     </View>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                    <ActivityIndicator color='#29b6f6' size={75} />
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                    <ActivityIndicator color={colorMarca} size={75} />
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
                 </View>
             </>
         )
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: "space-evenly",
-        backgroundColor: "#29B6F6",
+        backgroundColor: colorMarca,
     },
     text: {
         fontSize: 25,

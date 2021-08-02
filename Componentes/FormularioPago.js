@@ -10,6 +10,7 @@ import useAuth from '../hooks/UseAuth';
 const stripe = require('stripe-client')(STRIPE_PUBLISHABLE_KEY);
 import { STRIPE_PUBLISHABLE_KEY } from '../utils/constants';
 import { pagoCarritoApi, deleteCarritoApi } from '../api/carrito';
+import { colorMarca } from '../utils/colores';
 
 export default function FormularioPago(props) {
 
@@ -54,13 +55,12 @@ export default function FormularioPago(props) {
                     )
 
                 } else {
-                    Alert.alert('Error',
-                        'Ha fallado el proceso de pago. Favor de reintentar',
+                    Alert.alert('Error al realizar el pago',
+                        'Por favor revise sus datos, así como la dirección de envío ya que es requerida',
                         [
                             {
                                 style: 'default',
                                 text: 'Entendido',
-                                onPress: navigation.navigate('AccountStack', { screen: 'Compras' })
                             }
                         ]
                     )
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     btnContent: {
         paddingVertical: 4,
         //backgroundColor: '#00bb2d',
-        backgroundColor: '#29b6f6',
+        backgroundColor: colorMarca,
         borderWidth: 2,
         borderColor: '#2874A6',
         height: 70,

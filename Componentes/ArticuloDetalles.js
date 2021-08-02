@@ -11,6 +11,7 @@ import { getProductApi } from '../api/products';
 import Favoritos from '../Componentes/FavoritesComponent';
 import BtnCotizar from '../Componentes/BtnCotizar';
 import BtnPagar from '../Componentes/BtnPagar';
+import { colorMarca } from '../utils/colores';
 
 export default function ArticuloDetalles(props) {
 
@@ -52,7 +53,7 @@ export default function ArticuloDetalles(props) {
                                 <Left>
                                     <Thumbnail source={{ uri: `${API_URL}${product.logo.url}` }} />
                                     <Body>
-                                        <Text note>KATISA Iluminación </Text>
+                                        <Text note>KATISA</Text>
                                         <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }} >
                                             {product.pagar === true ? currencyFormat(product.precio) : "Por Pedido"}
                                         </Text>
@@ -84,7 +85,7 @@ export default function ArticuloDetalles(props) {
                         </View>
 
                         <View style={styles.containerPropiedades}>
-                            <Text style={styles.textNombrePropiedad}> Lumen: </Text>
+                            <Text style={styles.textNombrePropiedad}> Lúmenes: </Text>
                             <Text style={styles.textPropiedad}> {product.lumen} LM </Text>
                         </View>
 
@@ -159,8 +160,8 @@ export default function ArticuloDetalles(props) {
 
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
 

@@ -8,6 +8,7 @@ import { map, size } from 'lodash';
 import StatusBarMy from '../Componentes/StatusBarMy';
 import { getPoliticasApi } from '../api/politicas';
 import { getAvisoApi } from '../api/avisos';
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 export default function AvisoPrivacidad() {
 
@@ -33,12 +34,12 @@ export default function AvisoPrivacidad() {
 
         <View style={{ flex: 1 }} >
 
-            <StatusBarMy backgroundColor="#29b6f6" />
+            <StatusBarMy backgroundColor={colorMarca} />
 
             <View style={styles.header}>
                 <Icon
                     name="bars"
-                    style={{ fontWeight: "bold", color: "#fff", fontSize: 40, color: "#1F618D", }}
+                    style={{ fontWeight: "bold", color: "#fff", fontSize: 40, color: iconDrawerMenu, }}
                     onPress={() => navigation.openDrawer()}
                 />
 
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-evenly",
         alignItems: "center",
-        backgroundColor: "#29B6F6",
+        backgroundColor: colorMarca,
         height: "8%",
     },
     textHeader: {

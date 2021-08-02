@@ -7,6 +7,7 @@ import { size, map } from 'lodash';
 import { getDireccionesApi } from '../../api/direcciones';
 import useAuth from '../../hooks/UseAuth';
 import DireccionCard from '../../Componentes/DireccionCard';
+import { colorMarca } from '../../utils/colores';
 
 export default function Direcciones() {
 
@@ -77,8 +78,8 @@ export default function Direcciones() {
     } else {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator color='#29b6f6' size={75} />
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+                <ActivityIndicator color={colorMarca} size={75} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
             </View>
         )
     }

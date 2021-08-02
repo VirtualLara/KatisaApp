@@ -10,6 +10,8 @@ import Direcciones from '../Vistas/account/Direcciones';
 import AgregarDireccion from '../Vistas/account/AgregarDireccion';
 import Compras from '../Vistas/account/Compras';
 
+import { colorMarca } from '../utils/colores';
+
 export default function AccountStack() {
 
     const Stack = createStackNavigator();
@@ -18,7 +20,7 @@ export default function AccountStack() {
         <Stack.Navigator
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#29b6f6' },
+                headerStyle: { backgroundColor: colorMarca },
                 cardStyle: { backgroundColor: '#fff' }
             }}>
             <Stack.Screen

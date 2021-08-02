@@ -13,6 +13,7 @@ import { API_URL } from '../utils/constants';
 import BannersComponent from "../Componentes/BannersComponent";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Popover from "../Componentes/Popover";
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 export default function Inicio(props) {
 
@@ -42,9 +43,9 @@ export default function Inicio(props) {
 
         <View style={{ height: 'auto' }} >
           <Header style={styles.header}>
-            <StatusBarMy backgroundColor="#29B6F6" />
-            <Button style={{ backgroundColor: "#29B6F6" }} onPress={() => navigation.openDrawer()}>
-              <Icon name="bars" style={{ fontWeight: "bold", color: "#1F618D", fontSize: 40 }} />
+            <StatusBarMy backgroundColor={colorMarca} />
+            <Button style={{ backgroundColor: colorMarca }} onPress={() => navigation.openDrawer()}>
+              <Icon name="bars" style={{ fontWeight: "bold", color: iconDrawerMenu, fontSize: 40 }} />
             </Button>
             <Text style={styles.textHeader}> ¡Promociones y más! </Text>
           </Header>
@@ -133,7 +134,7 @@ export default function Inicio(props) {
             <View style={{ height: '65%', width: '100%', }} >
 
               <View style={{ height: '15%', flexDirection: 'row', width: '100%', backgroundColor: '#00b0f0', justifyContent: 'center', alignItems: 'center' }} >
-                <Text style={styles.textHeader}>  ***Ofertas del mes*** </Text>
+                <Text style={styles.textHeader}>Ofertas del mes</Text>
               </View>
 
               <View style={{ height: '30%', flexDirection: 'row' }} >
@@ -315,8 +316,8 @@ export default function Inicio(props) {
 
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+        <ActivityIndicator color={colorMarca} size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
       </View>
     )
 
@@ -328,7 +329,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   textHeader: {
     color: "white",
@@ -337,7 +338,7 @@ const styles = StyleSheet.create({
   },
   headerOferta: {
     flexDirection: 'row',
-    backgroundColor: '#29b6f6',
+    backgroundColor: colorMarca,
     justifyContent: 'center',
     alignContent: 'center'
   },

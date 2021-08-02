@@ -8,6 +8,7 @@ import { map } from 'lodash';
 import Articulo from "../Componentes/Articulo";
 import StatusBarMy from "../Componentes/StatusBarMy";
 import Search from "../Componentes/search/index";
+import { colorMarca, iconDrawerMenu } from '../utils/colores';
 
 import { getProductsApi } from '../api/products';
 
@@ -38,12 +39,12 @@ export default function Catalogo() {
       <View>
 
         <Header hasTabs style={styles.headerPos}>
-          <StatusBarMy backgroundColor="#29B6F6" />
+          <StatusBarMy backgroundColor={colorMarca} />
 
           <Icon
             name="bars"
             size={35}
-            color="#1F618D"
+            color={iconDrawerMenu}
             onPress={() => navigation.openDrawer()}
           />
           <Text> {"\n"} </Text>
@@ -77,7 +78,7 @@ export default function Catalogo() {
           ))}
 
           <View style={styles.contenttextFin}          >
-            <Text style={{ fontWeight: "bold", fontSize: 20, color: "#29b6f6", width: 'auto', textAlign: 'center' }}>
+            <Text style={{ fontWeight: "bold", fontSize: 20, color: colorMarca, width: 'auto', textAlign: 'center' }}>
               No hay mas artículos para mostrar...
             </Text>
           </View>
@@ -90,8 +91,8 @@ export default function Catalogo() {
     return (
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator color='#29b6f6' size={75} />
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#29b6f6' }} > Obteniendo información...</Text>
+        <ActivityIndicator color={colorMarca} size={75} />
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colorMarca }} > Obteniendo información...</Text>
       </View>
 
     )
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   headerPos: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#29B6F6",
+    backgroundColor: colorMarca,
   },
   header: {
     display: "flex",

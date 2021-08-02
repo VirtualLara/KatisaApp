@@ -9,6 +9,7 @@ import Favorites from '../Vistas/Favorites';
 import Cotizacion from '../Vistas/Cotizacion';
 import Carrito from '../Vistas/Carrito';
 import AccountStack from '../Navigator/AccountStack';
+import { colorMarca, tabFavoritos, tabCotizaciones, tabCarrito, tabPerfil } from '../utils/colores';
 
 export default function AppNavigation() {
 
@@ -27,7 +28,7 @@ export default function AppNavigation() {
                 component={Favorites}
                 options={{
                     title: 'FAVORITOS',
-                    tabBarColor: '#3498DB'
+                    tabBarColor: tabCotizaciones
                 }}
             />
             <Tab.Screen
@@ -35,7 +36,7 @@ export default function AppNavigation() {
                 component={Cotizacion}
                 options={{
                     title: 'COTIZACION',
-                    tabBarColor: '#2E86C1'
+                    tabBarColor: tabFavoritos
                 }}
             />
             <Tab.Screen
@@ -43,7 +44,7 @@ export default function AppNavigation() {
                 component={Inicio}
                 options={{
                     title: 'INICIO',
-                    tabBarColor: '#29b6f6',
+                    tabBarColor: colorMarca,
                 }}
             />
             <Tab.Screen
@@ -51,7 +52,7 @@ export default function AppNavigation() {
                 component={Carrito}
                 options={{
                     title: 'CARRITO',
-                    tabBarColor: '#2874A6'
+                    tabBarColor: tabFavoritos
                 }}
             />
             <Tab.Screen
@@ -59,7 +60,7 @@ export default function AppNavigation() {
                 component={AccountStack}
                 options={{
                     title: 'MI PERFIL',
-                    tabBarColor: '#1B4F72'
+                    tabBarColor: tabCotizaciones
                 }}
             />
         </Tab.Navigator>
@@ -94,7 +95,7 @@ function setIcon(route, routeStatus) {
 
 const styles = StyleSheet.create({
     navigationStyle: {
-        backgroundColor: '#29b6f6',
+        backgroundColor: colorMarca,
         color: "#fff",
     },
     icon: {

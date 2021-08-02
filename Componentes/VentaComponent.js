@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import { API_URL } from '../utils/constants';
 
 export default function VentaComponent(props) {
@@ -14,11 +15,12 @@ export default function VentaComponent(props) {
             <View style={styles.info} >
                 <Text style={styles.name} >{venta.product.clave} | {venta.product.descripcion} </Text>
                 <Text style={styles.label} > Cantidad: <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }} >{venta.cantidad}</Text>  </Text>
-                <Text style={styles.label} > Total Pagado: <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }} >${venta.totalproducto}.00</Text> </Text>
+                <Text style={styles.label} > Total Pagado: <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }} >${venta.totalproducto}.00</Text> </Text>
                 <Text style={styles.label} > Fecha: {(venta.published_at).substr(8, 2)}-
                     {(venta.published_at).substr(5, 2)}-
                     {(venta.published_at).substr(0, 4)}
                 </Text>
+                <Text style={styles.label} > Enviado a: <Text style={{ color: 'darkorange', fontWeight: 'bold', fontSize: 16 }} >{venta.direccionenvio.titulo}</Text> </Text>
             </View>
         </View>
     )

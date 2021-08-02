@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Catalogo from '../Vistas/Catalogo';
 import ArticuloDetalles from '../Componentes/ArticuloDetalles';
 import SearchView from '../Vistas/SearchView';
+import { colorMarca } from '../utils/colores';
 
 
 const Stack = createStackNavigator();
@@ -13,7 +14,7 @@ export default function ArticulosStack() {
         <Stack.Navigator
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#29b6f6' },
+                headerStyle: { backgroundColor: colorMarca },
                 cardStyle: { backgroundColor: '#fff' }
             }}>
             <Stack.Screen
@@ -24,7 +25,7 @@ export default function ArticulosStack() {
             <Stack.Screen
                 name='ArticuloDetalles'
                 component={ArticuloDetalles}
-                options={{ title: 'Detalles del Articulo' }}
+                options={{ title: 'Detalles del artículo' }}
             />
             <Stack.Screen
                 name='SearchView'
