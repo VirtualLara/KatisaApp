@@ -31,6 +31,7 @@ export default function FavoriteItem(props) {
     }
 
     return (
+
         <Card style={styles.container} >
 
             <View style={styles.imgContent} >
